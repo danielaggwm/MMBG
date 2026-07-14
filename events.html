@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs &amp; Events — Miami Beach Botanical Garden</title>
+  <meta name="description" content="Wellness classes, cultural events, workshops, and family programs at Miami Beach Botanical Garden.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="index.html" class="logo">Miami Beach<br>Botanical Garden</a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="visit.html">Visit</a></li>
+          <li><a href="map.html">Map</a></li>
+          <li><a href="events.html">Events &amp; Programs</a></li>
+          <li><a href="private-events.html">Private Events</a></li>
+          <li><a href="support.html">Support Us</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="visit.html" class="pill pill-outline pill-sm">Plan Your Visit</a>
+        <a href="https://app.donorview.com/Donation/DonationInfo?prm=gChNitu6iC5Cc8rkfaevZymMkhQ1LrlfVADd4WaIxk4GcKLaQ0hK6FrMpi7Edyg7mkm_ia92xWtpfUjWCHyr1xS66-W-UGwHyf4OFDp8ffFp5dx2KmRxrfAfgYlZirqZ2XbIw1J4OZbek_GI2PkSXlU2oBJxjFXRIExu4yyytRE0t5sdsxrhfel7MHwuV6eaBs8SmZW8K1MmXw35Oy-nPFrwbCgSvV47u2VLswPkwkKvYUwwHcgcztnyfX30aTy70" target="_blank" rel="noopener" class="pill pill-ink pill-sm">Donate</a>
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= 1. PAGE HERO (photo strip + color divider) =================
+         Full-bleed photo, then the page title on a solid color band. -->
+    <section aria-label="Events and programs">
+      <img class="hero-strip" src="images/events-hero.jpg"
+           alt="The Garden's pond with purple water lilies, yellow flowers, and a small waterfall">
+
+      <div class="hero-divider divider-coral">
+        <h1 class="display-lg">Always Something in Bloom</h1>
+      </div>
+
+      <div class="container">
+        <div class="section-head-center" style="margin: 64px auto 0;">
+          <p class="lead">From wellness classes and garden workshops to cultural events and family-friendly programs, the Garden offers experiences that connect people with nature, creativity, and community.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2. EVENT CALENDAR ================= -->
+    <section class="section fade-in" aria-labelledby="calendar-title">
+      <div class="container">
+        <div class="section-head-center">
+          <h2 id="calendar-title" class="display-md">What's Coming Up</h2>
+          <p class="lead">Choose a category to find the right event for you.</p>
+        </div>
+
+        <!-- Filter buttons: data-filter must match each card's data-category -->
+        <div class="filter-bar" role="group" aria-label="Filter events by category">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true">All Events</button>
+          <button class="filter-btn" data-filter="wellness" aria-pressed="false">Wellness</button>
+          <button class="filter-btn" data-filter="arts" aria-pressed="false">Arts &amp; Culture</button>
+          <button class="filter-btn" data-filter="family" aria-pressed="false">Kids &amp; Families</button>
+          <button class="filter-btn" data-filter="workshops" aria-pressed="false">Workshops</button>
+          <button class="filter-btn" data-filter="members" aria-pressed="false">Member Events</button>
+        </div>
+
+        <div class="grid grid-3">
+
+          <article class="tile-card event-card" data-category="wellness">
+            <span class="tag tag-green">Wellness</span>
+            <p class="event-date">Sat · Month 00 · 9:30 AM</p>
+            <h3>Morning Yoga in the Garden</h3>
+            <p>A gentle all-levels flow surrounded by palms, breeze, and birdsong.</p>
+            <a href="#" class="text-link card-link">Register ↗</a>
+          </article>
+
+          <article class="tile-card event-card" data-category="arts">
+            <span class="tag tag-lilac">Arts &amp; Culture</span>
+            <p class="event-date">Fri · Month 00 · 7:00 PM</p>
+            <h3>Jazz in the Jungle</h3>
+            <p>Live jazz under the banyans — the Garden's signature evening series.</p>
+            <a href="#" class="text-link card-link">Learn More ↗</a>
+          </article>
+
+          <article class="tile-card event-card" data-category="workshops">
+            <span class="tag tag-yellow">Workshop</span>
+            <p class="event-date">Sun · Month 00 · 11:00 AM</p>
+            <h3>Botanical Watercolor Workshop</h3>
+            <p>Paint from living plants with guidance from a local artist. All levels welcome.</p>
+            <a href="#" class="text-link card-link">Register ↗</a>
+          </article>
+
+          <article class="tile-card event-card" data-category="family">
+            <span class="tag tag-teal">Kids &amp; Families</span>
+            <p class="event-date">Sat · Month 00 · 10:00 AM</p>
+            <h3>Family Nature Walk</h3>
+            <p>A guided stroll for curious kids — spot butterflies, native plants, and pond life.</p>
+            <a href="#" class="text-link card-link">Learn More ↗</a>
+          </article>
+
+          <article class="tile-card event-card" data-category="workshops">
+            <span class="tag tag-yellow">Workshop</span>
+            <p class="event-date">Thu · Month 00 · 6:00 PM</p>
+            <h3>Sustainability Talk</h3>
+            <p>How native planting and water-wise design keep South Florida resilient.</p>
+            <a href="#" class="text-link card-link">Learn More ↗</a>
+          </article>
+
+          <article class="tile-card event-card" data-category="members">
+            <span class="tag tag-coral">Member Event</span>
+            <p class="event-date">Sun · Month 00 · 9:00 AM</p>
+            <h3>Members-Only Seasonal Tour</h3>
+            <p>A guided walk through what's blooming this season, just for Friends of the Garden.</p>
+            <a href="support.html#membership" class="text-link card-link">Become a Member ↗</a>
+          </article>
+
+        </div>
+
+        <!-- Full calendar button.
+             Point this at the calendar page once it exists,
+             e.g. href="calendar.html" -->
+        <div class="text-center mt-lg">
+          <a href="#" class="pill pill-ink">View Full Calendar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3. PROGRAM CATEGORIES ================= -->
+    <section class="section fade-in" aria-labelledby="programs-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="programs-title" class="display-md">Programs &amp; Education</h2>
+        </div>
+
+        <div class="grid grid-4">
+          <article class="color-card color-card-green">
+            <p class="eyebrow">Wellness</p>
+            <h3>Wellness in the Garden</h3>
+            <p>Yoga, meditation, nature therapy, and programs connected to well-being.</p>
+          </article>
+
+          <article class="color-card color-card-lilac">
+            <p class="eyebrow">Culture</p>
+            <h3>Arts &amp; Culture</h3>
+            <p>Jazz, exhibitions, performances, and community events.</p>
+          </article>
+
+          <article class="color-card color-card-coral">
+            <p class="eyebrow">Education</p>
+            <h3>Learning &amp; Sustainability</h3>
+            <p>Classes, workshops, horticulture, ecology, and environmental education.</p>
+          </article>
+
+          <article class="color-card color-card-teal">
+            <p class="eyebrow">Groups</p>
+            <h3>School &amp; Group Programs</h3>
+            <p>Guided tours, field trips, and custom group visits.</p>
+            <a href="visit.html#tours" class="card-link">Learn More</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. FIELD TRIP CTA (dark) ================= -->
+    <section class="dark-band fade-in" aria-labelledby="fieldtrip-title">
+      <p class="eyebrow">School &amp; Group Visits</p>
+      <h2 id="fieldtrip-title" class="display-lg">Planning a school<br>or group visit?</h2>
+      <p class="lead">Book a guided tour, garden activity, or self-guided exploration.</p>
+      <div class="btn-group">
+        <a href="mailto:growwithus@MBGarden.org?subject=Field%20Trip%20Request" class="pill pill-white">Request a Field Trip</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-brand">Miami Beach<br>Botanical Garden</div>
+          <p style="margin-bottom: 18px;"><a href="https://maps.google.com/?q=2000+Convention+Center+Dr,+Miami+Beach,+FL+33139" target="_blank" rel="noopener">2000 Convention Ctr Dr,<br>Miami Beach, FL 33139</a></p>
+          <p>Tuesday–Sunday · 9:00 AM–5:00 PM<br>
+             Admission: Free<br><br>
+             <a href="mailto:growwithus@MBGarden.org">growwithus@MBGarden.org</a><br>
+             <a href="tel:+13056737256">305-673-PALM (7256)</a></p>
+        </div>
+
+        <div>
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="visit.html">Visit</a></li>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="events.html">Events &amp; Programs</a></li>
+            <li><a href="private-events.html">Private Events</a></li>
+            <li><a href="support.html">Support Us</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Get Involved</h5>
+          <ul class="footer-links">
+            <li><a href="support.html">Donate</a></li>
+            <li><a href="support.html#membership">Membership</a></li>
+            <li><a href="support.html#volunteer">Volunteer</a></li>
+            <li><a href="support.html#partners">Partnerships</a></li>
+            <li><a href="support.html#dedicate">Gift a Plant or Tree</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Stay in the Loop</h5>
+          <p style="margin-bottom: 18px;">Garden news, events, and seasonal highlights in your inbox.</p>
+          <form class="newsletter-form" action="#" method="post">
+            <label for="newsletter-email" class="sr-only">Email address</label>
+            <input type="email" id="newsletter-email" name="email" placeholder="Your email address">
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Miami Beach Botanical Garden. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="YouTube">YouTube</a>
+          <a href="#" aria-label="TikTok">TikTok</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garden Map — Miami Beach Botanical Garden</title>
+  <meta name="description" content="Find your way around Miami Beach Botanical Garden with our illustrated map, official layout map, and interactive map.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="index.html" class="logo">Miami Beach<br>Botanical Garden</a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="visit.html">Visit</a></li>
+          <li><a href="map.html">Map</a></li>
+          <li><a href="events.html">Events &amp; Programs</a></li>
+          <li><a href="private-events.html">Private Events</a></li>
+          <li><a href="support.html">Support Us</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="visit.html" class="pill pill-outline pill-sm">Plan Your Visit</a>
+        <a href="https://app.donorview.com/Donation/DonationInfo?prm=gChNitu6iC5Cc8rkfaevZymMkhQ1LrlfVADd4WaIxk4GcKLaQ0hK6FrMpi7Edyg7mkm_ia92xWtpfUjWCHyr1xS66-W-UGwHyf4OFDp8ffFp5dx2KmRxrfAfgYlZirqZ2XbIw1J4OZbek_GI2PkSXlU2oBJxjFXRIExu4yyytRE0t5sdsxrhfel7MHwuV6eaBs8SmZW8K1MmXw35Oy-nPFrwbCgSvV47u2VLswPkwkKvYUwwHcgcztnyfX30aTy70" target="_blank" rel="noopener" class="pill pill-ink pill-sm">Donate</a>
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= 1. PAGE HERO (centered) ================= -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head-center" style="margin-bottom: 0;">
+          <p class="eyebrow eyebrow-dim">Garden Map</p>
+          <h1 class="display-xl">Find Your Way,<br>the Fun Way</h1>
+          <p class="lead" style="margin-top: 24px;">From shaded paths to century-old trees, there's more to the Garden than meets the eye. Explore the grounds below, or download the official map to bring along.</p>
+          <div class="btn-group" style="justify-content: center; margin-top: 36px;">
+            <a href="#infographic" class="pill pill-ink">Explore the Map</a>
+            <a href="maps/MBBG_Map.pdf" download class="pill pill-outline">Download the Official Map</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2. ILLUSTRATED MAP (big & centered) ================= -->
+    <section class="section fade-in" id="infographic" aria-labelledby="infographic-title">
+      <div class="container" style="max-width: 1360px;">
+        <div class="section-head-center">
+          <p class="eyebrow eyebrow-coral" style="text-align: center;">The Illustrated Map</p>
+          <h2 id="infographic-title" class="display-md">The Garden at a Glance</h2>
+          <p class="lead">Get to know the Garden before you arrive — what to see, where to wander, and a little history along the way.</p>
+        </div>
+
+        <!-- The infographic map, centered and big — no frame, so it
+             blends into the page background -->
+        <img src="maps/Infographic_Map.svg"
+             alt="Illustrated map of Miami Beach Botanical Garden showing the gardens, paths, water features, and fun facts"
+             style="width: 100%; height: auto;">
+      </div>
+    </section>
+
+    <!-- ================= 3. OFFICIAL LAYOUT MAP (centered) ================= -->
+    <section class="section fade-in" aria-labelledby="official-title">
+      <div class="container" style="max-width: 1100px;">
+        <div class="section-head-center">
+          <p class="eyebrow eyebrow-green">The Official Map</p>
+          <h2 id="official-title" class="display-md">Straight from the Entrance Gates</h2>
+          <p class="lead">The same layout map you'll see when you arrive. Download a copy to bring along.</p>
+        </div>
+
+        <img src="maps/MBBG_Map.svg"
+             alt="The official layout map of Miami Beach Botanical Garden showing every garden area, path, and facility"
+             style="width: 100%; height: auto;">
+
+        <div class="text-center" style="margin-top: 40px;">
+          <a href="maps/MBBG_Map.pdf" download class="pill pill-ink">Download the Official Map</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5. INTERACTIVE MAP CTA (dark) =================
+         Point the pill below at the interactive map URL once it's live. -->
+    <section class="dark-band fade-in" aria-labelledby="interactive-title">
+      <p class="eyebrow">In the Works</p>
+      <h2 id="interactive-title" class="display-lg">Explore the Garden,<br>Interactively</h2>
+      <p class="lead">Soon you'll be able to wander the Garden from your screen — tap through the grounds, trace its history, and plan your visit.</p>
+      <div class="btn-group">
+        <a href="#" class="pill pill-white" aria-disabled="true">Launch the Interactive Map ↗</a>
+        <a href="events.html" class="pill pill-ghost">Explore Events Meanwhile</a>
+      </div>
+      <p style="margin-top: 24px; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35);">Coming Soon</p>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-brand">Miami Beach<br>Botanical Garden</div>
+          <p style="margin-bottom: 18px;"><a href="https://maps.google.com/?q=2000+Convention+Center+Dr,+Miami+Beach,+FL+33139" target="_blank" rel="noopener">2000 Convention Ctr Dr,<br>Miami Beach, FL 33139</a></p>
+          <p>Tuesday–Sunday · 9:00 AM–5:00 PM<br>
+             Admission: Free<br><br>
+             <a href="mailto:growwithus@MBGarden.org">growwithus@MBGarden.org</a><br>
+             <a href="tel:+13056737256">305-673-PALM (7256)</a></p>
+        </div>
+
+        <div>
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="visit.html">Visit</a></li>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="events.html">Events &amp; Programs</a></li>
+            <li><a href="private-events.html">Private Events</a></li>
+            <li><a href="support.html">Support Us</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Get Involved</h5>
+          <ul class="footer-links">
+            <li><a href="support.html">Donate</a></li>
+            <li><a href="support.html#membership">Membership</a></li>
+            <li><a href="support.html#volunteer">Volunteer</a></li>
+            <li><a href="support.html#partners">Partnerships</a></li>
+            <li><a href="support.html#dedicate">Gift a Plant or Tree</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Stay in the Loop</h5>
+          <p style="margin-bottom: 18px;">Garden news, events, and seasonal highlights in your inbox.</p>
+          <form class="newsletter-form" action="#" method="post">
+            <label for="newsletter-email" class="sr-only">Email address</label>
+            <input type="email" id="newsletter-email" name="email" placeholder="Your email address">
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Miami Beach Botanical Garden. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="YouTube">YouTube</a>
+          <a href="#" aria-label="TikTok">TikTok</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
