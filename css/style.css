@@ -1652,6 +1652,25 @@ section.dark-band {
     padding: var(--space-xl) 0;
   }
 
+  /* Newsletter: stack the field and button so nothing gets cut */
+  .newsletter-form {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .newsletter-form input {
+    width: 100%;
+    border-right: 1.5px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--radius-pill);
+  }
+
+  .newsletter-form button {
+    width: 100%;
+    padding: 14px;
+    border-radius: var(--radius-pill);
+  }
+
   .block {
     padding: var(--space-lg) 24px;
   }
