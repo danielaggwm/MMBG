@@ -73,6 +73,7 @@
 }
 
 html {
+  overflow-x: clip; /* nothing can force sideways scrolling */
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-height) + 12px);
 }
@@ -1360,7 +1361,7 @@ section.dark-band {
   border-right: none;
   border-radius: var(--radius-pill) 0 0 var(--radius-pill);
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 16px; /* 16px+ stops iOS Safari from auto-zooming on tap */
   font-family: var(--font-body);
 }
 
