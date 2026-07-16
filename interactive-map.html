@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Map — Miami Beach Botanical Garden</title>
+  <meta name="description" content="Explore the Tree Walk and Fragrance Walk at Miami Beach Botanical Garden with our interactive map.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Mapbox GL JS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+
+  <style>
+    /* ============ Interactive map page styles ============ */
+    #map-wrap {
+      position: relative;
+      width: 100%;
+      height: 76vh;
+      min-height: 540px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      display: flex;
+    }
+    #map-area { position: relative; flex: 1; min-width: 0; height: 100%; }
+    #map { position: absolute; inset: 0; }
+
+    /* Top-left controls: walk filter + search */
+    #top-controls {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 7;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    #walk-filter {
+      display: flex;
+      gap: 8px;
+      background: rgba(250,249,245,0.92);
+      backdrop-filter: blur(6px);
+      padding: 6px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+
+    /* Search box */
+    #search-box { position: relative; }
+    #search-input {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink);
+      border: none;
+      outline: none;
+      width: 210px;
+      padding: 13px 18px;
+      border-radius: var(--radius-pill);
+      background: rgba(250,249,245,0.92);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+    #search-input::placeholder { color: #999; font-weight: 400; }
+    #search-box.has-text #search-input { padding-right: 38px; }
+    #search-clear {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      width: 20px; height: 20px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      background: var(--hairline);
+      color: #A9A49A;
+      padding: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    #search-box.has-text #search-clear { display: flex; }
+    #search-clear svg { display: block; }
+    #search-clear:hover { color: var(--ink); }
+    #search-results {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 260px;
+      max-height: 260px;
+      overflow-y: auto;
+      background: var(--paper);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      display: none;
+    }
+    #search-results.open { display: block; }
+    .search-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--ink);
+      padding: 9px 12px;
+      transition: background 0.15s ease;
+    }
+    .search-item:hover { background: var(--hairline); }
+    .search-item .si-num {
+      flex: none;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: block;
+      text-align: center;
+      line-height: 22px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .search-item .si-num.walk-tree { background: var(--green); }
+    .search-item .si-num.walk-fragrance { background: var(--coral); }
+    .search-item .si-sci { color: #999; font-style: italic; font-size: 0.72rem; }
+    .search-empty {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: #999;
+      padding: 12px 14px;
+    }
+
+    /* Mobile menu (hamburger) button — opens the welcome panel.
+       Bottom-left, green so it stands out. Mobile only. */
+    #panel-menu {
+      display: none;
+      position: absolute;
+      bottom: 16px;
+      left: 12px;
+      z-index: 7;
+      width: 38px; height: 38px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      background: var(--green);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      color: #fff;
+    }
+    #panel-menu svg { display: block; }
+    .walk-btn {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      background: transparent;
+      color: var(--ink);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .walk-btn .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .walk-btn[data-walk="tree"] .dot { background: var(--green); }
+    .walk-btn[data-walk="fragrance"] .dot { background: var(--coral); }
+    .walk-btn.active[data-walk="tree"] { background: var(--green); color: #fff; }
+    .walk-btn.active[data-walk="fragrance"] { background: var(--coral); color: #fff; }
+    .walk-btn.active .dot { background: #fff; }
+
+    /* Bottom-right action buttons (2D/3D + reset) */
+    #map-actions {
+      position: absolute;
+      bottom: 24px;
+      right: 16px;
+      z-index: 5;
+      display: flex;
+      gap: 8px;
+    }
+    .map-action-btn {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      padding: 10px 16px;
+      border-radius: var(--radius-pill);
+      background: rgba(250,249,245,0.92);
+      color: var(--ink);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      transition: var(--transition);
+    }
+    .map-action-btn:hover { background: var(--ink); color: #fff; }
+
+    /* Info sidebar — a permanent panel beside the map on desktop.
+       Shows the walk introduction by default, tree details on pin click. */
+    #info-panel {
+      position: relative;
+      width: 330px;
+      flex: none;
+      background: var(--paper);
+      border-left: 1px solid var(--hairline);
+      font-family: var(--font-body);
+      overflow-y: auto;
+    }
+    #info-panel[hidden] { display: none; }
+
+    /* On desktop the welcome view has nothing to close */
+    #info-panel.welcome #info-close { display: none; }
+
+    /* Welcome panel content */
+    .wp-steps {
+      list-style: none;
+      margin: 24px 0 0;
+      padding: 0;
+      border-top: 1px solid var(--hairline);
+    }
+    .wp-steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: #555;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .wp-steps .step-num {
+      flex: none;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: block;
+      text-align: center;
+      line-height: 20px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 2px;
+    }
+    #info-panel.walk-tree .step-num { background: var(--green); }
+    #info-panel.walk-fragrance .step-num { background: var(--coral); }
+    .wp-desc {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: #555;
+      margin: 14px 0 0;
+    }
+    .wp-note {
+      margin-top: 18px;
+      padding: 14px 16px;
+      background: rgba(241,150,140,0.12);
+      border: 1px solid rgba(241,150,140,0.35);
+      border-radius: var(--radius);
+    }
+    .wp-note-title {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #C96A5B;
+      margin-bottom: 5px;
+    }
+    .wp-note p {
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: #555;
+      margin: 0;
+    }
+    #info-content {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* tree detail hugs the top */
+      padding: 20px 24px 32px;
+    }
+    /* The welcome view stays vertically centered */
+    #info-panel.welcome #info-content {
+      justify-content: center;
+      padding: 56px 30px 36px;
+    }
+    #info-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      z-index: 2;
+      width: 30px; height: 30px;
+      border: 1px solid var(--hairline);
+      border-radius: 50%;
+      cursor: pointer;
+      background: #fff;
+      color: var(--ink);
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    #info-close svg { display: block; }
+    #info-close:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+    #info-content img {
+      width: 100%;
+      height: 340px; /* taller to suit the portrait photos */
+      object-fit: cover;
+      display: block;
+      background: #EDEAE0;
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+    }
+
+    /* Numbered pin markers */
+    .tree-pin {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #fff;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .tree-pin:hover { transform: scale(1.25); z-index: 10; }
+    .tree-pin.pin-tree { background: var(--green); }
+    .tree-pin.pin-fragrance { background: var(--coral); }
+    .tree-pin.pin-selected {
+      transform: scale(1.35);
+      border-color: var(--ink);
+    }
+    .tree-pin.pin-selected.pin-tree { background: #5F9A4B; }
+    .tree-pin.pin-selected.pin-fragrance { background: #DE6F60; }
+
+    /* Hide the sitewide butterfly cursor-follower while over the map */
+    body.hide-butterfly .butterfly-follower { opacity: 0 !important; }
+
+    /* Attention animation on the geolocate button: a soft pulsing halo
+       plus a little periodic tilt. Stops after the first click. */
+    @keyframes geo-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(129,186,110,0.55); }
+      70%  { box-shadow: 0 0 0 11px rgba(129,186,110,0); }
+      100% { box-shadow: 0 0 0 0 rgba(129,186,110,0); }
+    }
+    @keyframes geo-tilt {
+      0%, 82%, 100% { transform: rotate(0deg); }
+      86% { transform: rotate(-12deg); }
+      90% { transform: rotate(9deg); }
+      94% { transform: rotate(-5deg); }
+    }
+    .mapboxgl-ctrl button.mapboxgl-ctrl-geolocate {
+      border-radius: 6px;
+      animation: geo-pulse 2.4s ease-out infinite,
+                 geo-tilt 3.6s ease-in-out infinite;
+    }
+    .mapboxgl-ctrl button.mapboxgl-ctrl-geolocate.geo-noticed {
+      animation: none;
+    }
+
+    /* Fullscreen mode */
+    #map-wrap.map-fullscreen {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 0;
+      border-radius: 0;
+    }
+    body.no-scroll { overflow: hidden; }
+
+    /* Hover tooltip on pins */
+    .hover-tip { pointer-events: none; }
+    .hover-tip .mapboxgl-popup-content {
+      font-family: var(--font-body);
+      font-size: 0.74rem;
+      font-weight: 400;
+      color: var(--ink);
+      background: rgba(250,249,245,0.96);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .hover-tip .mapboxgl-popup-tip { display: none; }
+
+    /* Info panel body */
+    .tp-body { padding: 0; }
+    .tp-stop {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #999;
+    }
+    .tp-stop.walk-tree { color: var(--green); }
+    .tp-stop.walk-fragrance { color: var(--coral); }
+    .tp-stop-sub { margin-top: 3px; }
+    .tp-body h4 {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      margin: 10px 0 4px;
+      color: var(--ink);
+      line-height: 1.05;
+    }
+    .tp-sci {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #777;
+      margin: 0 0 20px;
+    }
+    .tp-section {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--hairline);
+      border-radius: var(--radius-pill);
+      padding: 7px 16px;
+      margin: 0;
+    }
+
+    @media (max-width: 640px) {
+      #map-wrap { height: 68vh; min-height: 440px; border-radius: var(--radius); }
+      #top-controls { top: 12px; left: 12px; right: 12px; }
+      #walk-filter { flex: none; }
+      #search-input { width: 160px; }
+      .walk-btn { padding: 8px 13px; font-size: 0.76rem; }
+      /* Panel becomes a full-screen overlay on small screens */
+      #info-panel {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border-left: none;
+        z-index: 8;
+      }
+      /* On mobile the panel always needs a close button */
+      #info-panel.welcome #info-close { display: flex; }
+      #panel-menu { display: flex; }
+      #info-content { padding: 16px 20px 28px; }
+      #info-panel.welcome #info-content { padding: 56px 24px 28px; }
+      #info-content img { height: 46vh; margin-bottom: 20px; }
+      .tp-body h4 { font-size: 1.7rem; }
+      #map-actions { bottom: 16px; right: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="index.html" class="logo">Miami Beach<br>Botanical Garden</a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="visit.html">Visit</a></li>
+          <li><a href="map.html">Map</a></li>
+          <li><a href="events.html">Events &amp; Programs</a></li>
+          <li><a href="private-events.html">Private Events</a></li>
+          <li><a href="support.html">Support Us</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="visit.html" class="pill pill-outline pill-sm">Plan Your Visit</a>
+        <a href="https://app.donorview.com/Donation/DonationInfo?prm=gChNitu6iC5Cc8rkfaevZymMkhQ1LrlfVADd4WaIxk4GcKLaQ0hK6FrMpi7Edyg7mkm_ia92xWtpfUjWCHyr1xS66-W-UGwHyf4OFDp8ffFp5dx2KmRxrfAfgYlZirqZ2XbIw1J4OZbek_GI2PkSXlU2oBJxjFXRIExu4yyytRE0t5sdsxrhfel7MHwuV6eaBs8SmZW8K1MmXw35Oy-nPFrwbCgSvV47u2VLswPkwkKvYUwwHcgcztnyfX30aTy70" target="_blank" rel="noopener" class="pill pill-ink pill-sm">Donate</a>
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= PAGE HERO ================= -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head-center" style="margin-bottom: 0;">
+          <p class="eyebrow eyebrow-dim">Interactive Map</p>
+          <h1 class="display-xl">Walk the Garden,<br>Stop by Stop</h1>
+          <p class="lead" style="margin-top: 24px;">Choose a walk, follow the highlighted path, and tap any pin to meet the tree or plant waiting there.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INTERACTIVE MAP ================= -->
+    <section class="section fade-in" style="padding-top: 0;">
+      <div class="container" style="max-width: 1360px;">
+        <div id="map-wrap">
+          <div id="map-area">
+            <div id="map"></div>
+
+            <div id="top-controls">
+              <div id="walk-filter" role="group" aria-label="Choose a walk">
+                <button class="walk-btn active" data-walk="tree"><span class="dot"></span>Tree Walk</button>
+                <button class="walk-btn" data-walk="fragrance"><span class="dot"></span>Fragrance Walk</button>
+              </div>
+              <div id="search-box">
+                <input id="search-input" type="text" placeholder="Search this walk…"
+                       autocomplete="off" aria-label="Search trees and plants on this walk">
+                <button id="search-clear" aria-label="Clear search"><svg viewBox="0 0 10 10" width="9" height="9" aria-hidden="true"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+                <div id="search-results" role="listbox"></div>
+              </div>
+            </div>
+
+            <button id="panel-menu" aria-label="About this walk"><svg viewBox="0 0 16 12" width="14" height="11" aria-hidden="true"><path d="M1 1h14M1 6h14M1 11h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+
+            <div id="map-actions">
+              <button id="fullscreen-toggle" class="map-action-btn" title="Expand the map to full screen">Expand ⛶</button>
+              <button id="view-toggle" class="map-action-btn" title="Toggle 2D / 3D view">3D</button>
+              <button id="reset-view" class="map-action-btn" title="Reset the map view">Reset View</button>
+            </div>
+          </div>
+
+          <aside id="info-panel" hidden>
+            <button id="info-close" aria-label="Close panel"><svg viewBox="0 0 10 10" width="11" height="11" aria-hidden="true"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+            <div id="info-content"></div>
+          </aside>
+        </div>
+
+        <p class="text-center" style="margin-top: 28px; font-size: 0.85rem; color: #888;">
+          Pins are numbered in walking order - start at 1 and follow the highlighted path.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-brand">Miami Beach<br>Botanical Garden</div>
+          <p style="margin-bottom: 18px;"><a href="https://maps.google.com/?q=2000+Convention+Center+Dr,+Miami+Beach,+FL+33139" target="_blank" rel="noopener">2000 Convention Ctr Dr,<br>Miami Beach, FL 33139</a></p>
+          <p>Tuesday–Sunday · 9:00 AM–5:00 PM<br>
+             Admission: Free<br><br>
+             <a href="mailto:growwithus@MBGarden.org">growwithus@MBGarden.org</a><br>
+             <a href="tel:+13056737256">305-673-PALM (7256)</a></p>
+        </div>
+
+        <div>
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="visit.html">Visit</a></li>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="events.html">Events &amp; Programs</a></li>
+            <li><a href="private-events.html">Private Events</a></li>
+            <li><a href="support.html">Support Us</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Get Involved</h5>
+          <ul class="footer-links">
+            <li><a href="support.html">Donate</a></li>
+            <li><a href="support.html#membership">Membership</a></li>
+            <li><a href="support.html#volunteer">Volunteer</a></li>
+            <li><a href="support.html#partners">Partnerships</a></li>
+            <li><a href="support.html#dedicate">Gift a Plant or Tree</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Stay in the Loop</h5>
+          <p style="margin-bottom: 18px;">Garden news, events, and seasonal highlights in your inbox.</p>
+          <form class="newsletter-form" action="#" method="post">
+            <label for="newsletter-email" class="sr-only">Email address</label>
+            <input type="email" id="newsletter-email" name="email" placeholder="Your email address">
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Miami Beach Botanical Garden. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="YouTube">YouTube</a>
+          <a href="#" aria-label="TikTok">TikTok</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="js/script.js"></script>
+  <script src="js/walk-data.js"></script>
+  <script src="js/interactive-map.js"></script>
+</body>
+</html>
