@@ -24,6 +24,12 @@ const WALKS = {
       title: 'Look, Don’t Pick',
       text: 'Please leave every flower, fruit, and leaf on the plant - lean in close and enjoy the scent, then leave it for the next visitor to discover.'
     }
+  },
+  kathy: {
+    label: 'Kathy’s Walk',
+    color: '#9B87C4',
+    duration: '30–45 min',
+    description: 'A hand-picked route through twenty-five favorites - from the silk floss at the entrance, out to the banyan, and back through the palms to the ylang ylang. A new pathway we’re trying out; walk it and tell us what you think.'
   }
 };
 
@@ -102,7 +108,7 @@ function goToGardenView(duration) {
   document.getElementById('view-toggle').textContent = '3D';
   map.fitBounds(gardenBounds(), {
     padding: isMobile
-      ? { top: 70, bottom: 50, left: 35, right: 35 }
+      ? { top: 90, bottom: 50, left: 40, right: 35 }
       : { top: 170, bottom: 140, left: 140, right: 140 },
     bearing: MAP_BEARING,
     pitch: 0,
@@ -116,7 +122,7 @@ function goToGardenView(duration) {
 // Mobile: full-screen overlay, opened by the menu button or a pin tap.
 
 function setPanelWalkClass() {
-  infoPanel.classList.remove('walk-tree', 'walk-fragrance');
+  infoPanel.classList.remove('walk-tree', 'walk-fragrance', 'walk-kathy');
   infoPanel.classList.add(`walk-${activeWalk}`);
 }
 
@@ -393,7 +399,19 @@ function renderSearch() {
         <span>${p.common}${p.scientific ? ` <span class="si-sci">${p.scientific}</span>` : ''}</span>`;
       item.addEventListener('click', () => {
         highlightPin(p.num);
-        showInfoPanel(p, total); // panel shows the selected plant
+        // Desktop: the always-open panel shows the plant right away.
+        // Mobile: highlight the pin and zoom to it so the user can see
+        // where it is — tapping the pin then opens the panel.
+        if (!isMobile) {
+          showInfoPanel(p, total);
+        } else {
+          map.easeTo({
+            center: f.geometry.coordinates,
+            zoom: 18.5,
+            bearing: MAP_BEARING,
+            duration: 900
+          });
+        }
         searchInput.value = p.common;
         searchBox.classList.add('has-text');
         searchResults.classList.remove('open');
@@ -411,7 +429,10 @@ document.getElementById('search-clear').addEventListener('click', () => {
   clearSearch();
   deselectPins();
   renderWelcome(); // panel returns to the active walk's welcome view
-  if (isMobile) infoPanel.hidden = true;
+  if (isMobile) {
+    infoPanel.hidden = true;
+    goToGardenView(900); // zoom back out to the full walk
+  }
   searchInput.focus();
 });
 
