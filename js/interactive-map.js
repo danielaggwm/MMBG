@@ -18,7 +18,7 @@ const WALKS = {
   fragrance: {
     label: 'Fragrance Walk',
     color: '#F1968C',
-    duration: '10–15 min',
+    duration: '15-20 min',
     description: 'A short, scent-led stroll. Gardenia, jasmine, ylang ylang, vanilla orchid and more - twelve fragrant stops where the best advice is simply to slow down and breathe in.',
     note: {
       title: 'Look, Don’t Pick',
@@ -29,7 +29,7 @@ const WALKS = {
     label: 'Kathy’s Walk',
     color: '#9B87C4',
     duration: '30–45 min',
-    description: 'A hand-picked route through twenty-five favorites - from the silk floss at the entrance, out to the banyan, and back through the palms to the ylang ylang. A new pathway we’re trying out; walk it and tell us what you think.'
+    description: 'A hand-picked route through twenty-five favorites.'
   }
 };
 
