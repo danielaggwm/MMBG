@@ -13,7 +13,7 @@ const WALKS = {
     label: 'Tree Walk',
     color: '#81BA6E',
     duration: '45 min – 1 hr',
-    description: 'Wander the Garden’s living collection, from sacred bamboo in the Japanese Garden to the Banyan on its namesake lawn. The route winds through every garden room - native, wetland, and edible gardens included - with a numbered stop at each notable tree and palm.'
+    description: 'Explore the Garden’s living collection, from sacred bamboo in the Japanese Garden to the Banyan on its namesake lawn. This longer route winds through every garden room, with numbered stops highlighting notable trees and palms along the way.'
   },
   fragrance: {
     label: 'Fragrance Walk',
@@ -26,11 +26,11 @@ const WALKS = {
       text: 'Please leave every flower, fruit, and leaf on the plant - lean in close and enjoy the scent, then leave it for the next visitor to discover.'
     }
   },
-  kathy: {
-    label: 'Kathy’s Walk',
+  highlights: {
+    label: 'Highlights Walk',
     color: '#9B87C4',
-    duration: '30–45 min',
-    description: 'A hand-picked route through twenty-five favorites.'
+    duration: '20–35 min',
+    description: 'A hand-picked route through twenty-five favorites. Short on time? Discover a few highlights from the 600+ onsite.'
   }
 };
 
@@ -123,7 +123,7 @@ function goToGardenView(duration) {
 // Mobile: full-screen overlay, opened by the menu button or a pin tap.
 
 function setPanelWalkClass() {
-  infoPanel.classList.remove('walk-tree', 'walk-fragrance', 'walk-kathy');
+  infoPanel.classList.remove('walk-tree', 'walk-fragrance', 'walk-highlights');
   infoPanel.classList.add(`walk-${activeWalk}`);
 }
 

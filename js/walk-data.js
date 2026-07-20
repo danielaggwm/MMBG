@@ -1081,7 +1081,7 @@ const WALK_DATA = {
         "common": "Monstera deliciosa",
         "scientific": null,
         "section": null,
-        "peak": "Spring–summer",
+        "peak": "Spring–summer; unpredictable",
         "photo": "images/trees/fragrance-03.jpg"
       }
     },
@@ -1195,7 +1195,7 @@ const WALK_DATA = {
         "common": "Orchid",
         "scientific": "Oncidium 'Sharry Baby'",
         "section": null,
-        "peak": "August–November",
+        "peak": "August–November; variable",
         "photo": "images/trees/fragrance-09.jpg"
       }
     },
@@ -1252,7 +1252,7 @@ const WALK_DATA = {
         "common": "Fern",
         "scientific": "Dryopteris ludoviciana",
         "section": null,
-        "peak": "Year-round leaf fragrance",
+        "peak": "Does not flower",
         "photo": "images/trees/fragrance-12.jpg"
       }
     },
@@ -1266,7 +1266,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 1,
         "common": "Silk floss",
         "scientific": "Ceiba speciosa",
@@ -1284,7 +1284,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 2,
         "common": "Bridal veil",
         "scientific": "Caesalpinia granadillo",
@@ -1302,7 +1302,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 3,
         "common": "Yew pine",
         "scientific": "Podocarpus macrophyllus",
@@ -1320,7 +1320,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 4,
         "common": "Red powder puff",
         "scientific": "Calliandra haematocephala",
@@ -1338,7 +1338,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 5,
         "common": "Slash pine",
         "scientific": "Pinus elliottii var densa",
@@ -1356,7 +1356,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 6,
         "common": "Cabbage palm",
         "scientific": "Sabal palmetto",
@@ -1374,7 +1374,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 7,
         "common": "Borassus palm",
         "scientific": "Borassus sp",
@@ -1392,7 +1392,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 8,
         "common": "Triangle palm",
         "scientific": "Dypsis decaryi",
@@ -1410,7 +1410,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 9,
         "common": "Brazilian rain",
         "scientific": "Chloroeucon tortum",
@@ -1428,7 +1428,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 10,
         "common": "Brazilian Fire",
         "scientific": "Schizolobium parahyba",
@@ -1446,7 +1446,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 11,
         "common": "Banyan",
         "scientific": "Ficus benjamina",
@@ -1464,7 +1464,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 12,
         "common": "Banana plants",
         "scientific": "Musa sp",
@@ -1482,7 +1482,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 13,
         "common": "Cacao",
         "scientific": "Theobroma cacao",
@@ -1500,7 +1500,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 14,
         "common": "Copernicia palms",
         "scientific": "C. alba, baileyana, berteroana, gigas, fallaensis, hospita, prunifolia, rigida, yarey",
@@ -1518,7 +1518,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 15,
         "common": "Zombie palm",
         "scientific": "Zombia antillarum",
@@ -1536,7 +1536,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 16,
         "common": "Ashoka",
         "scientific": "Saraca indica",
@@ -1554,7 +1554,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 17,
         "common": "Rainbow eucalyptus",
         "scientific": "Eucalyptus deglupta",
@@ -1572,7 +1572,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 18,
         "common": "Ponytail palm",
         "scientific": "Beaucarnea recurvata",
@@ -1590,7 +1590,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 19,
         "common": "Joewood",
         "scientific": "Jacquinia keyensis",
@@ -1608,7 +1608,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 20,
         "common": "Gumbo limbo",
         "scientific": "Bursera simaruba",
@@ -1626,7 +1626,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 21,
         "common": "Lignum vitae",
         "scientific": "Guaiacum officinale",
@@ -1644,7 +1644,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 22,
         "common": "Talipot palm",
         "scientific": "Corypha umbraculifera",
@@ -1662,7 +1662,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 23,
         "common": "Petticoat palm",
         "scientific": "Copernicia macroglossa",
@@ -1680,7 +1680,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 24,
         "common": "Red mangrove",
         "scientific": "Rhizophora mangle",
@@ -1698,7 +1698,7 @@ const WALK_DATA = {
         ]
       },
       "properties": {
-        "walk": "kathy",
+        "walk": "highlights",
         "num": 25,
         "common": "Ylang-ylang",
         "scientific": "Cananga odorata",

@@ -146,7 +146,7 @@
     }
     .search-item .si-num.walk-tree { background: var(--green); }
     .search-item .si-num.walk-fragrance { background: var(--coral); }
-    .search-item .si-num.walk-kathy { background: var(--lilac); }
+    .search-item .si-num.walk-highlights { background: var(--lilac); }
     .search-item .si-sci { color: #999; font-style: italic; font-size: 0.72rem; }
     .search-empty {
       font-family: var(--font-body);
@@ -197,10 +197,10 @@
     }
     .walk-btn[data-walk="tree"] .dot { background: var(--green); }
     .walk-btn[data-walk="fragrance"] .dot { background: var(--coral); }
-    .walk-btn[data-walk="kathy"] .dot { background: var(--lilac); }
+    .walk-btn[data-walk="highlights"] .dot { background: var(--lilac); }
     .walk-btn.active[data-walk="tree"] { background: var(--green); color: #fff; }
     .walk-btn.active[data-walk="fragrance"] { background: var(--coral); color: #fff; }
-    .walk-btn.active[data-walk="kathy"] { background: var(--lilac); color: #fff; }
+    .walk-btn.active[data-walk="highlights"] { background: var(--lilac); color: #fff; }
     .walk-btn.active .dot { background: #fff; }
 
     /* Bottom-right action buttons (2D/3D + reset) */
@@ -274,7 +274,7 @@
     }
     #info-panel.walk-tree .step-num { background: var(--green); }
     #info-panel.walk-fragrance .step-num { background: var(--coral); }
-    #info-panel.walk-kathy .step-num { background: var(--lilac); }
+    #info-panel.walk-highlights .step-num { background: var(--lilac); }
     .wp-desc {
       font-size: 0.85rem;
       line-height: 1.65;
@@ -372,14 +372,14 @@
     .tree-pin:hover { transform: scale(1.25); z-index: 10; }
     .tree-pin.pin-tree { background: var(--green); }
     .tree-pin.pin-fragrance { background: var(--coral); }
-    .tree-pin.pin-kathy { background: var(--lilac); }
+    .tree-pin.pin-highlights { background: var(--lilac); }
     .tree-pin.pin-selected {
       transform: scale(1.35);
       border-color: var(--ink);
     }
     .tree-pin.pin-selected.pin-tree { background: #5F9A4B; }
     .tree-pin.pin-selected.pin-fragrance { background: #DE6F60; }
-    .tree-pin.pin-selected.pin-kathy { background: #7B65A8; }
+    .tree-pin.pin-selected.pin-highlights { background: #7B65A8; }
 
     /* Hide the sitewide butterfly cursor-follower while over the map */
     body.hide-butterfly .butterfly-follower { opacity: 0 !important; }
@@ -444,7 +444,7 @@
     }
     .tp-stop.walk-tree { color: var(--green); }
     .tp-stop.walk-fragrance { color: var(--coral); }
-    .tp-stop.walk-kathy { color: var(--lilac); }
+    .tp-stop.walk-highlights { color: var(--lilac); }
     .tp-stop-sub { margin-top: 3px; }
     .tp-body h4 {
       font-family: var(--font-display);
@@ -594,7 +594,7 @@
               <div id="walk-filter" role="group" aria-label="Choose a walk">
                 <button class="walk-btn active" data-walk="tree"><span class="dot"></span>Tree Walk</button>
                 <button class="walk-btn" data-walk="fragrance"><span class="dot"></span>Fragrance Walk</button>
-                <button class="walk-btn" data-walk="kathy"><span class="dot"></span>Kathy&rsquo;s Walk</button>
+                <button class="walk-btn" data-walk="highlights"><span class="dot"></span>Highlights Walk</button>
               </div>
               <div id="search-box">
                 <input id="search-input" type="text" placeholder="Search this walk…"
