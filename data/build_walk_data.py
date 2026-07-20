@@ -27,16 +27,16 @@ def parse_name(raw):
 FRAGRANCE_PEAK = {
     1:  'February–May',
     2:  'May–August',
-    3:  'Spring–summer; unpredictable',
+    3:  'Spring–summer;',
     4:  'Year-round; peak spring–fall',
     5:  'March–June',
     6:  'Year-round; peak May–October',
     7:  'May–November',
     8:  'March–May',
-    9:  'August–November; variable',
+    9:  'August–November',
     10: 'Year-round leaf fragrance',
     11: 'Year-round leaf fragrance; flowers April–August',
-    12: 'Does not flower',
+    12: 'Year-round leaf fragrance',
 }
 
 wb = openpyxl.load_workbook(os.path.join(HERE, 'Tree&FragranceWalk.xlsx'), data_only=True)
