@@ -27,7 +27,7 @@ def parse_name(raw):
 FRAGRANCE_PEAK = {
     1:  'February–May',
     2:  'May–August',
-    3:  'Spring–summer;',
+    3:  'Spring–summer',
     4:  'Year-round; peak spring–fall',
     5:  'March–June',
     6:  'Year-round; peak May–October',

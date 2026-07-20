@@ -1081,7 +1081,7 @@ const WALK_DATA = {
         "common": "Monstera deliciosa",
         "scientific": null,
         "section": null,
-        "peak": "Spring–summer;",
+        "peak": "Spring–summer",
         "photo": "images/trees/fragrance-03.jpg"
       }
     },
