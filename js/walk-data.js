@@ -1081,7 +1081,7 @@ const WALK_DATA = {
         "common": "Monstera deliciosa",
         "scientific": null,
         "section": null,
-        "peak": "Spring–summer; unpredictable",
+        "peak": "Spring–summer",
         "photo": "images/trees/fragrance-03.jpg"
       }
     },
@@ -1195,7 +1195,7 @@ const WALK_DATA = {
         "common": "Orchid",
         "scientific": "Oncidium 'Sharry Baby'",
         "section": null,
-        "peak": "August–November; variable",
+        "peak": "August–November",
         "photo": "images/trees/fragrance-09.jpg"
       }
     },
@@ -1252,7 +1252,7 @@ const WALK_DATA = {
         "common": "Fern",
         "scientific": "Dryopteris ludoviciana",
         "section": null,
-        "peak": "Does not flower",
+        "peak": "Year-round leaf fragrance",
         "photo": "images/trees/fragrance-12.jpg"
       }
     },
