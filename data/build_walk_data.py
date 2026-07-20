@@ -1,44 +1,16 @@
 """Regenerates js/walk-data.js from Tree&FragranceWalk.xlsx.
 Run:  python3 build_walk_data.py  (from the data/ folder)
-Kathy's Walk is defined below as an ordered list of Tree Walk stop numbers."""
+
+Sheets:
+- 'Arboretum Walk'  -> tree walk (sections as header rows, numbered 1..N)
+- 'Fragrance Walk'  -> fragrance walk
+- "Kathy's Walk"    -> kathy walk (num, name, lng, lat). Each stop is
+  matched to a Tree Walk pin BY COORDINATES and inherits its garden
+  section and photo, so only the 4 basic columns are needed.
+"""
 import openpyxl, json, re, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-
-# Kathy's Walk: ordered Tree Walk legend numbers. None = custom entry.
-KATHY_ROUTE = [
-    1,   # Silk floss
-    4,   # Bridal veil
-    8,   # Yew pine (Podocarpus)
-    11,  # Red powder puff
-    15,  # Slash pine
-    17,  # Cabbage palm
-    None,# Borassus palm — custom, no Excel entry
-    24,  # Triangle palm
-    36,  # Brazilian rain tree
-    58,  # Brazilian Fire
-    56,  # Banyan
-    51,  # Banana plants
-    48,  # Cacao
-    45,  # Copernicia palms
-    43,  # Zombie palm
-    38,  # Ashoka
-    41,  # Rainbow eucalyptus
-    30,  # Ponytail palm
-    37,  # Joewood
-    34,  # Gumbo limbo
-    33,  # Lignum vitae
-    32,  # Talipot palm
-    31,  # Petticoat palm
-    29,  # Red mangrove
-    6,   # Ylang-ylang
-]
-# Custom entry for the unmarked Borassus (immediately north of Montgomery palm #20).
-BORASSUS = {
-    "common": "Borassus palm", "scientific": "Borassus sp",
-    "section": "Great Lawn", "coordinates": [-80.13562, 25.79553],
-    "photo": "images/trees/kathy-borassus.jpg"
-}
 
 def parse_name(raw):
     raw = re.sub(r'\s+', ' ', raw.strip())
@@ -47,8 +19,24 @@ def parse_name(raw):
     common = re.sub(r'\s*\btrees?\b\s*', ' ', common, flags=re.I).strip()
     return common, sci
 
+# Peak / best time of year for each Fragrance Walk stop (keyed by stop number).
+FRAGRANCE_PEAK = {
+    1:  'February–May',
+    2:  'May–August',
+    3:  'Spring–summer; unpredictable',
+    4:  'Year-round; peak spring–fall',
+    5:  'March–June',
+    6:  'Year-round; peak May–October',
+    7:  'May–November',
+    8:  'March–May',
+    9:  'August–November; variable',
+    10: 'Year-round leaf fragrance',
+    11: 'Year-round leaf fragrance; flowers April–August',
+    12: 'Does not flower',
+}
+
 wb = openpyxl.load_workbook(os.path.join(HERE, 'Tree&FragranceWalk.xlsx'), data_only=True)
-features, tree_by_num = [], {}
+features, tree_by_coord = [], {}
 
 for sheet, walk in [('Arboretum Walk', 'tree'), ('Fragrance Walk', 'fragrance')]:
     ws, section = wb[sheet], None
@@ -63,25 +51,25 @@ for sheet, walk in [('Arboretum Walk', 'tree'), ('Fragrance Walk', 'fragrance')]
                 "geometry": {"type": "Point", "coordinates": [round(lng, 6), round(lat, 6)]},
                 "properties": {"walk": walk, "num": num, "common": common, "scientific": sci,
                                "section": section if walk == 'tree' else None,
+                               "peak": FRAGRANCE_PEAK.get(num) if walk == 'fragrance' else None,
                                "photo": f"images/trees/{walk}-{num:02d}.jpg"}}
         features.append(feat)
         if walk == 'tree':
-            tree_by_num[num] = feat
+            tree_by_coord[(round(lng, 6), round(lat, 6))] = feat
 
-for i, src in enumerate(KATHY_ROUTE, start=1):
+for row in wb["Kathy's Walk"].iter_rows(min_row=2, values_only=True):
+    num, name, lng, lat = row[0], row[1], row[2], row[3]
+    if num is None or lng is None or lat is None:
+        continue
+    common, sci = parse_name(name)
+    src = tree_by_coord.get((round(lng, 6), round(lat, 6)))
     if src is None:
-        features.append({"type": "Feature",
-            "geometry": {"type": "Point", "coordinates": BORASSUS["coordinates"]},
-            "properties": {"walk": "kathy", "num": i, "common": BORASSUS["common"],
-                           "scientific": BORASSUS["scientific"], "section": BORASSUS["section"],
-                           "photo": BORASSUS["photo"]}})
-    else:
-        p = tree_by_num[src]["properties"]
-        features.append({"type": "Feature",
-            "geometry": {"type": "Point", "coordinates": tree_by_num[src]["geometry"]["coordinates"]},
-            "properties": {"walk": "kathy", "num": i, "common": p["common"],
-                           "scientific": p["scientific"], "section": p["section"],
-                           "photo": p["photo"]}})  # reuses the Tree Walk photo
+        print(f"WARNING: Kathy stop {num} '{common}' has no matching Tree Walk pin — no section/photo")
+    features.append({"type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [round(lng, 6), round(lat, 6)]},
+        "properties": {"walk": "kathy", "num": num, "common": common, "scientific": sci,
+                       "section": src["properties"]["section"] if src else None,
+                       "photo": src["properties"]["photo"] if src else f"images/trees/kathy-{num:02d}.jpg"}})
 
 out = "// Auto-generated by data/build_walk_data.py — do not edit by hand.\n"
 out += "const WALK_DATA = " + json.dumps({"type": "FeatureCollection", "features": features},

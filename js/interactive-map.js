@@ -19,7 +19,8 @@ const WALKS = {
     label: 'Fragrance Walk',
     color: '#F1968C',
     duration: '15-20 min',
-    description: 'A short, scent-led stroll. Gardenia, jasmine, ylang ylang, vanilla orchid and more - twelve fragrant stops where the best advice is simply to slow down and breathe in.',
+    description: 'A short, scent-led stroll. Twelve fragrant stops where the best advice is simply to slow down and breathe in.',
+    disclaimer: 'scents are seasonal, so not every stop will be fragrant. Check each plant’s details for peak times.',
     note: {
       title: 'Look, Don’t Pick',
       text: 'Please leave every flower, fruit, and leaf on the plant - lean in close and enjoy the scent, then leave it for the next visitor to discover.'
@@ -137,6 +138,7 @@ function renderWelcome() {
       <span class="tp-stop tp-stop-sub walk-${activeWalk}">${w.duration}</span>
       <h4>${w.label}</h4>
       <p class="wp-desc">${w.description}</p>
+      ${w.disclaimer ? `<p class="wp-disclaimer"><span class="wp-disclaimer-label">DISCLAIMER:</span> ${w.disclaimer}</p>` : ''}
       ${w.note ? `<div class="wp-note"><span class="wp-note-title">${w.note.title}</span><p>${w.note.text}</p></div>` : ''}
       <ol class="wp-steps">
         <li><span class="step-num">1</span>Pick a walk with the buttons above the map.</li>
@@ -159,6 +161,7 @@ function showInfoPanel(props, total) {
       <h4>${props.common}</h4>
       ${props.scientific ? `<p class="tp-sci">${props.scientific}</p>` : ''}
       ${props.section ? `<p class="tp-section">${props.section}</p>` : ''}
+      ${props.peak ? `<div class="tp-peak"><span class="tp-peak-label">At its peak</span><span class="tp-peak-value">${props.peak}</span></div>` : ''}
     </div>`;
   infoPanel.hidden = false;
 }

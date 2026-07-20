@@ -17,6 +17,7 @@ const WALK_DATA = {
         "common": "Silk floss",
         "scientific": "Ceiba speciosa",
         "section": "Entry Plaza",
+        "peak": null,
         "photo": "images/trees/tree-01.jpg"
       }
     },
@@ -35,6 +36,7 @@ const WALK_DATA = {
         "common": "Live oak",
         "scientific": "Quercus virginiana",
         "section": "Entry Plaza",
+        "peak": null,
         "photo": "images/trees/tree-02.jpg"
       }
     },
@@ -53,6 +55,7 @@ const WALK_DATA = {
         "common": "Kapok",
         "scientific": "Ceiba pentandra",
         "section": "Bridal Veil Plaza",
+        "peak": null,
         "photo": "images/trees/tree-03.jpg"
       }
     },
@@ -71,6 +74,7 @@ const WALK_DATA = {
         "common": "Bridal veil",
         "scientific": "Caesalpinia granadillo",
         "section": "Bridal Veil Plaza",
+        "peak": null,
         "photo": "images/trees/tree-04.jpg"
       }
     },
@@ -89,6 +93,7 @@ const WALK_DATA = {
         "common": "Rainbow shower",
         "scientific": "Cassia x nealiae",
         "section": "Bridal Veil Plaza",
+        "peak": null,
         "photo": "images/trees/tree-05.jpg"
       }
     },
@@ -107,6 +112,7 @@ const WALK_DATA = {
         "common": "Ylang-ylang",
         "scientific": "Cananga odorata",
         "section": "Bridal Veil Plaza",
+        "peak": null,
         "photo": "images/trees/tree-06.jpg"
       }
     },
@@ -125,6 +131,7 @@ const WALK_DATA = {
         "common": "Crape myrtle",
         "scientific": "Lagerstroemia indica",
         "section": "Bridal Veil Plaza",
+        "peak": null,
         "photo": "images/trees/tree-07.jpg"
       }
     },
@@ -143,6 +150,7 @@ const WALK_DATA = {
         "common": "Yew pine",
         "scientific": "Podocarpus macrophyllus",
         "section": "Japanese Garden",
+        "peak": null,
         "photo": "images/trees/tree-08.jpg"
       }
     },
@@ -157,11 +165,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 10,
+        "num": 9,
         "common": "Sacred Bali bamboo",
         "scientific": "Schizostachyum brachycladum",
         "section": "Japanese Garden",
-        "photo": "images/trees/tree-10.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-09.jpg"
       }
     },
     {
@@ -175,11 +184,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 11,
+        "num": 10,
         "common": "Red powder puff",
         "scientific": "Calliandra haematocephala",
         "section": "Japanese Garden",
-        "photo": "images/trees/tree-11.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-10.jpg"
       }
     },
     {
@@ -193,11 +203,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 12,
+        "num": 11,
         "common": "Tropical bamboo",
         "scientific": "Bambusa vulgaris",
         "section": "Japanese Garden",
-        "photo": "images/trees/tree-12.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-11.jpg"
       }
     },
     {
@@ -211,11 +222,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 13,
+        "num": 12,
         "common": "Horseflesh mahogany",
         "scientific": "Lysiloma sabicu",
         "section": "Japanese Garden",
-        "photo": "images/trees/tree-13.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-12.jpg"
       }
     },
     {
@@ -229,11 +241,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 14,
+        "num": 13,
         "common": "Golden trumpet",
         "scientific": "Tabebuia aurea",
         "section": "Japanese Garden",
-        "photo": "images/trees/tree-14.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-13.jpg"
       }
     },
     {
@@ -247,11 +260,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 15,
+        "num": 14,
         "common": "Slash pine",
         "scientific": "Pinus elliottii var densa",
         "section": "Native Garden",
-        "photo": "images/trees/tree-15.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-14.jpg"
       }
     },
     {
@@ -265,11 +279,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 16,
+        "num": 15,
         "common": "Lignum vitae",
         "scientific": "Guaicum sanctum",
         "section": "Native Garden",
-        "photo": "images/trees/tree-16.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-15.jpg"
       }
     },
     {
@@ -283,11 +298,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 17,
+        "num": 16,
         "common": "Cabbage palm",
         "scientific": "Sabal palmetto",
         "section": "Native Garden",
-        "photo": "images/trees/tree-17.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-16.jpg"
       }
     },
     {
@@ -301,10 +317,30 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 18,
+        "num": 17,
         "common": "Paradise",
         "scientific": "Simarouba glauca",
         "section": "Native Garden",
+        "peak": null,
+        "photo": "images/trees/tree-17.jpg"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13566,
+          25.79543
+        ]
+      },
+      "properties": {
+        "walk": "tree",
+        "num": 18,
+        "common": "Clown fig",
+        "scientific": "Ficus aspera",
+        "section": "Great Lawn",
+        "peak": null,
         "photo": "images/trees/tree-18.jpg"
       }
     },
@@ -319,11 +355,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 20,
+        "num": 19,
         "common": "Montgomery palm",
         "scientific": "Veitchia arecina",
         "section": "Great Lawn",
-        "photo": "images/trees/tree-20.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-19.jpg"
       }
     },
     {
@@ -331,17 +368,18 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.13566,
-          25.79543
+          -80.13562,
+          25.79553
         ]
       },
       "properties": {
         "walk": "tree",
-        "num": 22,
-        "common": "Clown fig",
-        "scientific": "Ficus aspera",
+        "num": 20,
+        "common": "Borassus palm",
+        "scientific": "Borassus sp",
         "section": "Great Lawn",
-        "photo": "images/trees/tree-22.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-20.jpg"
       }
     },
     {
@@ -355,11 +393,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 24,
+        "num": 21,
         "common": "Triangle palm",
         "scientific": "Dypsis decaryi",
         "section": "Water Garden",
-        "photo": "images/trees/tree-24.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-21.jpg"
       }
     },
     {
@@ -373,11 +412,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 25,
+        "num": 22,
         "common": "Tabebuia",
         "scientific": "Tabebuia bahamensis",
         "section": "Water Garden",
-        "photo": "images/trees/tree-25.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-22.jpg"
       }
     },
     {
@@ -391,11 +431,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 26,
+        "num": 23,
         "common": "Buccaneer palm",
         "scientific": "Pseudophoenix vinifera",
         "section": "Water Garden",
-        "photo": "images/trees/tree-26.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-23.jpg"
       }
     },
     {
@@ -409,11 +450,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 27,
+        "num": 24,
         "common": "Acacia",
         "scientific": "Acacia sp",
         "section": "Water Garden",
-        "photo": "images/trees/tree-27.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-24.jpg"
       }
     },
     {
@@ -427,11 +469,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 28,
+        "num": 25,
         "common": "Pond apple",
         "scientific": "Annona glabra, Annona squamosa",
         "section": "Wetland Garden",
-        "photo": "images/trees/tree-28.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-25.jpg"
       }
     },
     {
@@ -445,11 +488,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 29,
+        "num": 26,
         "common": "Red mangrove",
         "scientific": "Rhizophora mangle",
         "section": "Wetland Garden",
-        "photo": "images/trees/tree-29.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-26.jpg"
       }
     },
     {
@@ -463,11 +507,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 30,
+        "num": 27,
         "common": "Ponytail palm",
         "scientific": "Beaucarnea recurvata",
         "section": "Ponytail Pond",
-        "photo": "images/trees/tree-30.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-27.jpg"
       }
     },
     {
@@ -481,11 +526,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 31,
+        "num": 28,
         "common": "Petticoat palm",
         "scientific": "Copernicia macroglossa",
         "section": "Ponytail Pond",
-        "photo": "images/trees/tree-31.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-28.jpg"
       }
     },
     {
@@ -499,11 +545,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 32,
+        "num": 29,
         "common": "Talipot palm",
         "scientific": "Corypha umbraculifera",
         "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-32.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-29.jpg"
       }
     },
     {
@@ -517,11 +564,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 33,
+        "num": 30,
         "common": "Lignum vitae",
         "scientific": "Guaiacum officinale",
         "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-33.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-30.jpg"
       }
     },
     {
@@ -535,11 +583,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 34,
+        "num": 31,
         "common": "Gumbo limbo",
         "scientific": "Bursera simaruba",
         "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-34.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-31.jpg"
       }
     },
     {
@@ -553,11 +602,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 36,
+        "num": 32,
         "common": "Brazilian rain",
         "scientific": "Chloroeucon tortum",
         "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-36.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-32.jpg"
       }
     },
     {
@@ -571,11 +621,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 37,
+        "num": 33,
         "common": "Joewood",
         "scientific": "Jacquinia keyensis",
         "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-37.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-33.jpg"
       }
     },
     {
@@ -589,11 +640,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 38,
+        "num": 34,
         "common": "Ashoka",
         "scientific": "Saraca indica",
         "section": "Bioswale",
-        "photo": "images/trees/tree-38.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-34.jpg"
       }
     },
     {
@@ -607,11 +659,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 39,
+        "num": 35,
         "common": "Singapore frangipani",
         "scientific": "Plumeria obtusa",
         "section": "Bioswale",
-        "photo": "images/trees/tree-39.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-35.jpg"
       }
     },
     {
@@ -625,11 +678,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 40,
+        "num": 36,
         "common": "Blue latan palm",
         "scientific": "Latania loddigesii",
         "section": "Bioswale",
-        "photo": "images/trees/tree-40.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-36.jpg"
       }
     },
     {
@@ -643,11 +697,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 41,
+        "num": 37,
         "common": "Rainbow eucalyptus",
         "scientific": "Eucalyptus deglupta",
         "section": "Bioswale",
-        "photo": "images/trees/tree-41.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-37.jpg"
       }
     },
     {
@@ -661,11 +716,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 42,
+        "num": 38,
         "common": "Royal palm",
         "scientific": "Roystonea regia",
         "section": "Bioswale",
-        "photo": "images/trees/tree-42.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-38.jpg"
       }
     },
     {
@@ -679,11 +735,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 43,
+        "num": 39,
         "common": "Zombie palm",
         "scientific": "Zombia antillarum",
         "section": "Bioswale",
-        "photo": "images/trees/tree-43.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-39.jpg"
       }
     },
     {
@@ -697,11 +754,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 44,
+        "num": 40,
         "common": "Royal poinciana",
         "scientific": "Delonix regia",
         "section": "Bioswale",
-        "photo": "images/trees/tree-44.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-40.jpg"
       }
     },
     {
@@ -715,11 +773,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 45,
+        "num": 41,
         "common": "Copernicia palms",
         "scientific": "C. alba, baileyana, berteroana, gigas, fallaensis, hospita, prunifolia, rigida, yarey",
         "section": "Bioswale",
-        "photo": "images/trees/tree-45.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-41.jpg"
       }
     },
     {
@@ -733,11 +792,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 46,
+        "num": 42,
         "common": "Pomegranate",
         "scientific": "Punicum granatum",
         "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-46.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-42.jpg"
       }
     },
     {
@@ -751,11 +811,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 47,
+        "num": 43,
         "common": "Jaboticaba",
         "scientific": "Myrciaria cauliflora",
         "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-47.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-43.jpg"
       }
     },
     {
@@ -769,11 +830,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 48,
+        "num": 44,
         "common": "Cacao",
         "scientific": "Theobroma cacao",
         "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-48.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-44.jpg"
       }
     },
     {
@@ -787,11 +849,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 49,
+        "num": 45,
         "common": "Brazilian cherry",
         "scientific": "Eugenia brasiliensis",
         "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-49.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-45.jpg"
       }
     },
     {
@@ -805,11 +868,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 50,
+        "num": 46,
         "common": "Cabbage palms",
         "scientific": "Sabal palmetto",
         "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-50.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-46.jpg"
       }
     },
     {
@@ -823,11 +887,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 51,
+        "num": 47,
         "common": "Banana plants",
         "scientific": "Musa sp",
         "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-51.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-47.jpg"
       }
     },
     {
@@ -841,11 +906,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 52,
+        "num": 48,
         "common": "Carambola Star fruit",
         "scientific": "Averrhoa carambola",
         "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-52.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-48.jpg"
       }
     },
     {
@@ -859,11 +925,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 53,
+        "num": 49,
         "common": "Calabash",
         "scientific": "Crescentia cujete",
         "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-53.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-49.jpg"
       }
     },
     {
@@ -877,11 +944,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 54,
+        "num": 50,
         "common": "Guiana chestnut",
         "scientific": "Pachira aquatica",
         "section": "Banyan Lawn",
-        "photo": "images/trees/tree-54.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-50.jpg"
       }
     },
     {
@@ -895,11 +963,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 55,
+        "num": 51,
         "common": "Sea grape",
         "scientific": "Coccoloba uvifera",
         "section": "Banyan Lawn",
-        "photo": "images/trees/tree-55.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-51.jpg"
       }
     },
     {
@@ -913,29 +982,12 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 56,
+        "num": 52,
         "common": "Banyan",
         "scientific": "Ficus benjamina",
         "section": "Banyan Lawn",
-        "photo": "images/trees/tree-56.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13583,
-          25.79573
-        ]
-      },
-      "properties": {
-        "walk": "tree",
-        "num": 57,
-        "common": "Fishtail palm",
-        "scientific": "Caryota rumphiana",
-        "section": "Banyan Lawn",
-        "photo": "images/trees/tree-57.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-52.jpg"
       }
     },
     {
@@ -949,11 +1001,31 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 58,
+        "num": 53,
         "common": "Brazilian Fire",
-        "scientific": null,
+        "scientific": "Schizolobium parahyba",
         "section": "Banyan Lawn",
-        "photo": "images/trees/tree-58.jpg"
+        "peak": null,
+        "photo": "images/trees/tree-53.jpg"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13583,
+          25.79573
+        ]
+      },
+      "properties": {
+        "walk": "tree",
+        "num": 54,
+        "common": "Fishtail palm",
+        "scientific": "Caryota rumphiana",
+        "section": "Banyan Lawn",
+        "peak": null,
+        "photo": "images/trees/tree-54.jpg"
       }
     },
     {
@@ -971,6 +1043,7 @@ const WALK_DATA = {
         "common": "Salvia",
         "scientific": "Salvia lyrata",
         "section": null,
+        "peak": "February–May",
         "photo": "images/trees/fragrance-01.jpg"
       }
     },
@@ -989,6 +1062,7 @@ const WALK_DATA = {
         "common": "Gardenia",
         "scientific": "Gardenia taitensis",
         "section": null,
+        "peak": "May–August",
         "photo": "images/trees/fragrance-02.jpg"
       }
     },
@@ -1007,6 +1081,7 @@ const WALK_DATA = {
         "common": "Monstera deliciosa",
         "scientific": null,
         "section": null,
+        "peak": "Spring–summer; unpredictable",
         "photo": "images/trees/fragrance-03.jpg"
       }
     },
@@ -1015,8 +1090,8 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.1352,
-          25.79545
+          -80.13521,
+          25.79547
         ]
       },
       "properties": {
@@ -1025,6 +1100,7 @@ const WALK_DATA = {
         "common": "Ylang ylang",
         "scientific": "Cananga oderata",
         "section": null,
+        "peak": "Year-round; peak spring–fall",
         "photo": "images/trees/fragrance-04.jpg"
       }
     },
@@ -1043,6 +1119,7 @@ const WALK_DATA = {
         "common": "Jasmine",
         "scientific": "Trachelospermum jasminoides",
         "section": null,
+        "peak": "March–June",
         "photo": "images/trees/fragrance-05.jpg"
       }
     },
@@ -1061,6 +1138,7 @@ const WALK_DATA = {
         "common": "Waterlily",
         "scientific": "Nymphaea sp",
         "section": null,
+        "peak": "Year-round; peak May–October",
         "photo": "images/trees/fragrance-06.jpg"
       }
     },
@@ -1069,7 +1147,7 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.13521,
+          -80.1352,
           25.79579
         ]
       },
@@ -1079,6 +1157,7 @@ const WALK_DATA = {
         "common": "Singapore frangipani",
         "scientific": null,
         "section": null,
+        "peak": "May–November",
         "photo": "images/trees/fragrance-07.jpg"
       }
     },
@@ -1097,6 +1176,7 @@ const WALK_DATA = {
         "common": "Vanilla",
         "scientific": "Vanilla planiflolia",
         "section": null,
+        "peak": "March–May",
         "photo": "images/trees/fragrance-08.jpg"
       }
     },
@@ -1115,6 +1195,7 @@ const WALK_DATA = {
         "common": "Orchid",
         "scientific": "Oncidium 'Sharry Baby'",
         "section": null,
+        "peak": "August–November; variable",
         "photo": "images/trees/fragrance-09.jpg"
       }
     },
@@ -1133,6 +1214,7 @@ const WALK_DATA = {
         "common": "Lemon scented gum",
         "scientific": "Corymbia citriodora",
         "section": null,
+        "peak": "Year-round leaf fragrance",
         "photo": "images/trees/fragrance-10.jpg"
       }
     },
@@ -1151,6 +1233,7 @@ const WALK_DATA = {
         "common": "Bay rum",
         "scientific": "Pimenta racemosa",
         "section": null,
+        "peak": "Year-round leaf fragrance; flowers April–August",
         "photo": "images/trees/fragrance-11.jpg"
       }
     },
@@ -1169,6 +1252,7 @@ const WALK_DATA = {
         "common": "Fern",
         "scientific": "Dryopteris ludoviciana",
         "section": null,
+        "peak": "Does not flower",
         "photo": "images/trees/fragrance-12.jpg"
       }
     },
@@ -1241,7 +1325,7 @@ const WALK_DATA = {
         "common": "Red powder puff",
         "scientific": "Calliandra haematocephala",
         "section": "Japanese Garden",
-        "photo": "images/trees/tree-11.jpg"
+        "photo": "images/trees/tree-10.jpg"
       }
     },
     {
@@ -1259,7 +1343,7 @@ const WALK_DATA = {
         "common": "Slash pine",
         "scientific": "Pinus elliottii var densa",
         "section": "Native Garden",
-        "photo": "images/trees/tree-15.jpg"
+        "photo": "images/trees/tree-14.jpg"
       }
     },
     {
@@ -1277,7 +1361,7 @@ const WALK_DATA = {
         "common": "Cabbage palm",
         "scientific": "Sabal palmetto",
         "section": "Native Garden",
-        "photo": "images/trees/tree-17.jpg"
+        "photo": "images/trees/tree-16.jpg"
       }
     },
     {
@@ -1295,7 +1379,7 @@ const WALK_DATA = {
         "common": "Borassus palm",
         "scientific": "Borassus sp",
         "section": "Great Lawn",
-        "photo": "images/trees/kathy-borassus.jpg"
+        "photo": "images/trees/tree-20.jpg"
       }
     },
     {
@@ -1313,7 +1397,7 @@ const WALK_DATA = {
         "common": "Triangle palm",
         "scientific": "Dypsis decaryi",
         "section": "Water Garden",
-        "photo": "images/trees/tree-24.jpg"
+        "photo": "images/trees/tree-21.jpg"
       }
     },
     {
@@ -1331,7 +1415,7 @@ const WALK_DATA = {
         "common": "Brazilian rain",
         "scientific": "Chloroeucon tortum",
         "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-36.jpg"
+        "photo": "images/trees/tree-32.jpg"
       }
     },
     {
@@ -1347,9 +1431,9 @@ const WALK_DATA = {
         "walk": "kathy",
         "num": 10,
         "common": "Brazilian Fire",
-        "scientific": null,
+        "scientific": "Schizolobium parahyba",
         "section": "Banyan Lawn",
-        "photo": "images/trees/tree-58.jpg"
+        "photo": "images/trees/tree-53.jpg"
       }
     },
     {
@@ -1367,7 +1451,7 @@ const WALK_DATA = {
         "common": "Banyan",
         "scientific": "Ficus benjamina",
         "section": "Banyan Lawn",
-        "photo": "images/trees/tree-56.jpg"
+        "photo": "images/trees/tree-52.jpg"
       }
     },
     {
@@ -1385,7 +1469,7 @@ const WALK_DATA = {
         "common": "Banana plants",
         "scientific": "Musa sp",
         "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-51.jpg"
+        "photo": "images/trees/tree-47.jpg"
       }
     },
     {
@@ -1403,7 +1487,7 @@ const WALK_DATA = {
         "common": "Cacao",
         "scientific": "Theobroma cacao",
         "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-48.jpg"
+        "photo": "images/trees/tree-44.jpg"
       }
     },
     {
@@ -1421,7 +1505,7 @@ const WALK_DATA = {
         "common": "Copernicia palms",
         "scientific": "C. alba, baileyana, berteroana, gigas, fallaensis, hospita, prunifolia, rigida, yarey",
         "section": "Bioswale",
-        "photo": "images/trees/tree-45.jpg"
+        "photo": "images/trees/tree-41.jpg"
       }
     },
     {
@@ -1439,7 +1523,7 @@ const WALK_DATA = {
         "common": "Zombie palm",
         "scientific": "Zombia antillarum",
         "section": "Bioswale",
-        "photo": "images/trees/tree-43.jpg"
+        "photo": "images/trees/tree-39.jpg"
       }
     },
     {
@@ -1457,7 +1541,7 @@ const WALK_DATA = {
         "common": "Ashoka",
         "scientific": "Saraca indica",
         "section": "Bioswale",
-        "photo": "images/trees/tree-38.jpg"
+        "photo": "images/trees/tree-34.jpg"
       }
     },
     {
@@ -1475,7 +1559,7 @@ const WALK_DATA = {
         "common": "Rainbow eucalyptus",
         "scientific": "Eucalyptus deglupta",
         "section": "Bioswale",
-        "photo": "images/trees/tree-41.jpg"
+        "photo": "images/trees/tree-37.jpg"
       }
     },
     {
@@ -1493,7 +1577,7 @@ const WALK_DATA = {
         "common": "Ponytail palm",
         "scientific": "Beaucarnea recurvata",
         "section": "Ponytail Pond",
-        "photo": "images/trees/tree-30.jpg"
+        "photo": "images/trees/tree-27.jpg"
       }
     },
     {
@@ -1511,7 +1595,7 @@ const WALK_DATA = {
         "common": "Joewood",
         "scientific": "Jacquinia keyensis",
         "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-37.jpg"
+        "photo": "images/trees/tree-33.jpg"
       }
     },
     {
@@ -1529,7 +1613,7 @@ const WALK_DATA = {
         "common": "Gumbo limbo",
         "scientific": "Bursera simaruba",
         "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-34.jpg"
+        "photo": "images/trees/tree-31.jpg"
       }
     },
     {
@@ -1547,7 +1631,7 @@ const WALK_DATA = {
         "common": "Lignum vitae",
         "scientific": "Guaiacum officinale",
         "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-33.jpg"
+        "photo": "images/trees/tree-30.jpg"
       }
     },
     {
@@ -1565,7 +1649,7 @@ const WALK_DATA = {
         "common": "Talipot palm",
         "scientific": "Corypha umbraculifera",
         "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-32.jpg"
+        "photo": "images/trees/tree-29.jpg"
       }
     },
     {
@@ -1583,7 +1667,7 @@ const WALK_DATA = {
         "common": "Petticoat palm",
         "scientific": "Copernicia macroglossa",
         "section": "Ponytail Pond",
-        "photo": "images/trees/tree-31.jpg"
+        "photo": "images/trees/tree-28.jpg"
       }
     },
     {
@@ -1601,7 +1685,7 @@ const WALK_DATA = {
         "common": "Red mangrove",
         "scientific": "Rhizophora mangle",
         "section": "Wetland Garden",
-        "photo": "images/trees/tree-29.jpg"
+        "photo": "images/trees/tree-26.jpg"
       }
     },
     {

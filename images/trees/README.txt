@@ -1,11 +1,14 @@
 TREE & FRAGRANCE WALK PHOTOS
 ============================
-Drop photos in this folder and the interactive map popups will pick
-them up automatically. Naming convention (two-digit stop numbers):
+Popups load photos from this folder automatically. Naming convention
+(two-digit stop numbers, matching the legend numbers in
+data/Tree&FragranceWalk.xlsx):
 
-  Tree Walk:      tree-01.jpg  ... tree-58.jpg
+  Tree Walk:      tree-01.jpg ... tree-54.jpg
   Fragrance Walk: fragrance-01.jpg ... fragrance-12.jpg
+  Kathy's Walk:   reuses the Tree Walk photos (see the Photo File
+                  column on the Kathy's Walk sheet in the Excel)
 
-The number matches the Legend Number in data/Tree&FragranceWalk.xlsx.
-JPG format, roughly 480x260px or larger (landscape) looks best.
-Until a photo exists, the popup shows a "Photo coming soon" placeholder.
+Still needed: tree-19.jpg (Borassus palm, Great Lawn).
+JPG format, roughly 1200px on the long side looks best. Until a photo
+exists, the popup shows a "Photo coming soon" placeholder.

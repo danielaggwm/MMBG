@@ -135,9 +135,11 @@
       flex: none;
       width: 22px; height: 22px;
       border-radius: 50%;
-      display: block;
-      text-align: center;
-      line-height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      padding-top: 1px; /* optical correction — digits sit high in Poppins */
       font-size: 0.62rem;
       font-weight: 700;
       color: #fff;
@@ -278,6 +280,16 @@
       line-height: 1.65;
       color: #555;
       margin: 14px 0 0;
+    }
+    .wp-disclaimer {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #555;
+      margin: 12px 0 0;
+    }
+    .wp-disclaimer-label {
+      font-weight: 600;
+      color: #C96A5B;
     }
     .wp-note {
       margin-top: 18px;
@@ -461,6 +473,29 @@
       border-radius: var(--radius-pill);
       padding: 7px 16px;
       margin: 0;
+    }
+    .tp-peak {
+      align-self: stretch;
+      margin-top: 18px;
+      padding: 14px 16px;
+      background: rgba(241,150,140,0.12);
+      border: 1px solid rgba(241,150,140,0.35);
+      border-radius: var(--radius);
+    }
+    .tp-peak-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #C96A5B;
+      margin-bottom: 5px;
+    }
+    .tp-peak-value {
+      display: block;
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: #555;
     }
 
     @media (max-width: 640px) {
