@@ -13,48 +13,41 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ------------------------------------------------------------------
-     0. Header shadow — a soft shadow appears once you scroll down
-     ------------------------------------------------------------------ */
-  const siteHeader = document.querySelector(".site-header");
-
-  if (siteHeader) {
-    window.addEventListener(
-      "scroll",
-      function () {
-        siteHeader.classList.toggle("scrolled", window.scrollY > 50);
-      },
-      { passive: true }
-    );
-  }
-
-
-  /* ------------------------------------------------------------------
      1. Mobile hamburger menu
      ------------------------------------------------------------------ */
   const menuToggle = document.querySelector(".menu-toggle");
-  const mainNav = document.querySelector(".main-nav");
+  const mobileNav = document.querySelector(".mobile-nav");
 
-  if (menuToggle && mainNav) {
+  if (menuToggle && mobileNav) {
     menuToggle.addEventListener("click", function () {
-      const isOpen = mainNav.classList.toggle("open");
+      const isOpen = mobileNav.classList.toggle("open");
       menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
     // Close the menu when a nav link is clicked
-    mainNav.querySelectorAll("a").forEach(function (link) {
+    mobileNav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
-        mainNav.classList.remove("open");
+        mobileNav.classList.remove("open");
         menuToggle.setAttribute("aria-expanded", "false");
       });
     });
 
     // Close the menu with the Escape key (keyboard accessibility)
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && mainNav.classList.contains("open")) {
-        mainNav.classList.remove("open");
+      if (event.key === "Escape" && mobileNav.classList.contains("open")) {
+        mobileNav.classList.remove("open");
         menuToggle.setAttribute("aria-expanded", "false");
         menuToggle.focus();
       }
+    });
+
+    // Accordion: expand/collapse each tab's sub-links on mobile
+    mobileNav.querySelectorAll(".m-toggle").forEach(function (toggle) {
+      toggle.addEventListener("click", function () {
+        const sub = toggle.closest(".m-group").querySelector(".m-sub");
+        const isOpen = sub.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
     });
   }
 
@@ -64,13 +57,15 @@ document.addEventListener("DOMContentLoaded", function () {
      ------------------------------------------------------------------ */
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
-  document.querySelectorAll(".main-nav a").forEach(function (link) {
-    const linkPage = link.getAttribute("href");
-    if (linkPage === currentPage) {
-      link.classList.add("active");
-      link.setAttribute("aria-current", "page");
-    }
-  });
+  document
+    .querySelectorAll(".main-nav .nav-link, .mobile-nav .m-parent-link")
+    .forEach(function (link) {
+      const linkPage = link.getAttribute("href");
+      if (linkPage === currentPage) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+      }
+    });
 
 
   /* ------------------------------------------------------------------

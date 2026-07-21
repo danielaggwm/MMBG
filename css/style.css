@@ -75,7 +75,7 @@
 html {
   overflow-x: clip; /* nothing can force sideways scrolling */
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-height) + 12px);
+  scroll-padding-top: 124px; /* clears the fixed 108px header when jumping to anchors */
 }
 
 body {
@@ -85,7 +85,7 @@ body {
   line-height: 1.7;
   color: var(--ink);
   background-color: var(--paper);
-  overflow-x: hidden;
+  overflow-x: clip; /* clip (not hidden) so the sticky header still sticks */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -180,7 +180,11 @@ input:focus-visible {
    3. Header / navigation
    ========================================================================== */
 
+/* Header: a centered logo anchor with three tabs hugging each side.
+   The header stays fixed in this state — no scroll animation. */
 .site-header {
+  --header-h: 108px;   /* bar height */
+  --logo-h:   88px;    /* logo height */
   position: sticky;
   top: 0;
   z-index: 100;
@@ -188,65 +192,195 @@ input:focus-visible {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1.5px solid var(--ink);
-  transition: box-shadow 0.3s;
-}
-
-/* Shadow added by js/script.js after scrolling */
-.site-header.scrolled {
-  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.09);
 }
 
 .header-inner {
+  position: relative;
   max-width: 1360px;
   margin: 0 auto;
   padding: 0 48px;
-  height: var(--nav-height);
-  display: flex;
+  height: var(--header-h);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* the auto column keeps the logo page-centered */
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  column-gap: 44px;                     /* breathing room between tabs and logo */
 }
+
+.nav-left  { grid-column: 1; justify-self: end; }   /* right edge of col 1, next to logo */
+.nav-right { grid-column: 3; justify-self: start; } /* left edge of col 3, next to logo */
 
 .logo {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  letter-spacing: 0.04em;
-  line-height: 1.05;
-  color: var(--ink);
-  white-space: nowrap;
-  flex-shrink: 0;
+  grid-column: 2;
+  display: block;
+  line-height: 0;
 }
 
-/* Main navigation links */
+.logo-svg {
+  display: block;
+  height: var(--logo-h);
+  width: auto;
+}
+
+/* Compact wordmark used only on mobile (hidden on desktop) */
+.logo-mobile-img {
+  display: none;
+}
+
+/* Nav items + dropdowns */
 .main-nav ul {
   display: flex;
   align-items: center;
-  gap: 34px;
+  gap: 30px;
   list-style: none;
 }
 
+.nav-item {
+  position: relative;
+}
+
+.nav-link,
 .main-nav a {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--ink);
-  padding: 6px 0;
+  white-space: nowrap;
 }
 
-.main-nav a:hover {
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.nav-link:hover {
   color: var(--lilac);
 }
 
 /* Active page link (set by js/script.js) */
-.main-nav a.active {
+.main-nav .nav-link.active {
   border-bottom: 2px solid var(--lilac);
 }
 
-.header-actions {
+/* Dropdown caret */
+.caret {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+/* Dropdown panel */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 226px;
+  margin-top: 8px;
+  padding: 8px;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 14px;
+  box-shadow: 0 16px 36px rgba(28, 28, 28, 0.14);
   display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 200;
+}
+
+/* Right-hand tabs + Portals open flush to the right so they don't overflow */
+.dropdown-right,
+.nav-right .nav-item .dropdown {
+  left: auto;
+  right: 0;
+}
+
+.nav-item:hover > .dropdown,
+.nav-item:focus-within > .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-item:hover > .nav-link .caret,
+.nav-item:focus-within > .nav-link .caret,
+.nav-item:hover > .portals-toggle .caret,
+.nav-item:focus-within > .portals-toggle .caret {
+  transform: rotate(180deg);
+}
+
+.dropdown a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  padding: 9px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.dropdown a:hover {
+  background: rgba(155, 135, 196, 0.14);
+  color: var(--lilac);
+}
+
+/* Persistent utilities pinned to the outer edges of the header:
+   Newsletter on the left, Portals on the right. Positioned against
+   the full-width header so they sit near the browser edges.
+   Selectors are scoped to .site-header so they win over the base
+   .pill { position: relative } rule that comes later in the file. */
+.site-header .header-util {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 210;
+}
+
+.site-header .header-util-left {
+  left: 36px;
+}
+
+.site-header .header-util-right {
+  right: 36px;
+}
+
+/* Portals pill holds a caret, so align it as a flex row.
+   (Scoped to the inner pill only — not the Newsletter pill itself —
+   so the mobile `display:none` on .header-util still applies.) */
+.header-util .pill {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
+}
+
+.header-util .caret {
+  margin-left: 8px;
+}
+
+/* Newsletter button: beige (paper) with a black outline; the lilac
+   fill rises on hover (text flips to white) — same purple as before. */
+.pill.newsletter-link {
+  background-color: var(--paper);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.pill.newsletter-link:hover {
+  color: #fff;
+}
+
+/* Mobile dropdown — hidden entirely on desktop */
+.mobile-nav {
+  display: none;
 }
 
 /* Hamburger — hidden on desktop */
@@ -451,51 +585,6 @@ input:focus-visible {
    The pond photo fills the section with a dark overlay so the
    white text stays readable.
    ========================================================================== */
-
-.hero-full {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-height: calc(94vh - var(--nav-height));
-  background:
-    linear-gradient(rgba(12, 10, 6, 0.48), rgba(12, 10, 6, 0.62)),
-    url('../images/garden-3.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-.hero-full .hero-inner {
-  width: 100%;
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: 96px 48px;
-}
-
-.hero-full .eyebrow {
-  color: rgba(255, 255, 255, 0.65);
-}
-
-.hero-full h1 {
-  color: #fff;
-}
-
-.hero-full .hero-address {
-  display: inline-block;
-  font-weight: 600;
-  font-size: 1rem;
-  margin-top: 28px;
-  color: #fff;
-}
-
-.hero-full .hero-address:hover {
-  color: var(--lilac);
-}
-
-.hero-full .lead {
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 460px;
-  margin: 12px 0 36px;
-}
 
 /* Wide cinematic banner photo under a centered page heading */
 .hero-banner img {
@@ -1271,6 +1360,66 @@ section.dark-band {
   color: var(--ink);
 }
 
+/* Numbered parking list — the badges correspond to the map markers */
+.parking-list {
+  list-style: none;
+  counter-reset: parking;
+}
+
+.parking-list li {
+  position: relative;
+  padding: 13px 0 13px 46px;
+  border-bottom: 1.5px solid var(--hairline);
+  counter-increment: parking;
+  font-size: 0.9rem;
+}
+
+.parking-list li:last-child {
+  border-bottom: none;
+}
+
+.parking-list li::before {
+  content: counter(parking);
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #d2455c;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parking-list strong {
+  display: block;
+  margin-bottom: 3px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.parking-list span {
+  display: block;
+  line-height: 1.55;
+}
+
+/* Interactive elements always show the pointer (link) cursor */
+a[href],
+button,
+[role="button"],
+summary,
+label[for],
+.accordion-trigger,
+.filter-btn,
+.nav-link,
+.m-toggle {
+  cursor: pointer !important;
+}
+
 
 /* ==========================================================================
    10. Footer
@@ -1304,6 +1453,19 @@ section.dark-band {
   margin-bottom: 20px;
 }
 
+/* Footer logo (white version of the header mark) */
+.footer-logo {
+  display: inline-block;
+  line-height: 0;
+  margin-bottom: 22px;
+}
+
+.footer-logo-svg {
+  display: block;
+  height: 96px;
+  width: auto;
+}
+
 .footer-tagline {
   font-style: italic;
   font-size: 0.9rem;
@@ -1314,7 +1476,7 @@ section.dark-band {
 .site-footer p {
   font-size: 0.86rem;
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.32);
+  color: rgba(255, 255, 255, 0.62);
   font-weight: 300;
 }
 
@@ -1506,10 +1668,6 @@ section.dark-band {
     padding-right: 24px;
   }
 
-  .hero-full .hero-inner {
-    padding: 72px 24px;
-  }
-
   .block {
     flex-direction: column;
     padding: var(--space-xl) 24px;
@@ -1560,22 +1718,69 @@ section.dark-band {
     grid-template-columns: 1fr 1fr;
     gap: 44px;
   }
+}
 
-  .header-actions .pill-outline {
+/* The header carries 4 dropdown tabs + utilities, so it collapses to a
+   hamburger earlier (wider breakpoint) than the page content does. */
+@media (max-width: 1180px) {
+  /* Collapse the split desktop nav into a hamburger dropdown;
+     the logo stays centered at a fixed, readable size. */
+  html {
+    scroll-padding-top: 86px; /* shorter header on mobile */
+  }
+
+  .site-header {
+    --header-h: 72px;
+    --logo-h: 52px;
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: flex-start; /* logo aligned to the left on mobile */
+    height: var(--header-h);
+  }
+
+  .logo {
+    grid-column: auto;
+  }
+
+  /* Swap the full palm logo for the compact, readable mobile wordmark */
+  .logo-svg {
+    display: none;
+  }
+
+  .logo-mobile-img {
+    display: block;
+    height: 42px;
+    width: auto;
+  }
+
+  .nav-left,
+  .nav-right,
+  .header-util {
     display: none;
   }
 
   .menu-toggle {
     display: flex;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
-  .main-nav {
+  /* Mobile dropdown — drops from the bottom edge of the header */
+  .mobile-nav {
+    display: block;
     position: absolute;
-    top: var(--nav-height);
+    top: 100%;
     left: 0;
     right: 0;
+    max-height: calc(100vh - var(--header-h));
+    overflow-y: auto;
     background: var(--paper);
     border-bottom: 1.5px solid var(--ink);
+    padding: 8px 20px 16px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -1583,32 +1788,99 @@ section.dark-band {
                 visibility var(--transition);
   }
 
-  .main-nav.open {
+  .mobile-nav.open {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
 
-  .main-nav ul {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 12px 24px;
+  /* Accordion groups */
+  .m-group {
+    border-bottom: 1px solid var(--hairline);
   }
 
-  .main-nav a {
-    display: block;
+  .m-parent-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .m-parent-link {
+    flex: 1;
     padding: 15px 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+  }
+
+  .m-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px 6px 12px 18px;
+    display: flex;
+    align-items: center;
+  }
+
+  .m-toggle .caret {
+    transition: transform 0.2s ease;
+  }
+
+  .m-toggle[aria-expanded="true"] .caret {
+    transform: rotate(180deg);
+  }
+
+  .m-sub {
+    display: none;
+    flex-direction: column;
+    padding: 0 4px 10px 12px;
+  }
+
+  .m-sub.open {
+    display: flex;
+  }
+
+  .m-sub a {
+    padding: 11px 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .m-sub a:hover {
+    color: var(--lilac);
+  }
+
+  .m-parent-link.active {
+    color: var(--lilac);
+  }
+
+  /* Utility links at the bottom of the mobile menu */
+  .m-utils {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 4px 4px;
+  }
+
+  .m-util {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 0;
     font-size: 0.9rem;
-    border-bottom: 1px solid var(--hairline);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    text-align: left;
   }
 
-  .main-nav li:last-child a {
-    border-bottom: none;
-  }
-
-  .main-nav a.active {
-    border-bottom: 1px solid var(--hairline);
+  .m-util:hover {
     color: var(--lilac);
   }
 }
