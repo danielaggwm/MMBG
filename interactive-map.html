@@ -715,7 +715,9 @@
     #catalogue {
       position: fixed;
       inset: 0;
-      z-index: 50;
+      /* Above the expanded map (#map-wrap.map-fullscreen is z-index 3000) so the
+         popup shows in expanded view too. */
+      z-index: 4000;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -874,18 +876,25 @@
     .cat-empty { grid-column: 1 / -1; text-align: center; color: #999; padding: 30px 0; font-size: 0.9rem; }
     .cat-footer {
       flex: none;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px 14px;
       text-align: center;
       padding: 12px 24px 16px;
       border-top: 1px solid var(--hairline);
+      font-size: 0.74rem;
+      color: #999;
     }
     .cat-footer a {
-      font-size: 0.74rem;
       color: #999;
       text-decoration: underline;
       text-underline-offset: 2px;
       transition: var(--transition);
     }
     .cat-footer a:hover { color: var(--ink); }
+    .cat-credit a { color: var(--coral); }
     body.cat-open { overflow: hidden; }
 
     @media (max-width: 640px) {
@@ -1067,6 +1076,7 @@
       <div class="cat-grid" id="cat-grid"></div>
       <footer class="cat-footer">
         <a href="images/pollinators/image-credits.csv" download>Image credits</a>
+        <span class="cat-credit">Data collected by Angelica Pineda, <a href="https://instagram.com/endemico_colombia" target="_blank" rel="noopener">@endemico_colombia</a></span>
       </footer>
     </div>
   </div>
