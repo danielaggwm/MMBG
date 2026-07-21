@@ -420,6 +420,8 @@ function renderCatalogue() {
         </figcaption>
       </figure>`).join('')
     : '<p class="cat-empty">No species match your search.</p>';
+
+  grid.scrollTop = 0; // always return to the top when the list changes (tab/search)
 }
 
 function openCatalogue(sector, cls) {
