@@ -34,6 +34,29 @@ const WALKS = {
   }
 };
 
+// Pollinator overlay — an independent on/off layer (not one of the walks).
+// Each stop carries a stoplight color; the color tells you how much patience
+// you'll need. Species text is a single shared blurb across every stop.
+const POLLINATOR = {
+  species: 'Depending on the season and time of day, you might spot butterflies and skippers, busy native bees and honeybees, hovering flower flies, day-flying moths, and nectar-seeking birds passing through.',
+  levels: {
+    red:    { name: 'Red',    title: 'Guaranteed',    meaning: 'Very active — stop by and take a look.' },
+    yellow: { name: 'Yellow', title: 'Patience',      meaning: 'Stand still for a few minutes near their favorite plants.' },
+    green:  { name: 'Green',  title: 'Super Patient', meaning: 'The ultimate challenge — wait a little longer and look closely at the canopy or the tiny flowers.' }
+  }
+};
+
+// The full stoplight key, shown on every pollinator panel for context.
+const POLL_KEY_HTML = `
+  <div class="poll-key">
+    <span class="poll-key-title">The stoplight key</span>
+    <ul>
+      <li><span class="poll-dot poll-dot-red"></span><span><b>Red · guaranteed.</b> Very active; stop by and take a look.</span></li>
+      <li><span class="poll-dot poll-dot-yellow"></span><span><b>Yellow · patience.</b> Stand still a few minutes near their favorite plants.</span></li>
+      <li><span class="poll-dot poll-dot-green"></span><span><b>Green · super patient.</b> Wait a little longer and look closely at the canopy or the tiny flowers.</span></li>
+    </ul>
+  </div>`;
+
 // Placeholder shown until real tree photos are added to images/trees/
 const PLACEHOLDER_IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" width="240" height="130" viewBox="0 0 240 130">
@@ -175,10 +198,11 @@ function deselectPins() {
 // falling back to the welcome view.
 function closePanel() {
   deselectPins();
+  deselectPollinatorPins();
   if (isMobile) {
     infoPanel.hidden = true;
   } else {
-    renderWelcome();
+    if (pollinatorOn && pollinatorMenuMode) renderPollinatorIntro(); else renderWelcome();
   }
 }
 
@@ -221,6 +245,7 @@ function addMarkers(walk) {
       hoverTip.remove();
       document.querySelectorAll('.tree-pin.pin-selected')
         .forEach(p => p.classList.remove('pin-selected'));
+      deselectPollinatorPins();
       el.classList.add('pin-selected');
       showInfoPanel(f.properties, total); // map stays put — no re-centering
     });
@@ -283,6 +308,7 @@ function animatePath(walk) {
 // ---------- Walk switching ----------
 function showWalk(walk) {
   activeWalk = walk;
+  pollinatorMenuMode = false; // picking a walk hands the menu back to that walk
 
   document.querySelectorAll('.walk-btn').forEach(b =>
     b.classList.toggle('active', b.dataset.walk === walk));
@@ -295,6 +321,196 @@ function showWalk(walk) {
   renderWelcome(); // panel introduces the newly selected walk
   if (!isMobile) infoPanel.hidden = false;
   goToGardenView(1200);
+}
+
+// ---------- Pollinator overlay ----------
+let pollinatorOn = false;
+let pollinatorMarkers = [];
+// True from the moment the toggle is switched on until the visitor picks a walk.
+// While true (mobile), the menu button opens the pollinator tour instructions
+// instead of the active walk's welcome panel.
+let pollinatorMenuMode = false;
+
+function pollinatorFeatures() {
+  return WALK_DATA.features
+    .filter(f => f.properties.walk === 'pollinator')
+    .sort((a, b) => a.properties.num - b.properties.num);
+}
+
+function deselectPollinatorPins() {
+  document.querySelectorAll('.poll-pin.poll-selected')
+    .forEach(p => p.classList.remove('poll-selected'));
+}
+
+function addPollinatorMarkers() {
+  pollinatorFeatures().forEach(f => {
+    const p = f.properties;
+    const el = document.createElement('div');
+    el.className = `poll-pin poll-${p.color}`;
+
+    const marker = new mapboxgl.Marker({ element: el, anchor: 'bottom' })
+      .setLngLat(f.geometry.coordinates)
+      .addTo(map);
+
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hoverTip.remove();
+      deselectPollinatorPins();
+      deselectPins();
+      el.classList.add('poll-selected');
+      showPollinatorPanel(p);
+    });
+
+    pollinatorMarkers.push(marker);
+  });
+}
+
+function clearPollinatorMarkers() {
+  pollinatorMarkers.forEach(m => m.remove());
+  pollinatorMarkers = [];
+}
+
+// ---------- Species catalogue ----------
+// Shown from a pollinator stop: the species recorded in that stop's garden
+// sector, searchable and filterable by class (bird / insect).
+let activePollSector = null;
+let catState = { sector: null, cls: 'all', q: '' };
+
+// Placeholder card art until real species photos are dropped into
+// images/pollinators/ (filenames follow the scientific-name slug).
+const SPECIES_PLACEHOLDER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150" viewBox="0 0 200 150">
+     <rect width="200" height="150" fill="#EDEAE0"/>
+     <g transform="translate(100,64)" fill="none" stroke="#B9B29E" stroke-width="3" stroke-linecap="round">
+       <circle cx="0" cy="0" r="17" fill="#DDD7C4" stroke="#B9B29E"/>
+       <path d="M-26,4 C-18,-16 18,-16 26,4" />
+       <path d="M0,-17 L0,-30 M-9,-27 L0,-30 L9,-27"/>
+     </g>
+     <text x="100" y="128" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#A69F8A">Photo coming soon</text>
+   </svg>`);
+
+function speciesForSector(sector) {
+  if (!sector || typeof POLLINATOR_SPECIES === 'undefined') return [];
+  return POLLINATOR_SPECIES.filter(s => s.sectors.includes(sector));
+}
+
+function renderCatalogue() {
+  const grid = document.getElementById('cat-grid');
+  let list = speciesForSector(catState.sector);
+  if (catState.cls !== 'all') list = list.filter(s => s.cls === catState.cls);
+  const q = catState.q.trim().toLowerCase();
+  if (q) list = list.filter(s =>
+    s.common.toLowerCase().includes(q) ||
+    (s.scientific && s.scientific.toLowerCase().includes(q)));
+
+  document.querySelectorAll('.cat-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.cls === catState.cls));
+
+  grid.innerHTML = list.length
+    ? list.map(s => `
+      <figure class="cat-card">
+        <div class="cat-photo">
+          <img src="${s.img}" alt="${s.common}" loading="lazy"
+               onerror="this.onerror=null;this.src='${SPECIES_PLACEHOLDER}'">
+          <span class="cat-tag cat-tag-${s.cls}">${s.cls === 'bird' ? 'Bird' : 'Insect'}</span>
+        </div>
+        <figcaption>
+          <span class="cat-name">${s.common}</span>
+          ${s.scientific ? `<span class="cat-sci">${s.scientific}</span>` : ''}
+        </figcaption>
+      </figure>`).join('')
+    : '<p class="cat-empty">No species match your search.</p>';
+}
+
+function openCatalogue(sector, cls) {
+  catState = { sector: sector, cls: cls || 'all', q: '' };
+  document.getElementById('cat-title').textContent = `${sector} pollinators`;
+  document.getElementById('cat-search').value = '';
+  renderCatalogue();
+  document.getElementById('catalogue').hidden = false;
+  document.body.classList.add('cat-open');
+}
+
+function closeCatalogue() {
+  document.getElementById('catalogue').hidden = true;
+  document.body.classList.remove('cat-open');
+}
+
+function showPollinatorPanel(props) {
+  const lvl = POLLINATOR.levels[props.color];
+  const total = pollinatorFeatures().length;
+  activePollSector = props.sector || null;
+
+  const inSector = props.sector ? speciesForSector(props.sector) : [];
+  const nBird = inSector.filter(s => s.cls === 'bird').length;
+  const nInsect = inSector.filter(s => s.cls === 'insect').length;
+
+  const spotter = props.sector ? `
+      <div class="poll-spotter">
+        <span class="poll-note-title">Did you spot anything today?</span>
+        <p class="poll-spotter-sub">A bird? An insect? These are the species seen most often in the ${props.sector}. Open the catalogue to find your match.</p>
+        <div class="poll-spotter-btns">
+          <button class="poll-cat-btn" data-cls="bird">Birds<span class="poll-count">${nBird}</span></button>
+          <button class="poll-cat-btn" data-cls="insect">Insects<span class="poll-count">${nInsect}</span></button>
+        </div>
+      </div>` : '';
+
+  infoPanel.classList.remove('welcome');
+  infoContent.innerHTML = `
+    <div class="tp-body">
+      <span class="tp-stop poll-${props.color}">Pollinator Stop ${props.num} of ${total}</span>
+      <div class="poll-head">
+        <img class="poll-head-icon" src="images/stoplight/${props.color}.svg" alt="${lvl.name} stoplight">
+        <div>
+          <h4>${lvl.title}</h4>
+          <p class="poll-tier-sub">${lvl.name} light</p>
+        </div>
+      </div>
+      ${props.sector ? `<p class="tp-section poll-sector">${props.sector}</p>` : ''}
+      <div class="poll-note poll-note-${props.color}">
+        <span class="poll-note-title">What this means</span>
+        <p>${lvl.meaning}</p>
+      </div>
+      <div class="poll-note">
+        <span class="poll-note-title">Who you might spot</span>
+        <p>${POLLINATOR.species}</p>
+      </div>
+      ${spotter}
+    </div>`;
+  infoPanel.hidden = false;
+}
+
+function renderPollinatorIntro() {
+  deselectPins();
+  infoPanel.classList.remove('walk-tree', 'walk-fragrance', 'walk-highlights');
+  infoPanel.classList.add('welcome');
+  infoContent.innerHTML = `
+    <div class="tp-body">
+      <span class="tp-stop poll-intro-chip">Pollinator Stops · ${pollinatorFeatures().length}</span>
+      <h4>Follow the Stoplight</h4>
+      <p class="wp-desc">Spots around the Garden where pollinators gather. The color of each stoplight tells you how much patience you'll need to catch them in action - tap any pin to learn more.</p>
+      ${POLL_KEY_HTML}
+    </div>`;
+  infoPanel.hidden = false;
+}
+
+function setPollinator(on) {
+  pollinatorOn = on;
+  const btn = document.getElementById('pollinator-toggle');
+  btn.classList.toggle('active', on);
+  btn.setAttribute('aria-pressed', String(on));
+
+  if (on) {
+    pollinatorMenuMode = true;               // next menu tap shows the tour intro
+    addPollinatorMarkers();
+    if (!isMobile) renderPollinatorIntro();  // give immediate context on desktop
+  } else {
+    pollinatorMenuMode = false;
+    deselectPollinatorPins();
+    clearPollinatorMarkers();
+    if (!isMobile) renderWelcome();          // fall back to the active walk
+    else infoPanel.hidden = true;
+  }
 }
 
 // ---------- Wire up ----------
@@ -324,6 +540,31 @@ document.querySelectorAll('.walk-btn').forEach(btn => {
   });
 });
 
+// Pollinator overlay toggle — independent of the walk buttons
+document.getElementById('pollinator-toggle').addEventListener('click', () => {
+  setPollinator(!pollinatorOn);
+});
+
+// Catalogue: the "Birds"/"Insects" buttons live inside the (re-rendered) panel,
+// so listen via delegation on the panel container.
+infoContent.addEventListener('click', (e) => {
+  const b = e.target.closest('.poll-cat-btn');
+  if (b && activePollSector) openCatalogue(activePollSector, b.dataset.cls);
+});
+
+document.getElementById('cat-search').addEventListener('input', (e) => {
+  catState.q = e.target.value;
+  renderCatalogue();
+});
+document.querySelectorAll('.cat-tab').forEach(tab => {
+  tab.addEventListener('click', () => { catState.cls = tab.dataset.cls; renderCatalogue(); });
+});
+document.querySelector('#catalogue .cat-close').addEventListener('click', closeCatalogue);
+document.querySelector('#catalogue .cat-backdrop').addEventListener('click', closeCatalogue);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !document.getElementById('catalogue').hidden) closeCatalogue();
+});
+
 document.getElementById('reset-view').addEventListener('click', () => {
   goToGardenView(900);
 });
@@ -342,10 +583,13 @@ document.getElementById('view-toggle').addEventListener('click', () => {
 // Close button on the info panel
 document.getElementById('info-close').addEventListener('click', closePanel);
 
-// Mobile menu button — opens the welcome panel
+// Mobile menu button — opens the welcome panel (or the pollinator tour intro
+// if the visitor just switched the pollinator overlay on)
 document.getElementById('panel-menu').addEventListener('click', () => {
   deselectPins();
-  renderWelcome();
+  deselectPollinatorPins();
+  if (pollinatorOn && pollinatorMenuMode) renderPollinatorIntro();
+  else renderWelcome();
   infoPanel.hidden = false;
 });
 

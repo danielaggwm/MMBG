@@ -1705,6 +1705,715 @@ const WALK_DATA = {
         "section": "Bridal Veil Plaza",
         "photo": "images/trees/tree-06.jpg"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13525,
+          25.7953
+        ]
+      },
+      "properties": {
+        "walk": "pollinator",
+        "num": 1,
+        "color": "yellow",
+        "sector": "Bridal Veil Plaza"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13534,
+          25.79521
+        ]
+      },
+      "properties": {
+        "walk": "pollinator",
+        "num": 2,
+        "color": "yellow",
+        "sector": "Japanese Garden"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13567,
+          25.79523
+        ]
+      },
+      "properties": {
+        "walk": "pollinator",
+        "num": 3,
+        "color": "red",
+        "sector": "Native Garden"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13579,
+          25.79568
+        ]
+      },
+      "properties": {
+        "walk": "pollinator",
+        "num": 4,
+        "color": "red",
+        "sector": "Banyan Lawn"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13554,
+          25.79573
+        ]
+      },
+      "properties": {
+        "walk": "pollinator",
+        "num": 5,
+        "color": "red",
+        "sector": "Gumbo Limbo Courtyard"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13566,
+          25.79592
+        ]
+      },
+      "properties": {
+        "walk": "pollinator",
+        "num": 6,
+        "color": "yellow",
+        "sector": "Banyan Lawn"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13534,
+          25.7963
+        ]
+      },
+      "properties": {
+        "walk": "pollinator",
+        "num": 7,
+        "color": "green",
+        "sector": "Gnome & Fairy Children's Garden"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13531,
+          25.79619
+        ]
+      },
+      "properties": {
+        "walk": "pollinator",
+        "num": 8,
+        "color": "green",
+        "sector": "Gnome & Fairy Children's Garden"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13516,
+          25.79595
+        ]
+      },
+      "properties": {
+        "walk": "pollinator",
+        "num": 9,
+        "color": "green",
+        "sector": "Bioswale"
+      }
     }
   ]
 };
+
+const POLLINATOR_SPECIES = [
+  {
+    "cls": "insect",
+    "common": "Monarch",
+    "scientific": "Danaus plexippus",
+    "img": "images/pollinators/danaus-plexippus.jpg",
+    "sectors": [
+      "Great Lawn",
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden",
+      "Water Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Syrphid fly",
+    "scientific": "Ocyptamus fuscipennis",
+    "img": "images/pollinators/ocyptamus-fuscipennis.jpg",
+    "sectors": [
+      "Great Lawn",
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Native Garden",
+      "Water Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Julia",
+    "scientific": "Dryas iulia",
+    "img": "images/pollinators/dryas-iulia.jpg",
+    "sectors": [
+      "Great Lawn",
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Ceraunus blue",
+    "scientific": "Hemiargus ceraunus",
+    "img": "images/pollinators/hemiargus-ceraunus.jpg",
+    "sectors": [
+      "Gnome & Fairy Children's Garden",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden",
+      "Water Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Zebra Longwing Butterfly",
+    "scientific": "Heliconius charithonia",
+    "img": "images/pollinators/heliconius-charithonia.jpg",
+    "sectors": [
+      "Great Lawn",
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden",
+      "Water Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Syrphid fly",
+    "scientific": "Toxomerus floralis",
+    "img": "images/pollinators/toxomerus-floralis.jpg",
+    "sectors": [
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Native Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Dainty sulphur",
+    "scientific": "Nathalis iole",
+    "img": "images/pollinators/nathalis-iole.jpg",
+    "sectors": [
+      "Gnome & Fairy Children's Garden",
+      "Bioswale",
+      "Japanese Garden",
+      "Native Garden",
+      "Water Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Large orange sulphur",
+    "scientific": "Phoebis agarithe",
+    "img": "images/pollinators/phoebis-agarithe.jpg",
+    "sectors": [
+      "Great Lawn",
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Water Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Monk Skipper",
+    "scientific": "Choranthus capucinus",
+    "img": "images/pollinators/choranthus-capucinus.jpg",
+    "sectors": [
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Syrphid fly",
+    "scientific": "Toxomerus arcifer",
+    "img": "images/pollinators/toxomerus-arcifer.jpg",
+    "sectors": [
+      "Water Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Atala",
+    "scientific": "Eumaeus atala",
+    "img": "images/pollinators/eumaeus-atala.jpg",
+    "sectors": [
+      "Banyan Lawn",
+      "Bioswale",
+      "Japanese Garden",
+      "Native Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Gulf fritillary",
+    "scientific": "Dione vanillae",
+    "img": "images/pollinators/dione-vanillae.jpg",
+    "sectors": [
+      "Gnome & Fairy Children's Garden",
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Cloudless sulphur",
+    "scientific": "Phoebis sennae",
+    "img": "images/pollinators/phoebis-sennae.jpg",
+    "sectors": [
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Poey's furrow bee",
+    "scientific": "Halictus poeyi",
+    "img": "images/pollinators/halictus-poeyi.jpg",
+    "sectors": [
+      "Banyan Lawn"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Polydamas Swallowtail",
+    "scientific": "Battus polydamas",
+    "img": "images/pollinators/battus-polydamas.jpg",
+    "sectors": [
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "insect",
+    "common": "Two-spotted longhorn bee",
+    "scientific": "Melissodes bimaculatus",
+    "img": "images/pollinators/melissodes-bimaculatus.jpg",
+    "sectors": [
+      "Gnome & Fairy Children's Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Northern Mockingbird",
+    "scientific": "Mimus polyglottos",
+    "img": "images/pollinators/mimus-polyglottos.jpg",
+    "sectors": [
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden",
+      "Water Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Blue Jay",
+    "scientific": "Cyanocitta cristata",
+    "img": "images/pollinators/cyanocitta-cristata.jpg",
+    "sectors": [
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden",
+      "Water Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Northern Cardinal",
+    "scientific": "Cardinalis cardinalis",
+    "img": "images/pollinators/cardinalis-cardinalis.jpg",
+    "sectors": [
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden",
+      "Water Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Gray Kingbird",
+    "scientific": "Tyrannus dominicensis",
+    "img": "images/pollinators/tyrannus-dominicensis.jpg",
+    "sectors": [
+      "Banyan Lawn",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Boat-tailed Grackle",
+    "scientific": "Quiscalus major",
+    "img": "images/pollinators/quiscalus-major.jpg",
+    "sectors": [
+      "Great Lawn",
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Fish Crow",
+    "scientific": "Corvus ossifragus",
+    "img": "images/pollinators/corvus-ossifragus.jpg",
+    "sectors": [
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden",
+      "Water Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Ovenbird",
+    "scientific": "Seiurus aurocapilla",
+    "img": "images/pollinators/seiurus-aurocapilla.jpg",
+    "sectors": [
+      "Great Lawn",
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden",
+      "Gumbo Limbo Courtyard"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Common Yellowthroat",
+    "scientific": "Geothlypis trichas",
+    "img": "images/pollinators/geothlypis-trichas.jpg",
+    "sectors": [
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn",
+      "Bioswale",
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "American Kestrel",
+    "scientific": "Falco sparverius",
+    "img": "images/pollinators/falco-sparverius.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden",
+      "Water Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "American Redstart",
+    "scientific": "Setophaga ruticilla",
+    "img": "images/pollinators/setophaga-ruticilla.jpg",
+    "sectors": [
+      "Banyan Lawn",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden",
+      "Water Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Northern Waterthrush",
+    "scientific": "Parkesia noveboracensis",
+    "img": "images/pollinators/parkesia-noveboracensis.jpg",
+    "sectors": [
+      "Bioswale",
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Common Grackle",
+    "scientific": "Quiscalus quiscula",
+    "img": "images/pollinators/quiscalus-quiscula.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Killdeer",
+    "scientific": "Charadrius vociferus",
+    "img": "images/pollinators/charadrius-vociferus.jpg",
+    "sectors": [
+      "Bridal Veil Plaza",
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Gray Catbird",
+    "scientific": "Dumetella carolinensis",
+    "img": "images/pollinators/dumetella-carolinensis.jpg",
+    "sectors": [
+      "Bioswale"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Red-bellied Woodpecker",
+    "scientific": "Melanerpes carolinus",
+    "img": "images/pollinators/melanerpes-carolinus.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Palm Warbler",
+    "scientific": "Setophaga palmarum",
+    "img": "images/pollinators/setophaga-palmarum.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Red-eyed Vireo",
+    "scientific": "Vireo olivaceus",
+    "img": "images/pollinators/vireo-olivaceus.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Red-winged Blackbird",
+    "scientific": "Agelaius phoeniceus",
+    "img": "images/pollinators/agelaius-phoeniceus.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Yellow-rumped Warbler",
+    "scientific": "Setophaga coronata",
+    "img": "images/pollinators/setophaga-coronata.jpg",
+    "sectors": [
+      "Bridal Veil Plaza",
+      "Japanese Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Black-and-white Warbler",
+    "scientific": "Mniotilta varia",
+    "img": "images/pollinators/mniotilta-varia.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Black-crowned Night Heron",
+    "scientific": "Nycticorax nycticorax",
+    "img": "images/pollinators/nycticorax-nycticorax.jpg",
+    "sectors": [
+      "Water Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Black-throated Blue Warbler",
+    "scientific": "Setophaga caerulescens",
+    "img": "images/pollinators/setophaga-caerulescens.jpg",
+    "sectors": [
+      "Gnome & Fairy Children's Garden",
+      "Banyan Lawn"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Blue-gray Gnatcatcher",
+    "scientific": "Polioptila caerulea",
+    "img": "images/pollinators/polioptila-caerulea.jpg",
+    "sectors": [
+      "Bridal Veil Plaza"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Eastern Kingbird",
+    "scientific": "Tyrannus tyrannus",
+    "img": "images/pollinators/tyrannus-tyrannus.jpg",
+    "sectors": [
+      "Bridal Veil Plaza"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Greater Yellowlegs",
+    "scientific": "Tringa melanoleuca",
+    "img": "images/pollinators/tringa-melanoleuca.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Great Blue Heron",
+    "scientific": "Ardea herodias",
+    "img": "images/pollinators/ardea-herodias.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Great Egret",
+    "scientific": "Ardea alba",
+    "img": "images/pollinators/ardea-alba.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Green Heron",
+    "scientific": "Butorides virescens",
+    "img": "images/pollinators/butorides-virescens.jpg",
+    "sectors": [
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Merlin",
+    "scientific": "Falco columbarius",
+    "img": "images/pollinators/falco-columbarius.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Prairie Warbler",
+    "scientific": "Setophaga discolor",
+    "img": "images/pollinators/setophaga-discolor.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Red-shouldered Hawk",
+    "scientific": "Buteo lineatus",
+    "img": "images/pollinators/buteo-lineatus.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  },
+  {
+    "cls": "bird",
+    "common": "Summer Tanager",
+    "scientific": "Piranga rubra",
+    "img": "images/pollinators/piranga-rubra.jpg",
+    "sectors": [
+      "Japanese Garden",
+      "Native Garden"
+    ]
+  }
+];
