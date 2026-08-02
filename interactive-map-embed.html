@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // iOS Safari auto-zooms inputs with text under 16px. Capping
+    // maximum-scale suppresses that focus zoom, and since iOS 10 Safari
+    // still allows manual pinch-zoom regardless. Applied on iOS only,
+    // because Android WOULD lose pinch-zoom with this cap.
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      document.querySelector('meta[name="viewport"]')
+        .setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
+    }
+  </script>
+  <title>Interactive Map — Miami Beach Botanical Garden</title>
+  <meta name="description" content="Explore the Tree Walk and Fragrance Walk at Miami Beach Botanical Garden with our interactive map.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Mapbox GL JS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+
+  <style>
+    /* ============ Interactive map page styles ============ */
+    #map-wrap {
+      position: relative;
+      width: 100%;
+      height: 76vh;
+      min-height: 540px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      display: flex;
+    }
+    /* z-index:0 creates a stacking context so nothing inside the map
+       (markers included) can ever paint above the info panel */
+    #map-area { position: relative; flex: 1; min-width: 0; height: 100%; z-index: 0; }
+    #map { position: absolute; inset: 0; }
+
+    /* Top-left controls: walk filter + search */
+    #top-controls {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 7;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    #walk-filter {
+      display: flex;
+      gap: 8px;
+      background: rgba(250,249,245,0.92);
+      backdrop-filter: blur(6px);
+      padding: 6px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+
+    /* Search box */
+    #search-box { position: relative; }
+    #search-input {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink);
+      border: none;
+      outline: none;
+      width: 210px;
+      padding: 15px 18px;
+      border-radius: var(--radius-pill);
+      background: rgba(250,249,245,0.92);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+    #search-input::placeholder { color: #999; font-weight: 400; }
+    #search-box.has-text #search-input { padding-right: 38px; }
+    #search-clear {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      width: 20px; height: 20px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      background: var(--hairline);
+      color: #A9A49A;
+      padding: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    #search-box.has-text #search-clear { display: flex; }
+    #search-clear svg { display: block; }
+    #search-clear:hover { color: var(--ink); }
+    #search-results {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 260px;
+      max-height: 260px;
+      overflow-y: auto;
+      background: var(--paper);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      display: none;
+    }
+    #search-results.open { display: block; }
+    .search-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--ink);
+      padding: 9px 12px;
+      transition: background 0.15s ease;
+    }
+    .search-item:hover { background: var(--hairline); }
+    .search-item .si-num {
+      flex: none;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      padding-top: 1px; /* optical correction — digits sit high in Poppins */
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .search-item .si-num.walk-tree { background: var(--green); }
+    .search-item .si-num.walk-fragrance { background: var(--coral); }
+    .search-item .si-num.walk-highlights { background: var(--lilac); }
+    .search-item .si-sci { color: #999; font-style: italic; font-size: 0.72rem; }
+    .search-empty {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: #999;
+      padding: 12px 14px;
+    }
+
+    /* Mobile menu (hamburger) button — opens the welcome panel.
+       Bottom-left, green so it stands out. Mobile only. */
+    #panel-menu {
+      display: none;
+      position: absolute;
+      bottom: 16px;
+      left: 12px;
+      z-index: 7;
+      width: 38px; height: 38px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      background: var(--green);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      color: #fff;
+    }
+    #panel-menu svg { display: block; }
+    .walk-btn {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      background: transparent;
+      color: var(--ink);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .walk-btn .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .walk-btn[data-walk="tree"] .dot { background: var(--green); }
+    .walk-btn[data-walk="fragrance"] .dot { background: var(--coral); }
+    .walk-btn[data-walk="highlights"] .dot { background: var(--lilac); }
+    .walk-btn.active[data-walk="tree"] { background: var(--green); color: #fff; }
+    .walk-btn.active[data-walk="fragrance"] { background: var(--coral); color: #fff; }
+    .walk-btn.active[data-walk="highlights"] { background: var(--lilac); color: #fff; }
+    .walk-btn.active .dot { background: #fff; }
+
+    /* ---- Walk buttons + pollinator toggle stacked together ---- */
+    #walk-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    /* The toggle mirrors the walk-filter exactly: an outer cream pill (6px
+       padding) wrapping an inner button (9px 18px). When active the inner turns
+       black and the 6px of pill shows through as a cream border — just like a
+       selected walk button. The 6px + 9px padding also matches the walk pill's
+       height so the stack is symmetrical. */
+    #pollinator-toggle {
+      display: flex;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: var(--radius-pill);
+      background: rgba(250,249,245,0.92);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+    .poll-toggle-inner {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex: 1;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink);
+      transition: var(--transition);
+    }
+    #pollinator-toggle:hover .poll-toggle-inner { background: rgba(0,0,0,0.05); }
+    #pollinator-toggle.active .poll-toggle-inner { background: var(--ink); color: #fff; }
+    /* Vertical stoplight icon (red top, green bottom). Fixed 10px width matches
+       a walk button's dot so the light lines up with the bullets above; kept
+       within the text line height so it never makes the toggle taller. */
+    .poll-toggle-icon {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5px;
+      width: 10px;
+      box-sizing: border-box;
+      padding: 1.5px;
+      border-radius: 3px;
+      background: rgba(0,0,0,0.12);
+    }
+    #pollinator-toggle.active .poll-toggle-icon { background: rgba(255,255,255,0.20); }
+    .poll-toggle-icon i {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      opacity: 0.4;
+      transition: var(--transition);
+    }
+    .poll-toggle-icon .pl-r { background: #db3e3e; }
+    .poll-toggle-icon .pl-y { background: #efc84a; }
+    .poll-toggle-icon .pl-g { background: #6bc173; }
+    #pollinator-toggle.active .poll-toggle-icon i { opacity: 1; }
+
+    /* Bottom-right action buttons (2D/3D + reset) */
+    #map-actions {
+      position: absolute;
+      bottom: 24px;
+      right: 16px;
+      z-index: 5;
+      display: flex;
+      gap: 8px;
+    }
+    .map-action-btn {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      padding: 10px 16px;
+      border-radius: var(--radius-pill);
+      background: rgba(250,249,245,0.92);
+      color: var(--ink);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      transition: var(--transition);
+    }
+    .map-action-btn:hover { background: var(--ink); color: #fff; }
+
+    /* Info sidebar — a permanent panel beside the map on desktop.
+       Shows the walk introduction by default, tree details on pin click. */
+    #info-panel {
+      position: relative;
+      width: 330px;
+      flex: none;
+      background: var(--paper);
+      border-left: 1px solid var(--hairline);
+      font-family: var(--font-body);
+      overflow-y: auto;
+    }
+    #info-panel[hidden] { display: none; }
+
+    /* On desktop the welcome view has nothing to close */
+    #info-panel.welcome #info-close { display: none; }
+
+    /* Welcome panel content */
+    .wp-steps {
+      list-style: none;
+      margin: 24px 0 0;
+      padding: 0;
+      border-top: 1px solid var(--hairline);
+    }
+    .wp-steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: #555;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .wp-steps .step-num {
+      flex: none;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: block;
+      text-align: center;
+      line-height: 20px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 2px;
+    }
+    #info-panel.walk-tree .step-num { background: var(--green); }
+    #info-panel.walk-fragrance .step-num { background: var(--coral); }
+    #info-panel.walk-highlights .step-num { background: var(--lilac); }
+    .wp-desc {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: #555;
+      margin: 14px 0 0;
+    }
+    .wp-disclaimer {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #555;
+      margin: 12px 0 0;
+    }
+    .wp-disclaimer-label {
+      font-weight: 600;
+      color: #C96A5B;
+    }
+    .wp-note {
+      margin-top: 18px;
+      padding: 14px 16px;
+      background: rgba(241,150,140,0.12);
+      border: 1px solid rgba(241,150,140,0.35);
+      border-radius: var(--radius);
+    }
+    .wp-note-title {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #C96A5B;
+      margin-bottom: 5px;
+    }
+    .wp-note p {
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: #555;
+      margin: 0;
+    }
+    #info-content {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* tree detail hugs the top */
+      padding: 20px 24px 32px;
+    }
+    /* The welcome view stays vertically centered */
+    #info-panel.welcome #info-content {
+      justify-content: center;
+      padding: 56px 30px 36px;
+    }
+    #info-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      z-index: 2;
+      width: 30px; height: 30px;
+      border: 1px solid var(--hairline);
+      border-radius: 50%;
+      cursor: pointer;
+      background: #fff;
+      color: var(--ink);
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    #info-close svg { display: block; }
+    #info-close:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+    #info-content img {
+      width: 100%;
+      height: 340px; /* taller to suit the portrait photos */
+      object-fit: cover;
+      display: block;
+      background: #EDEAE0;
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+    }
+
+    /* Numbered pin markers */
+    .tree-pin {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #fff;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .tree-pin:hover { transform: scale(1.25); z-index: 10; }
+    .tree-pin.pin-tree { background: var(--green); }
+    .tree-pin.pin-fragrance { background: var(--coral); }
+    .tree-pin.pin-highlights { background: var(--lilac); }
+    .tree-pin.pin-selected {
+      transform: scale(1.35);
+      border-color: var(--ink);
+    }
+    .tree-pin.pin-selected.pin-tree { background: #5F9A4B; }
+    .tree-pin.pin-selected.pin-fragrance { background: #DE6F60; }
+    .tree-pin.pin-selected.pin-highlights { background: #7B65A8; }
+
+    /* Stoplight pollinator pins (overlay on top of the active walk) */
+    .poll-pin {
+      width: 25px; height: 56px;
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: contain;
+      cursor: pointer;
+      filter: drop-shadow(0 3px 4px rgba(0,0,0,0.35));
+      transition: transform 0.15s ease;
+    }
+    .poll-pin:hover { transform: scale(1.15); z-index: 10; }
+    .poll-pin.poll-selected { transform: scale(1.22); }
+    .poll-pin.poll-red    { background-image: url('images/stoplight/red.svg'); }
+    .poll-pin.poll-yellow { background-image: url('images/stoplight/yellow.svg'); }
+    .poll-pin.poll-green  { background-image: url('images/stoplight/green.svg'); }
+
+    /* Hide the sitewide butterfly cursor-follower while over the map */
+    body.hide-butterfly .butterfly-follower { opacity: 0 !important; }
+
+    /* Attention animation on the geolocate button: a soft pulsing halo
+       plus a little periodic tilt. Stops after the first click. */
+    @keyframes geo-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(129,186,110,0.55); }
+      70%  { box-shadow: 0 0 0 11px rgba(129,186,110,0); }
+      100% { box-shadow: 0 0 0 0 rgba(129,186,110,0); }
+    }
+    @keyframes geo-tilt {
+      0%, 82%, 100% { transform: rotate(0deg); }
+      86% { transform: rotate(-12deg); }
+      90% { transform: rotate(9deg); }
+      94% { transform: rotate(-5deg); }
+    }
+    .mapboxgl-ctrl button.mapboxgl-ctrl-geolocate {
+      border-radius: 6px;
+      animation: geo-pulse 2.4s ease-out infinite,
+                 geo-tilt 3.6s ease-in-out infinite;
+    }
+    .mapboxgl-ctrl button.mapboxgl-ctrl-geolocate.geo-noticed {
+      animation: none;
+    }
+
+    /* Fullscreen mode */
+    #map-wrap.map-fullscreen {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 0;
+      border-radius: 0;
+    }
+    body.no-scroll { overflow: hidden; }
+
+    /* Hover tooltip on pins */
+    .hover-tip { pointer-events: none; }
+    .hover-tip .mapboxgl-popup-content {
+      font-family: var(--font-body);
+      font-size: 0.74rem;
+      font-weight: 400;
+      color: var(--ink);
+      background: rgba(250,249,245,0.96);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .hover-tip .mapboxgl-popup-tip { display: none; }
+
+    /* Info panel body */
+    .tp-body { padding: 0; }
+    .tp-stop {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #999;
+    }
+    .tp-stop.walk-tree { color: var(--green); }
+    .tp-stop.walk-fragrance { color: var(--coral); }
+    .tp-stop.walk-highlights { color: var(--lilac); }
+    .tp-stop-sub { margin-top: 3px; }
+    .tp-body h4 {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      margin: 10px 0 4px;
+      color: var(--ink);
+      line-height: 1.05;
+    }
+    .tp-sci {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #777;
+      margin: 0 0 20px;
+    }
+    .tp-section {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--hairline);
+      border-radius: var(--radius-pill);
+      padding: 7px 16px;
+      margin: 0;
+    }
+    .tp-peak {
+      align-self: stretch;
+      margin-top: 18px;
+      padding: 14px 16px;
+      background: rgba(241,150,140,0.12);
+      border: 1px solid rgba(241,150,140,0.35);
+      border-radius: var(--radius);
+    }
+    .tp-peak-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #C96A5B;
+      margin-bottom: 5px;
+    }
+    .tp-peak-value {
+      display: block;
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: #555;
+    }
+
+    /* ---- Pollinator info panel ---- */
+    .tp-stop.poll-red { color: #c9352f; }
+    .tp-stop.poll-yellow { color: #c79a1b; }
+    .tp-stop.poll-green { color: #4e9c56; }
+    .tp-stop.poll-intro-chip { color: var(--ink); }
+    .poll-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 4px;
+    }
+    /* Higher specificity than "#info-content img" so it doesn't inherit the
+       full-width 340px photo styling. */
+    #info-content img.poll-head-icon {
+      width: 34px;
+      height: auto;
+      flex: none;
+      object-fit: contain;
+      margin: 0;
+      background: none;
+      border-radius: 0;
+    }
+    .poll-head h4 { margin: 0; }
+    .poll-sector { margin-top: 16px; }
+    .poll-tier-sub {
+      font-size: 0.7rem;
+      color: #999;
+      margin: 4px 0 0;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+    }
+    .poll-note {
+      align-self: stretch;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      background: rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .poll-note-red { background: rgba(219,62,62,0.10); border-color: rgba(219,62,62,0.30); }
+    .poll-note-yellow { background: rgba(239,200,74,0.16); border-color: rgba(239,200,74,0.42); }
+    .poll-note-green { background: rgba(107,193,115,0.12); border-color: rgba(107,193,115,0.34); }
+    .poll-note-title {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 5px;
+    }
+    .poll-note p { font-size: 0.82rem; line-height: 1.55; color: #555; margin: 0; }
+    .poll-key { align-self: stretch; margin-top: 20px; }
+    .poll-key-title {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 10px;
+    }
+    .poll-key ul { list-style: none; margin: 0; padding: 0; }
+    .poll-key li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: #555;
+      margin-bottom: 9px;
+    }
+    .poll-key li:last-child { margin-bottom: 0; }
+    .poll-key b { color: var(--ink); font-weight: 600; }
+    .poll-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex: none;
+      margin-top: 3px;
+    }
+    .poll-dot-red { background: #db3e3e; }
+    .poll-dot-yellow { background: #efc84a; }
+    .poll-dot-green { background: #6bc173; }
+
+    /* "Did you spot anything today?" block in the stop panel */
+    .poll-spotter {
+      align-self: stretch;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: var(--radius);
+      background: rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .poll-spotter-sub {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: #555;
+      margin: 6px 0 14px;
+    }
+    .poll-spotter-btns { display: flex; gap: 10px; }
+    .poll-cat-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      padding: 11px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--hairline);
+      background: #fff;
+      transition: var(--transition);
+    }
+    .poll-cat-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .poll-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: var(--hairline);
+      color: #666;
+    }
+    .poll-cat-btn:hover .poll-count { background: rgba(255,255,255,0.25); color: #fff; }
+
+    /* ---- Species catalogue popup ---- */
+    #catalogue {
+      position: fixed;
+      inset: 0;
+      /* Above the expanded map (#map-wrap.map-fullscreen is z-index 3000) so the
+         popup shows in expanded view too. */
+      z-index: 4000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    #catalogue[hidden] { display: none; }
+    .cat-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(30,28,24,0.55);
+      backdrop-filter: blur(2px);
+    }
+    .cat-dialog {
+      position: relative;
+      width: min(760px, 100%);
+      height: min(82vh, 720px);   /* fixed height so it doesn't shrink while searching */
+      display: flex;
+      flex-direction: column;
+      background: #FAF9F5;
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+    .cat-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 24px 16px;
+    }
+    .cat-eyebrow {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 5px;
+    }
+    .cat-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0;
+      line-height: 1.1;
+    }
+    .cat-close {
+      flex: none;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--hairline);
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .cat-close:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .cat-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 0 24px 18px;
+    }
+    .cat-search-wrap { position: relative; flex: 1; min-width: 200px; }
+    .cat-search-ico {
+      position: absolute;
+      left: 14px; top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+    }
+    #cat-search {
+      width: 100%;
+      box-sizing: border-box;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--ink);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-pill);
+      padding: 11px 16px 11px 38px;
+      background: #fff;
+      outline: none;
+    }
+    #cat-search:focus { border-color: var(--coral); }
+    .cat-tabs { display: flex; gap: 6px; }
+    .cat-tab {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      padding: 9px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--hairline);
+      background: #fff;
+      transition: var(--transition);
+    }
+    .cat-tab:hover { border-color: var(--ink); }
+    .cat-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .cat-grid {
+      flex: 1;
+      min-height: 0;          /* allow the grid to scroll inside the fixed dialog */
+      overflow-y: auto;
+      padding: 4px 24px 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-auto-rows: max-content;   /* rows size to content, not the leftover space */
+      gap: 16px;
+      align-content: start;
+    }
+    .cat-card {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--hairline);
+    }
+    /* Fixed, uniform image box for every card regardless of class/name length */
+    .cat-photo {
+      position: relative;
+      height: 112px;
+      flex: none;
+      background: #EDEAE0;
+    }
+    .cat-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cat-tag {
+      position: absolute;
+      top: 8px; left: 8px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 10px;
+      color: #fff;
+    }
+    .cat-tag-bird { background: var(--coral); }
+    .cat-tag-insect { background: var(--lilac); }
+    /* Caption sizes to its own content (basis auto) so text is never clipped,
+       and grows to fill when its card is stretched to match taller row-mates. */
+    .cat-card figcaption {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 10px 12px 12px;
+    }
+    .cat-name { font-size: 0.85rem; font-weight: 600; color: var(--ink); line-height: 1.25; }
+    .cat-sci { font-size: 0.75rem; font-style: italic; color: #888; line-height: 1.25; }
+    .cat-empty { grid-column: 1 / -1; text-align: center; color: #999; padding: 30px 0; font-size: 0.9rem; }
+    .cat-footer {
+      flex: none;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px 14px;
+      text-align: center;
+      padding: 12px 24px 16px;
+      border-top: 1px solid var(--hairline);
+      font-size: 0.74rem;
+      color: #999;
+    }
+    .cat-footer a {
+      color: #999;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: var(--transition);
+    }
+    .cat-footer a:hover { color: var(--ink); }
+    .cat-credit a { color: var(--coral); }
+    body.cat-open { overflow: hidden; }
+
+    @media (max-width: 640px) {
+      #map-wrap { height: 68vh; min-height: 440px; border-radius: var(--radius); }
+      /* Stack the controls vertically on phones */
+      #top-controls {
+        top: 12px; left: 12px; right: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      #walk-filter {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+        border-radius: 22px;
+      }
+      .walk-btn {
+        padding: 8px 14px;
+        font-size: 0.76rem;
+        justify-content: flex-start;
+      }
+      #walk-group { align-self: stretch; align-items: stretch; }
+      /* Match the walk buttons' padding/size so the stoplight lines up under the
+         dots and the label lines up with the walk labels. */
+      .poll-toggle-inner { padding: 8px 14px; font-size: 0.76rem; }
+      #search-input { width: 172px; padding: 11px 16px; }
+      #search-box.has-text #search-input { padding-right: 36px; }
+      /* Panel becomes a full-screen overlay on small screens */
+      #info-panel {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border-left: none;
+        z-index: 8;
+      }
+      /* On mobile the panel always needs a close button */
+      #info-panel.welcome #info-close { display: flex; }
+      #panel-menu { display: flex; }
+      #info-content { padding: 20px 20px 28px; } /* ✕ sits over the photo */
+      #info-panel.welcome #info-content { padding: 56px 24px 28px; }
+      #info-content img { height: 46vh; margin-bottom: 20px; }
+      .tp-body h4 { font-size: 1.7rem; }
+      #map-actions { bottom: 16px; right: 12px; }
+      /* Catalogue popup fills more of the small screen */
+      #catalogue { padding: 12px; }
+      .cat-dialog { max-height: 90vh; border-radius: 16px; }
+      .cat-header { padding: 18px 18px 12px; }
+      .cat-header h3 { font-size: 1.4rem; }
+      .cat-controls { padding: 0 18px 14px; }
+      .cat-tabs { width: 100%; }
+      .cat-tab { flex: 1; text-align: center; }
+      .cat-grid {
+        padding: 4px 18px 20px;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 12px;
+      }
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="logos/Squared-Logo.svg">
+</head>
+<body>
+
+  <style>
+    /* Embed safeguards: no page chrome, map always visible */
+    html, body { margin: 0 !important; padding: 0 !important; background: transparent !important; }
+    .fade-in { opacity: 1 !important; transform: none !important; }
+    /* Trim the big hero top padding so the map sits near the top of the frame */
+    main > section:first-child { padding-top: 24px !important; padding-bottom: 0 !important; }
+  </style>
+
+  <!-- ===== EMBED: map only (site header/footer removed) ===== -->
+  <main>
+
+    <!-- ================= PAGE HERO ================= -->
+    <!-- <section class="section">
+      <div class="container">
+        <div class="section-head-center" style="margin-bottom: 0;">
+          <p class="eyebrow eyebrow-dim">Interactive Map</p>
+          <h1 class="display-xl">Walk the Garden,<br>Stop by Stop</h1>
+          <p class="lead" style="margin-top: 24px;">Choose a walk, follow the highlighted path, and tap any pin to meet the tree or plant waiting there.</p>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- ================= INTERACTIVE MAP ================= -->
+    <section class="section fade-in" style="padding-top: 0;">
+      <div class="container" style="max-width: 1360px;">
+        <div id="map-wrap">
+          <div id="map-area">
+            <div id="map"></div>
+
+            <div id="top-controls">
+              <div id="walk-group">
+                <div id="walk-filter" role="group" aria-label="Choose a walk">
+                  <button class="walk-btn active" data-walk="tree"><span class="dot"></span>Tree Walk</button>
+                  <button class="walk-btn" data-walk="fragrance"><span class="dot"></span>Fragrance Walk</button>
+                  <button class="walk-btn" data-walk="highlights"><span class="dot"></span>Highlights Walk</button>
+                </div>
+                <button id="pollinator-toggle" type="button" aria-pressed="false" title="Show or hide the pollinator stops">
+                  <span class="poll-toggle-inner">
+                    <span class="poll-toggle-icon" aria-hidden="true"><i class="pl-r"></i><i class="pl-y"></i><i class="pl-g"></i></span>
+                    Pollinator Stops
+                  </span>
+                </button>
+              </div>
+              <div id="search-box">
+                <input id="search-input" type="text" placeholder="Search this walk…"
+                       autocomplete="off" aria-label="Search trees and plants on this walk">
+                <button id="search-clear" aria-label="Clear search"><svg viewBox="0 0 10 10" width="9" height="9" aria-hidden="true"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+                <div id="search-results" role="listbox"></div>
+              </div>
+            </div>
+
+            <button id="panel-menu" aria-label="About this walk"><svg viewBox="0 0 16 12" width="14" height="11" aria-hidden="true"><path d="M1 1h14M1 6h14M1 11h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+
+            <div id="map-actions">
+              <button id="fullscreen-toggle" class="map-action-btn" title="Expand the map to full screen">Expand ⛶</button>
+              <button id="view-toggle" class="map-action-btn" title="Toggle 2D / 3D view">3D</button>
+              <button id="reset-view" class="map-action-btn" title="Reset the map view">Reset View</button>
+            </div>
+          </div>
+
+          <aside id="info-panel" hidden>
+            <button id="info-close" aria-label="Close panel"><svg viewBox="0 0 10 10" width="11" height="11" aria-hidden="true"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+            <div id="info-content"></div>
+          </aside>
+        </div>
+
+        <p class="text-center" style="margin-top: 28px; font-size: 0.85rem; color: #888;">
+          Pins are numbered in walking order - start at 1 and follow the highlighted path.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ POLLINATOR SPECIES CATALOGUE (popup) ============ -->
+  <div id="catalogue" hidden>
+    <div class="cat-backdrop"></div>
+    <div class="cat-dialog" role="dialog" aria-modal="true" aria-labelledby="cat-title">
+      <header class="cat-header">
+        <div>
+          <span class="cat-eyebrow">Did you spot anything today?</span>
+          <h3 id="cat-title">Pollinators</h3>
+        </div>
+        <button class="cat-close" aria-label="Close catalogue"><svg viewBox="0 0 12 12" width="13" height="13" aria-hidden="true"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      </header>
+      <div class="cat-controls">
+        <div class="cat-search-wrap">
+          <svg class="cat-search-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input id="cat-search" type="text" placeholder="Search by name…" autocomplete="off" aria-label="Search species">
+        </div>
+        <div class="cat-tabs" role="group" aria-label="Filter by class">
+          <button class="cat-tab active" data-cls="all">All</button>
+          <button class="cat-tab" data-cls="bird">Birds</button>
+          <button class="cat-tab" data-cls="insect">Insects</button>
+        </div>
+      </div>
+      <div class="cat-grid" id="cat-grid"></div>
+      <footer class="cat-footer">
+        <a href="images/pollinators/image-credits.csv" download>Image credits</a>
+        <span class="cat-credit">Data collected by Angelica Pineda, <a href="https://instagram.com/endemico_colombia" target="_blank" rel="noopener">@endemico_colombia</a></span>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/walk-data.js"></script>
+  <script src="js/interactive-map.js"></script>
+</body>
+</html>

@@ -722,3 +722,40 @@ document.addEventListener('keydown', (e) => {
     setFullscreen(false);
   }
 });
+
+
+/* ============ Preload pollinator catalogue images ============
+   The catalogue grid is built only when opened, and its <img>s use
+   loading="lazy", so photos start downloading at open-time. This warms
+   the browser cache in the background once the page is idle, so the
+   catalogue shows every photo instantly. Kept polite: waits for idle,
+   loads a few at a time, and bails on Data Saver / very slow links. */
+(function preloadPollinatorImages() {
+  if (typeof POLLINATOR_SPECIES === 'undefined') return;
+
+  var conn = navigator.connection || {};
+  if (conn.saveData) return;                                  // respect Data Saver
+  if (/(^|-)2g$/.test(conn.effectiveType || '')) return;      // skip on 2g
+
+  var urls = [];
+  var seen = {};
+  POLLINATOR_SPECIES.forEach(function (s) {
+    if (s && s.img && !seen[s.img]) { seen[s.img] = 1; urls.push(s.img); }
+  });
+
+  var i = 0;
+  var BATCH = 4; // how many to fetch at once
+  function loadNext() {
+    if (i >= urls.length) return;
+    var img = new Image();
+    img.onload = img.onerror = loadNext; // chain: start the next as each finishes
+    img.src = urls[i++];
+  }
+  function start() { for (var n = 0; n < BATCH; n++) loadNext(); }
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(start, { timeout: 4000 });
+  } else {
+    window.addEventListener('load', function () { setTimeout(start, 1500); });
+  }
+})();
