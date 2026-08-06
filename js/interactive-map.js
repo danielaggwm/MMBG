@@ -179,14 +179,20 @@ function renderWelcome() {
 }
 
 // Renders a description string as one or more <p> paragraphs. Line breaks (from
-// the Excel cell) split paragraphs; **double asterisks** become bold. Angle
-// brackets/ampersands are escaped so the text can't break the markup.
+// the Excel cell) split paragraphs; **double asterisks** become bold; and the
+// link syntax [label](#pollinators) becomes a clickable link that switches on
+// the Pollinator Stops overlay. Angle brackets/ampersands are escaped first so
+// the text can't break the markup.
 function formatDesc(text) {
   return String(text).split(/\n+/).map(function (para) {
     var t = para.trim();
     if (!t) return '';
     t = t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    // [label](#pollinators) -> action link that turns on the pollinator overlay
+    t = t.replace(/\[([^\]]+)\]\(#pollinators\)/g,
+      '<button type="button" class="tp-actionlink" data-action="pollinators">$1</button>');
+    t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');   // **bold**
+    t = t.replace(/_([^_]+)_/g, '<em>$1</em>');                 // _italic_ (e.g. scientific names)
     return '<p class="tp-desc">' + t + '</p>';
   }).join('');
 }
@@ -599,6 +605,15 @@ document.querySelectorAll('.walk-btn').forEach(btn => {
 // Pollinator overlay toggle — independent of the walk buttons
 document.getElementById('pollinator-toggle').addEventListener('click', () => {
   setPollinator(!pollinatorOn);
+});
+
+// Inline "Pollinator Stops" links inside a stop's description switch on the
+// overlay, exactly as if the toggle button had been clicked.
+infoContent.addEventListener('click', (e) => {
+  const link = e.target.closest('.tp-actionlink[data-action="pollinators"]');
+  if (!link) return;
+  if (!pollinatorOn) setPollinator(true);
+  if (isMobile) infoPanel.hidden = true; // close the overlay so the pins show
 });
 
 // Catalogue: the "Birds"/"Insects" buttons live inside the (re-rendered) panel,

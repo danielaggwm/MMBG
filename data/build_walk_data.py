@@ -97,7 +97,10 @@ for sheet, walk in [('Arboretum Walk', 'tree'), ('Fragrance Walk', 'fragrance')]
         # case a sheet has fewer columns or the cell is blank.
         desc = clean_text(row[4] if len(row) > 4 else None)
         if isinstance(num, str) and name is None:
-            section = num.title(); continue
+            # Title-case the ALL-CAPS header, then fix the apostrophe-S quirk
+            # (str.title() turns "CHILDREN'S" into "Children'S").
+            section = re.sub(r"'(\w)", lambda m: "'" + m.group(1).lower(), num.title())
+            continue
         if num is None or lng is None or lat is None:
             continue
         common, sci = parse_name(name)

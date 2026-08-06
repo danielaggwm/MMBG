@@ -574,6 +574,22 @@
       color: #555;
       margin: 16px 0 20px;
     }
+    /* Inline action link inside a description (e.g. "Pollinator Stops") */
+    .tp-actionlink {
+      font: inherit;
+      font-weight: 700;
+      color: #7B65A8; /* deeper lilac for contrast on the cream panel */
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1.5px;
+      transition: color var(--transition);
+    }
+    .tp-actionlink:hover,
+    .tp-actionlink:focus-visible { color: var(--ink); }
     .tp-section {
       display: inline-block;
       align-self: flex-start;
