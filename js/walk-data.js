@@ -18,7 +18,11 @@ const WALK_DATA = {
         "scientific": "Ceiba speciosa",
         "section": "Entry Plaza",
         "peak": null,
-        "photo": "images/trees/tree-01.jpg"
+        "description": "Native to the subtropical forests of South America (Brazil and Argentina), this tree is famous for its thick, cone-shaped thorns protruding from a green trunk that acts as a water reservoir.\nHistorically, its fluff-filled seed pods were used as stuffing for life jackets and pillows. A fun fact is that as the tree matures, the green trunk fades to gray, and it bursts into massive, orchid-like pink flowers when it sheds its leaves.",
+        "photo": "images/trees/ceiba-speciosa.jpg",
+        "photos": [
+          "images/trees/ceiba-speciosa.jpg"
+        ]
       }
     },
     {
@@ -37,7 +41,11 @@ const WALK_DATA = {
         "scientific": "Quercus virginiana",
         "section": "Entry Plaza",
         "peak": null,
-        "photo": "images/trees/tree-02.jpg"
+        "description": "Indigenous to the coastal plains of the Southeastern United States, this majestic tree is deeply tied to American history, notably supplying the ultra-dense wood for the USS Constitution (which earned the nickname \"Old Ironsides\" because cannonballs literally bounced off its oak hull).\nLive Oak is not a true evergreen, but rather \"sub-evergreen,\" dropping its old leaves over a brief few weeks in spring just as new ones emerge.",
+        "photo": "images/trees/quercus-virginiana.jpg",
+        "photos": [
+          "images/trees/quercus-virginiana.jpg"
+        ]
       }
     },
     {
@@ -56,7 +64,11 @@ const WALK_DATA = {
         "scientific": "Ceiba pentandra",
         "section": "Bridal Veil Plaza",
         "peak": null,
-        "photo": "images/trees/tree-03.jpg"
+        "description": "Spanning across the tropical rainforests of the Americas and West Africa, this giant was considered a sacred tree by the ancient Maya, who believed its roots reached the underworld while its canopy held up the heavens.\nThe silk-like fibers surrounding its seeds are completely water-resistant and were heavily used in early 20th-century aviation life vests. A single mature kapok tree can grow up to 230 feet (70 meters) tall and produce up to 4,000 seed pods in a single season.",
+        "photo": "images/trees/ceiba-pentandra.jpg",
+        "photos": [
+          "images/trees/ceiba-pentandra.jpg"
+        ]
       }
     },
     {
@@ -75,7 +87,11 @@ const WALK_DATA = {
         "scientific": "Caesalpinia granadillo",
         "section": "Bridal Veil Plaza",
         "peak": null,
-        "photo": "images/trees/tree-04.jpg"
+        "description": "Hailing from the arid scrublands of Venezuela and Colombia, this tree earned its romantic common name from its fine, feathery foliage that hangs in elegant, weeping cascades resembling a wedding veil.\nHistorically valued for its ultra-hard, deep-brown \"partridge wood\" used in fine woodworking, its smooth, mottled bark that peels away in a camouflage-like pattern of grays and greens.",
+        "photo": "images/trees/caesalpinia-granadillo.jpg",
+        "photos": [
+          "images/trees/caesalpinia-granadillo.jpg"
+        ]
       }
     },
     {
@@ -94,7 +110,11 @@ const WALK_DATA = {
         "scientific": "Cassia x nealiae",
         "section": "Bridal Veil Plaza",
         "peak": null,
-        "photo": "images/trees/tree-05.jpg"
+        "description": "This stunning tree is a sterile, man-made hybrid created in Hawaii in the early 1900s by crossing the Golden Shower and Pink Shower trees.\nBecause it is completely sterile, it cannot produce seed pods, meaning it spends all its energy producing spectacular, multi-colored flower clusters that shift from peach to yellow and coral. It has become the official law-mandated street tree of Honolulu.",
+        "photo": "images/trees/cassia-x-nealiae.jpg",
+        "photos": [
+          "images/trees/cassia-x-nealiae.jpg"
+        ]
       }
     },
     {
@@ -113,7 +133,11 @@ const WALK_DATA = {
         "scientific": "Cananga odorata",
         "section": "Bridal Veil Plaza",
         "peak": null,
-        "photo": "images/trees/tree-06.jpg"
+        "description": "Native to the tropical rainforests of maritime Southeast Asia (Indonesia, Malaysia, and the Philippines), this tree has a rich history in traditional Polynesian perfumery and hair care.\nIts yellow, star-shaped flowers are the core ingredient in Coco Chanel's iconic Chanel No. 5 perfume. Its flowers must be harvested by hand at dawn, when their intense, exotic scent is at its absolute peak.",
+        "photo": "images/trees/cananga-odorata.jpg",
+        "photos": [
+          "images/trees/cananga-odorata.jpg"
+        ]
       }
     },
     {
@@ -132,7 +156,11 @@ const WALK_DATA = {
         "scientific": "Lagerstroemia indica",
         "section": "Bridal Veil Plaza",
         "peak": null,
-        "photo": "images/trees/tree-07.jpg"
+        "description": "Originally native to China and Korea, this tree was introduced to the West via trade routes in the 1700s and quickly became the quintessential flowering tree of the American South.\nIts wood is so dense that it was once used to make durable hinges and wheels on rural farms. The paper-thin, crinkled flower petals look like crepe paper, paired with smooth bark that sheds annually to reveal pinkish inner wood.",
+        "photo": "images/trees/lagerstroemia-indica.jpg",
+        "photos": [
+          "images/trees/lagerstroemia-indica.jpg"
+        ]
       }
     },
     {
@@ -151,7 +179,11 @@ const WALK_DATA = {
         "scientific": "Podocarpus macrophyllus",
         "section": "Japanese Garden",
         "peak": null,
-        "photo": "images/trees/tree-08.jpg"
+        "description": "Native to the subtropical mountain forests of southern Japan and China, this ancient conifer has a long history of being planted around Buddhist temples to ward off evil spirits.\nIt is highly valued in traditional Japanese garden design (Niwaki), where its flexible wood is painstakingly trained into cloud-like shapes. Despite its common name, it is neither a true pine nor a yew, and it produces highly unusual fleshy, two-toned purple cones that look like miniature berries.",
+        "photo": "images/trees/podocarpus-macrophyllus.jpg",
+        "photos": [
+          "images/trees/podocarpus-macrophyllus.jpg"
+        ]
       }
     },
     {
@@ -170,7 +202,11 @@ const WALK_DATA = {
         "scientific": "Schizostachyum brachycladum",
         "section": "Japanese Garden",
         "peak": null,
-        "photo": "images/trees/tree-09.jpg"
+        "description": "Endemic to the tropical islands of Indonesia, this gorgeous bamboo has a holy status in Balinese Hinduism, where its bright golden canes with emerald-green stripes are grown around temples and used exclusively in sacred cremation ceremonies (Ngaben).\nIt is a clumping bamboo that grows in neat, tight clusters, and its walls are surprisingly thin, making it a historic favorite for crafting traditional musical instruments like flutes and wind chimes.",
+        "photo": "images/trees/schizostachyum-brachycladum.jpg",
+        "photos": [
+          "images/trees/schizostachyum-brachycladum.jpg"
+        ]
       }
     },
     {
@@ -189,7 +225,11 @@ const WALK_DATA = {
         "scientific": "Calliandra haematocephala",
         "section": "Japanese Garden",
         "peak": null,
-        "photo": "images/trees/tree-10.jpg"
+        "description": "Native to the tropical scrublands of Bolivia, this large shrub-like tree was discovered by Western botanists in the 19th century and became a sensation in European Victorian greenhouses.\nIt gets its fun name from its spectacular flower buds, which start out looking like bumpy red raspberries before bursting open into soft, 3-inch globes made up entirely of hundreds of fine, bright-crimson stamens that look like powder puffs.",
+        "photo": "images/trees/calliandra-haematocephala.jpg",
+        "photos": [
+          "images/trees/calliandra-haematocephala.jpg"
+        ]
       }
     },
     {
@@ -208,7 +248,11 @@ const WALK_DATA = {
         "scientific": "Bambusa vulgaris",
         "section": "Japanese Garden",
         "peak": null,
-        "photo": "images/trees/tree-11.jpg"
+        "description": "Originally native to Mainland Southeast Asia, this is the most widely cultivated and naturalized bamboo in the global tropics, having traveled along historic trade routes for centuries as a vital material for building scaffolding, paper pulp, and furniture.\nThis species almost never flowers: instead, it reproduces almost entirely through vegetative cloning, meaning nearly every yellow-striped column you see today is a genetic twin of a plant from centuries ago.",
+        "photo": "images/trees/bambusa-vulgaris.jpg",
+        "photos": [
+          "images/trees/bambusa-vulgaris.jpg"
+        ]
       }
     },
     {
@@ -227,7 +271,11 @@ const WALK_DATA = {
         "scientific": "Lysiloma sabicu",
         "section": "Japanese Garden",
         "peak": null,
-        "photo": "images/trees/tree-12.jpg"
+        "description": "Endemic to the islands of Cuba and the Bahamas, this tree gets its unique name from its rich, reddish-brown heartwood, which looks strikingly like raw horse meat when freshly cut.\nHighly prized by 18th-century shipbuilders for its extreme durability and resistance to marine wood-boring worms, it is also highly salt-tolerant and functions as an excellent natural windbreak on rocky Caribbean coasts.",
+        "photo": "images/trees/lysiloma-sabicu.jpg",
+        "photos": [
+          "images/trees/lysiloma-sabicu.jpg"
+        ]
       }
     },
     {
@@ -246,7 +294,11 @@ const WALK_DATA = {
         "scientific": "Tabebuia aurea",
         "section": "Japanese Garden",
         "peak": null,
-        "photo": "images/trees/tree-13.jpg"
+        "description": "Native to the dry, open savannahs of South America's Cerrado region, this tree has a long history of being used in traditional folk medicine to treat fevers and inflammation. It is famous for a dramatic, synchronized botanical event: it drops every single one of its leaves right before exploding into a dense, blinding canopy of bright yellow, trumpet-shaped blooms.",
+        "photo": "images/trees/tabebuia-aurea.jpg",
+        "photos": [
+          "images/trees/tabebuia-aurea.jpg"
+        ]
       }
     },
     {
@@ -265,7 +317,11 @@ const WALK_DATA = {
         "scientific": "Pinus elliottii var densa",
         "section": "Native Garden",
         "peak": null,
-        "photo": "images/trees/tree-14.jpg"
+        "description": "Endemic exclusively to the limestone ridge formations of South Florida and the Keys, this specific variety played a massive role in early 20th-century American history, fueling the region's early timber and naval store industries.\nIts wood is so dense and heavy with termite-resistant resin that early pioneers called it \"Dade County Pine\" and used it to build the first permanent homes in Miami. It is completely dependent on natural forest fires to crack open its cones and clear away competing brush.",
+        "photo": "images/trees/pinus-elliottii-var-densa.jpg",
+        "photos": [
+          "images/trees/pinus-elliottii-var-densa.jpg"
+        ]
       }
     },
     {
@@ -284,7 +340,11 @@ const WALK_DATA = {
         "scientific": "Guaicum sanctum",
         "section": "Native Garden",
         "peak": null,
-        "photo": "images/trees/tree-15.jpg"
+        "description": "Native to the Caribbean and Central America, this legendary tree's Latin name translates to \"Tree of Life\" because its dense resin was historically used to treat syphilis and severe arthritis.\nIts wood is famously the heaviest and densest on Earth; it does not float in water, and its self-lubricating properties made it the ultimate historical material for carving ship propeller shaft bearings and bowling balls. It features beautiful, small blue flowers that fade to white.",
+        "photo": "images/trees/guaicum-sanctum.jpg",
+        "photos": [
+          "images/trees/guaicum-sanctum.jpg"
+        ]
       }
     },
     {
@@ -303,7 +363,11 @@ const WALK_DATA = {
         "scientific": "Sabal palmetto",
         "section": "Native Garden",
         "peak": null,
-        "photo": "images/trees/tree-16.jpg"
+        "description": "Native to the coastal southeastern United States and Cuba, this ultra-tough palm is woven into American history, appearing on South Carolina's flag because its soft, spongy trunk successfully absorbed British cannonballs during the Revolutionary War attack on Fort Moultrie.\nEarly Native Americans and settlers harvested its central bud as a food source known as \"swamp cabbage.\" Sadly, doing so kills the palm instantly.",
+        "photo": "images/trees/sabal-palmetto.jpg",
+        "photos": [
+          "images/trees/sabal-palmetto.jpg"
+        ]
       }
     },
     {
@@ -322,7 +386,11 @@ const WALK_DATA = {
         "scientific": "Simarouba glauca",
         "section": "Native Garden",
         "peak": null,
-        "photo": "images/trees/tree-17.jpg"
+        "description": "Native to the tropical regions of the Americas (including South Florida and the Caribbean), this tree is historically known as \"Aceituno\" because its seeds yield a rich oil once prized for making soaps and medicinal salves.\nIt features glossy, dark-green leaves with an unexpectedly bright red tint on new growth. The small, purple-black fruits are a favorite snack for local wildlife, earning it a reputation as a powerhouse tree for backyard biodiversity.",
+        "photo": "images/trees/simarouba-glauca.jpg",
+        "photos": [
+          "images/trees/simarouba-glauca.jpg"
+        ]
       }
     },
     {
@@ -341,7 +409,11 @@ const WALK_DATA = {
         "scientific": "Ficus aspera",
         "section": "Great Lawn",
         "peak": null,
-        "photo": "images/trees/tree-18.jpg"
+        "description": "Endemic to the volcanic islands of Vanuatu in the South Pacific, this rare tree gets its whimsical name from its wildly variegated, asymmetrical leaves, which are splashed with random patches of ghost-white, cream, and emerald green, making it look like it's wearing messy clown makeup.\nHistorically overlooked due to its fragile wood, Ficus aspera surprises botanists with its small, fuzzy figs that grow directly out of the branches and trunk and also sport bright pink and white stripes before ripening.",
+        "photo": "images/trees/ficus-aspera.jpg",
+        "photos": [
+          "images/trees/ficus-aspera.jpg"
+        ]
       }
     },
     {
@@ -360,7 +432,11 @@ const WALK_DATA = {
         "scientific": "Veitchia arecina",
         "section": "Great Lawn",
         "peak": null,
-        "photo": "images/trees/tree-19.jpg"
+        "description": "Native exclusively to the remote Vanuatu chain of islands in the South Pacific, this palm was brought to the West and named in honor of Colonel Robert Montgomery, a legendary plant collector who founded Montgomery Botanical Center in Miami.\nIt is incredibly fast-growing and displays an elegant trunk accented by bright red, egg-shaped fruits that hang in massive clusters right below its smooth, lime-green crownshaft. Our garden sports not one, but a cluster of 5 planted together.",
+        "photo": "images/trees/veitchia-arecina.jpg",
+        "photos": [
+          "images/trees/veitchia-arecina.jpg"
+        ]
       }
     },
     {
@@ -379,7 +455,11 @@ const WALK_DATA = {
         "scientific": "Borassus sp",
         "section": "Great Lawn",
         "peak": null,
-        "photo": "images/trees/tree-20.jpg"
+        "description": "Pause to appreciate the unusual black trunk of this massive palm. Borassus dominates sub-Saharan Africa, growing abundantly along open savannas and riverbanks where local communities have historically relied on it as a vital resource for construction materials and famine food.\nThis massive palm will grow to 80' tall and live for well over a century, producing up to 500 bright orange, edible, coconut-sized fruits every single year. Planted in 2025 as a generous gift from The Green Standard landscaping team, this specimen is dedicated to Bear Theodore Foster.",
+        "photo": "images/trees/borassus-sp.jpg",
+        "photos": [
+          "images/trees/borassus-sp.jpg"
+        ]
       }
     },
     {
@@ -398,7 +478,11 @@ const WALK_DATA = {
         "scientific": "Dypsis decaryi",
         "section": "Water Garden",
         "peak": null,
-        "photo": "images/trees/tree-21.jpg"
+        "description": "Hailing strictly from the highly threatened rainshadow rainforests of southern Madagascar, this palm is classified as critically endangered in the wild due to seed harvesting and habitat loss. It gets its unforgettable name from its fronds, which grow out of the trunk in three distinct, perfect rows spaced 120 degrees apart, forming a crisp, geometric triangle.",
+        "photo": "images/trees/dypsis-decaryi.jpg",
+        "photos": [
+          "images/trees/dypsis-decaryi.jpg"
+        ]
       }
     },
     {
@@ -417,7 +501,11 @@ const WALK_DATA = {
         "scientific": "Tabebuia bahamensis",
         "section": "Water Garden",
         "peak": null,
-        "photo": "images/trees/tree-22.jpg"
+        "description": "Native to the Bahamas and the Turks and Caicos islands, this hardy tree has a rich history in local bush medicine, where its bark is brewed into a traditional tea believed to cure ailments ranging from back pain to low stamina. This species is perfectly adapted to growing straight out of limestone rock fissures and features white flowers.",
+        "photo": "images/trees/tabebuia-bahamensis.jpg",
+        "photos": [
+          "images/trees/tabebuia-bahamensis.jpg"
+        ]
       }
     },
     {
@@ -436,7 +524,11 @@ const WALK_DATA = {
         "scientific": "Pseudophoenix vinifera",
         "section": "Water Garden",
         "peak": null,
-        "photo": "images/trees/tree-23.jpg"
+        "description": "Endemic to the dry, rocky limestone cliffs of Hispaniola (Haiti and the Dominican Republic), this palm is deeply tied to historical indigenous cultures, who cut down the trees to ferment the sweet, sugary sap inside the swollen trunks into a potent palm wine.\nBecause it grows at an incredibly slow rate—often taking over a decade just to form a visible trunk—it has become exceptionally rare and highly sought after by collectors.",
+        "photo": "images/trees/pseudophoenix-vinifera.jpg",
+        "photos": [
+          "images/trees/pseudophoenix-vinifera.jpg"
+        ]
       }
     },
     {
@@ -455,7 +547,11 @@ const WALK_DATA = {
         "scientific": "Acacia sp",
         "section": "Water Garden",
         "peak": null,
-        "photo": "images/trees/tree-24.jpg"
+        "description": "Found predominantly across the sun-baked savannas of Africa and Australia, acacias have shaped human history by providing gum arabic (used since ancient Egyptian times for paint and mummification) and durable wood used to construct the biblical Ark of the Covenant.\nMany acacia species share a mind-blowing evolutionary trait: they form a symbiotic relationship with aggressive stinging ants, feeding them sweet nectar via specialized glands in exchange for a fierce defense force against hungry herbivores.",
+        "photo": "images/trees/acacia-sp.jpg",
+        "photos": [
+          "images/trees/acacia-sp.jpg"
+        ]
       }
     },
     {
@@ -474,7 +570,11 @@ const WALK_DATA = {
         "scientific": "Annona glabra, Annona squamosa",
         "section": "Wetland Garden",
         "peak": null,
-        "photo": "images/trees/tree-25.jpg"
+        "description": "Native to the swamps of the Americas and West Africa, Annona glabra (Pond Apple) has a gritty history, historically nicknamed \"Alligator Apple\" because American alligators frequently utilize its floating, yellow fruits as a food source.\nIn contrast, its close cousin Annona squamosa (Sugar Apple) was domesticated across tropical America for its sweet, custard-like interior. Annona glabra is so resilient to flooding that it can survive with its root system completely submerged in stagnant water for months at a time.",
+        "photo": "images/trees/pond-apple.jpg",
+        "photos": [
+          "images/trees/pond-apple.jpg"
+        ]
       }
     },
     {
@@ -493,7 +593,11 @@ const WALK_DATA = {
         "scientific": "Rhizophora mangle",
         "section": "Wetland Garden",
         "peak": null,
-        "photo": "images/trees/tree-26.jpg"
+        "description": "Inhabiting the brackish intertidal zones of the global tropics, the red mangrove is an environmental superhero, acting as a historical nursery for global marine life and a buffer against tsunamis.\nIt is famous for its arching, reddish aerial \"prop roots\" that make the tree look like it is walking on water. These roots possess a mind-blowing filtration system that filters out up to 99% of ocean salt, allowing the tree to drink pure fresh water directly from the sea.",
+        "photo": "images/trees/rhizophora-mangle.jpg",
+        "photos": [
+          "images/trees/rhizophora-mangle.jpg"
+        ]
       }
     },
     {
@@ -512,7 +616,11 @@ const WALK_DATA = {
         "scientific": "Beaucarnea recurvata",
         "section": "Ponytail Pond",
         "peak": null,
-        "photo": "images/trees/tree-27.jpg"
+        "description": "Despite its deceptive common name and palm-like appearance, this plant is actually a succulent closely related to the agave family, native to the semi-desert regions of Eastern Mexico. Some wild specimens are documented to be over 350 years old.\nIts hallmark feature is its massive, bulbous base (called a caudex) that functions as an internal water tank, allowing it to survive months of severe drought without a single drop of water.",
+        "photo": "images/trees/beaucarnea-recurvata.jpg",
+        "photos": [
+          "images/trees/beaucarnea-recurvata.jpg"
+        ]
       }
     },
     {
@@ -531,7 +639,11 @@ const WALK_DATA = {
         "scientific": "Copernicia macroglossa",
         "section": "Ponytail Pond",
         "peak": null,
-        "photo": "images/trees/tree-28.jpg"
+        "description": "Found only in the dry, rocky savannas of Cuba, this spectacular palm has a rich history of being used by locals as high-quality thatch for roofs.\nIt exhibits a unique defense mechanism where its old, dead fronds do not fall off; instead, they brown and reflex downward, creating a massive, dense \"petticoat\" skirt around the trunk that prevents animals from climbing up to eat its seeds.",
+        "photo": "images/trees/copernicia-macroglossa.jpg",
+        "photos": [
+          "images/trees/copernicia-macroglossa.jpg"
+        ]
       }
     },
     {
@@ -550,7 +662,11 @@ const WALK_DATA = {
         "scientific": "Corypha umbraculifera",
         "section": "Gumbo Limbo Courtyard",
         "peak": null,
-        "photo": "images/trees/tree-29.jpg"
+        "description": "Native to the humid zones of Southern India and Sri Lanka, this giant palm holds a monumental place in history, as its large, durable leaves were dried and used as \"palm-leaf manuscripts\" to write down early Buddhist scriptures and historical records.\nIt features a mind-blowing lifecycle: it grows for 30 to 80 years without ever blooming, then produces the largest flowering structure in the plant kingdom (up to 20 million flowers), drops its seeds, and promptly dies.",
+        "photo": "images/trees/corypha-umbraculifera.jpg",
+        "photos": [
+          "images/trees/corypha-umbraculifera.jpg"
+        ]
       }
     },
     {
@@ -569,7 +685,11 @@ const WALK_DATA = {
         "scientific": "Guaiacum officinale",
         "section": "Gumbo Limbo Courtyard",
         "peak": null,
-        "photo": "images/trees/tree-30.jpg"
+        "description": "Shared with its cousin (G. sanctum), this species is native to the coastal West Indies and northern South America. Historically, it was heavily traded by early European explorers who believed its green resin was a miracle cure-all.\nIts heartwood contains so much natural oil (around 30% of its weight) that it acts as its own perpetual lubricant, making it completely immune to rusting or drying out when friction is applied.",
+        "photo": "images/trees/guaiacum-officinale.jpg",
+        "photos": [
+          "images/trees/guaiacum-officinale.jpg"
+        ]
       }
     },
     {
@@ -588,7 +708,11 @@ const WALK_DATA = {
         "scientific": "Bursera simaruba",
         "section": "Gumbo Limbo Courtyard",
         "peak": null,
-        "photo": "images/trees/tree-31.jpg"
+        "description": "Native to the tropical regions of the Americas, from South Florida to Venezuela, this tree is famously nicknamed the \"Tourist Tree\" because its bright red, peeling bark resembles a sunburned vacationer.\nHistorically, its sticky resin was used to catch birds, as glue to mend canoes, and as a medicinal salve. It is incredibly resilient; if a branch is broken off by a hurricane and stuck directly into the soil, it will root and grow into a brand-new tree.",
+        "photo": "images/trees/bursera-simaruba.jpg",
+        "photos": [
+          "images/trees/bursera-simaruba.jpg"
+        ]
       }
     },
     {
@@ -607,7 +731,11 @@ const WALK_DATA = {
         "scientific": "Chloroeucon tortum",
         "section": "Gumbo Limbo Courtyard",
         "peak": null,
-        "photo": "images/trees/tree-32.jpg"
+        "description": "Strictly endemic to the highly threatened coastal scrub ecosystems of Rio de Janeiro, Brazil, this tree has been heavily utilized in the modern art of bonsai due to its naturally twisting, contorted trunk and striking white bark. It possesses a fascinating defensive behavior known as nyctinasty, meaning its delicate, compound leaves fold tightly together at night, during heavy cloud cover, or when it experiences physical stress.\nRain Trees are a favorite of the Garden's landscape designer, Raymond Jungles and his mentor, Roberto Burle Marx, who considered them living sculptures. The trees distinct, twisting trunks and mottled bark are heavily featured in Marx's mid-20th-century modernist designs",
+        "photo": "images/trees/chloroeucon-tortum.jpg",
+        "photos": [
+          "images/trees/chloroeucon-tortum.jpg"
+        ]
       }
     },
     {
@@ -626,7 +754,11 @@ const WALK_DATA = {
         "scientific": "Jacquinia keyensis",
         "section": "Gumbo Limbo Courtyard",
         "peak": null,
-        "photo": "images/trees/tree-33.jpg"
+        "description": "Native strictly to the hyper-saline coastal limestone rocks of South Florida, the Bahamas, and the Greater Antilles, this tough shrub-tree was used historically by early islanders who crushed its bark and berries to release natural saponins, creating a rustic soap.\nIt is incredibly hardy, surviving in spots where almost no other tree can grow, and it emits an unexpectedly sweet, honey-like fragrance from its tiny, star-shaped cream flowers.",
+        "photo": "images/trees/jacquinia-keyensis.jpg",
+        "photos": [
+          "images/trees/jacquinia-keyensis.jpg"
+        ]
       }
     },
     {
@@ -645,7 +777,11 @@ const WALK_DATA = {
         "scientific": "Saraca indica",
         "section": "Bioswale",
         "peak": null,
-        "photo": "images/trees/tree-34.jpg"
+        "description": "Native to the lush, damp rainforests of the Indian subcontinent, this tree is deeply sacred in both Hinduism and Buddhism, with legends stating that Lord Buddha was born beneath its branches.\nIts Sanskrit name translates to \"without sorrow,\" reflecting its historical use in Ayurvedic medicine to treat emotional grief and female reproductive issues. It bursts with spectacular, vibrant orange-red flower clusters from every branch as well as the trunk, putting on a spectacular display.",
+        "photo": "images/trees/saraca-indica.jpg",
+        "photos": [
+          "images/trees/saraca-indica.jpg"
+        ]
       }
     },
     {
@@ -664,7 +800,11 @@ const WALK_DATA = {
         "scientific": "Plumeria obtusa",
         "section": "Bioswale",
         "peak": null,
-        "photo": "images/trees/tree-35.jpg"
+        "description": "Despite its common name, this fragrant beauty is native to the West Indies and Central America, having been globalized by Spanish traders centuries ago.\nIt is heavily planted in cemeteries across Southeast Asia, where it is associated with the resting place of souls and the sweet scent of the afterlife. Its distinct, leathery, dark-green leaves feature perfectly rounded tips, making it visually distinct from other pointed-leaf frangipanis.",
+        "photo": "images/trees/plumeria-obtusa.jpg",
+        "photos": [
+          "images/trees/plumeria-obtusa.jpg"
+        ]
       }
     },
     {
@@ -683,7 +823,11 @@ const WALK_DATA = {
         "scientific": "Latania loddigesii",
         "section": "Bioswale",
         "peak": null,
-        "photo": "images/trees/tree-36.jpg"
+        "description": "Endemic strictly to the windswept coastal cliffs of the Mauritius islands in the Indian Ocean, this palm was heavily impacted by early European colonial clearing. It is highly prized for its large, stiff, fan-shaped fronds that are completely covered in a thick, powdery blue-silver wax that protects the plant from salt spray and intense tropical sunlight.",
+        "photo": "images/trees/latania-loddigesii.jpg",
+        "photos": [
+          "images/trees/latania-loddigesii.jpg"
+        ]
       }
     },
     {
@@ -702,7 +846,11 @@ const WALK_DATA = {
         "scientific": "Eucalyptus deglupta",
         "section": "Bioswale",
         "peak": null,
-        "photo": "images/trees/tree-37.jpg"
+        "description": "This is the only eucalyptus species native to the northern hemisphere, thriving in the tropical rainforests of New Guinea, Indonesia, and the Philippines.\nAs its bark sheds in vertical strips throughout the year, it reveals a bright neon-green under-layer that ages into shades of blue, purple, orange, and maroon, making the trunk look like an abstract canvas. It is also one of the fastest-growing trees on Earth, capable of shooting up 10 feet in a single year.",
+        "photo": "images/trees/eucalyptus-deglupta.jpg",
+        "photos": [
+          "images/trees/eucalyptus-deglupta.jpg"
+        ]
       }
     },
     {
@@ -721,7 +869,11 @@ const WALK_DATA = {
         "scientific": "Roystonea regia",
         "section": "Bioswale",
         "peak": null,
-        "photo": "images/trees/tree-38.jpg"
+        "description": "Native to the Caribbean, South Florida, and Central America, this majestic palm is a powerful religious and cultural symbol, recognized as the national tree of Cuba and heavily featured in Santería rituals.\nIts perfectly smooth, concrete-like white trunk and bright green crownshaft can reach up to 100 feet tall. Fascinatingly, these trees have evolved to discard their massive, heavy fronds cleanly during hurricanes, reducing wind resistance so the main trunk can survive the storm.",
+        "photo": "images/trees/roystonea-regia.jpg",
+        "photos": [
+          "images/trees/roystonea-regia.jpg"
+        ]
       }
     },
     {
@@ -740,7 +892,11 @@ const WALK_DATA = {
         "scientific": "Zombia antillarum",
         "section": "Bioswale",
         "peak": null,
-        "photo": "images/trees/tree-39.jpg"
+        "description": "Found only on the dry, limestone hillsides of Hispaniola, this palm is deeply entrenched in local voodoo folklore, where its woven leaves are historically rumored to awaken or ward off zombies.\nIts most shocking physical feature is its trunk, which is tightly wrapped in an interlocking grid of long, downward-pointing, needle-sharp black spines that evolved to protect the plant from extinct island megafauna.",
+        "photo": "images/trees/zombia-antillarum.jpg",
+        "photos": [
+          "images/trees/zombia-antillarum.jpg"
+        ]
       }
     },
     {
@@ -759,7 +915,11 @@ const WALK_DATA = {
         "scientific": "Delonix regia",
         "section": "Bioswale",
         "peak": null,
-        "photo": "images/trees/tree-40.jpg"
+        "description": "Endemic to the dry deciduous forests of Madagascar, this tree is tragically endangered in its wild habitat but globally celebrated as one of the world's most spectacular ornamental trees.\nIt was discovered by French botanists in the 1800s and named after Philippe de Longvilliers de Poincy, the 17th-century governor of Saint Kitts. Its dense, umbrella-like canopy turns into a sea of blazing scarlet flowers in the summer, earning it the title \"The Flame Tree.\"",
+        "photo": "images/trees/delonix-regia.jpg",
+        "photos": [
+          "images/trees/delonix-regia.jpg"
+        ]
       }
     },
     {
@@ -776,9 +936,13 @@ const WALK_DATA = {
         "num": 41,
         "common": "Copernicia palms",
         "scientific": "C. alba, baileyana, berteroana, gigas, fallaensis, hospita, prunifolia, rigida, yarey",
-        "section": "Bioswale",
+        "section": "Copernicia Corner",
         "peak": null,
-        "photo": "images/trees/tree-41.jpg"
+        "description": "This incredible genus of palms is native to the savanna regions of South America and the Caribbean, notably Cuba. Historically, species like C. prunifolia have driven global industries by producing Carnauba wax (the hardest natural wax known to man, used in everything from car polishes to dental floss and gummy candies) which is harvested from the leaves.\nThe giant Copernicia fallaensis is famous for its thick, swollen, ghost-white trunk that looks like a majestic architectural column.",
+        "photo": "images/trees/copernicia-palms.jpg",
+        "photos": [
+          "images/trees/copernicia-palms.jpg"
+        ]
       }
     },
     {
@@ -797,7 +961,11 @@ const WALK_DATA = {
         "scientific": "Punicum granatum",
         "section": "Gnome & Fairy Children'S Garden",
         "peak": null,
-        "photo": "images/trees/tree-42.jpg"
+        "description": "Native to the region stretching from modern-day Iran to northern India, the pomegranate is one of the oldest cultivated fruits in human history, heavily featured in ancient Greek mythology (the story of Persephone), the Bible, and Egyptian tomb paintings.\nIts name literally translates to \"seeded apple.\" A fun botanical fact is that the edible, juicy gems inside are called \"arils,\" and a single pomegranate can contain anywhere from 200 to over 1,000 of them.",
+        "photo": "images/trees/punicum-granatum.jpg",
+        "photos": [
+          "images/trees/punicum-granatum.jpg"
+        ]
       }
     },
     {
@@ -816,7 +984,11 @@ const WALK_DATA = {
         "scientific": "Myrciaria cauliflora",
         "section": "Gnome & Fairy Children'S Garden",
         "peak": null,
-        "photo": "images/trees/tree-43.jpg"
+        "description": "Native to the Atlantic rainforests of Brazil, this unique tree has been cultivated since pre-Columbian times for its sweet, grape-like fruits.\nIt exhibits a striking phenomenon called cauliflory, meaning its white flowers and purple-black fruits grow directly out of the bark of the main trunk and old branches rather than on twigs. This allows heavy flightless rainforest animals to easily climb the trunk and consume the fruit, helping to disperse its seeds.",
+        "photo": "images/trees/myrciaria-cauliflora.jpg",
+        "photos": [
+          "images/trees/myrciaria-cauliflora.jpg"
+        ]
       }
     },
     {
@@ -835,7 +1007,11 @@ const WALK_DATA = {
         "scientific": "Theobroma cacao",
         "section": "Gnome & Fairy Children'S Garden",
         "peak": null,
-        "photo": "images/trees/tree-44.jpg"
+        "description": "Native to the deep river basins of the Amazon and Orinoco rainforests, this tree changed human history; its seeds were so highly valued by the ancient Aztecs and Maya that they were used as currency and brewed into a bitter, sacred drink for royalty. Its scientific name translates to \"Food of the Gods.\"\nThe tree is surprisingly delicate, requiring a strict tropical environment within 20 degrees of the equator, heavy shade from taller trees, and pollination by tiny, specialized midges rather than bees. Chocolate flowers are small and white and can be seen most of the year on the trunk and branches.",
+        "photo": "images/trees/theobroma-cacao.jpg",
+        "photos": [
+          "images/trees/theobroma-cacao.jpg"
+        ]
       }
     },
     {
@@ -854,7 +1030,11 @@ const WALK_DATA = {
         "scientific": "Eugenia brasiliensis",
         "section": "Gnome & Fairy Children'S Garden",
         "peak": null,
-        "photo": "images/trees/tree-45.jpg"
+        "description": "Endemic to the coastal rainforests of southern Brazil, this tree has a history of being planted in royal Portuguese colonial gardens for its highly prized, dark-purple, cherry-like fruits.\nThe tree features glossy, leathery leaves and beautiful white flowers that bloom for only a few days out of the year. Its fun surprise is that the fruit ripens incredibly fast—going from a fresh flower to a fully mature, edible fruit in just three to four weeks.",
+        "photo": "images/trees/eugenia-brasiliensis.jpg",
+        "photos": [
+          "images/trees/eugenia-brasiliensis.jpg"
+        ]
       }
     },
     {
@@ -873,7 +1053,11 @@ const WALK_DATA = {
         "scientific": "Sabal palmetto",
         "section": "Gnome & Fairy Children'S Garden",
         "peak": null,
-        "photo": "images/trees/tree-46.jpg"
+        "description": "Native to the coastal southeastern United States and Cuba, this ultra-tough palm is woven into American history, appearing on South Carolina's flag because its soft, spongy trunk successfully absorbed British cannonballs during the Revolutionary War attack on Fort Moultrie.\nEarly Native Americans and settlers harvested its central bud as a food source known as \"swamp cabbage.\" Sadly, doing so kills the palm instantly.",
+        "photo": "images/trees/sabal-palmetto.jpg",
+        "photos": [
+          "images/trees/sabal-palmetto.jpg"
+        ]
       }
     },
     {
@@ -892,7 +1076,12 @@ const WALK_DATA = {
         "scientific": "Musa sp",
         "section": "Gnome & Fairy Children'S Garden",
         "peak": null,
-        "photo": "images/trees/tree-47.jpg"
+        "description": "Originating in the tropical regions of Southeast Asia and Papua New Guinea, bananas were one of the earliest crops domesticated by humans, eventually spreading worldwide via trade. Funly, a banana plant is not a tree at all; it is the world’s largest herbaceous plant, and its \"trunk\" is actually a tight cylinder of packed leaf bases (a pseudostem).\nFurthermore, botanically speaking, a banana fruit is classified as a berry, and the commercial plants we eat today are sterile clones that require manual human propagation to survive.",
+        "photo": "images/trees/musa-sp.jpg",
+        "photos": [
+          "images/trees/musa-sp.jpg",
+          "images/trees/musa-sp-2.jpg"
+        ]
       }
     },
     {
@@ -911,7 +1100,11 @@ const WALK_DATA = {
         "scientific": "Averrhoa carambola",
         "section": "Gnome & Fairy Children'S Garden",
         "peak": null,
-        "photo": "images/trees/tree-48.jpg"
+        "description": "Native to tropical Southeast Asia, this tree has been cultivated for centuries across India and China for its crisp, refreshing fruit. It gets its iconic name because when the fruit is sliced horizontally, each piece forms a perfect five-pointed star.\nThe tree itself is highly reactive to light; its compound leaves are known to droop and fold up at night to conserve water and protect themselves from nocturnal chill.",
+        "photo": "images/trees/averrhoa-carambola.jpg",
+        "photos": [
+          "images/trees/averrhoa-carambola.jpg"
+        ]
       }
     },
     {
@@ -930,7 +1123,34 @@ const WALK_DATA = {
         "scientific": "Crescentia cujete",
         "section": "Gnome & Fairy Children'S Garden",
         "peak": null,
-        "photo": "images/trees/tree-49.jpg"
+        "description": "Native to the tropical regions of the Americas, the calabash tree has a vital ethnobotanical history, as its large, hard-shelled, spherical fruits were dried by indigenous peoples to create durable bowls, water canteens, and musical instruments like maracas.\nA fun fact is that its large greenish flowers open only at night and emit a slight musk scent specifically designed to attract nocturnal bats, which are the tree's primary pollinators. Our Calabash is partnered with air plants and dendrobium orchids.",
+        "photo": "images/trees/crescentia-cujete.jpg",
+        "photos": [
+          "images/trees/crescentia-cujete.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13541,
+          25.79614
+        ]
+      },
+      "properties": {
+        "walk": "tree",
+        "num": 50,
+        "common": "Bay rum",
+        "scientific": "Pimenta racemosa",
+        "section": "Gnome & Fairy Children'S Garden",
+        "peak": null,
+        "description": "Native to the Caribbean islands, the aromatic leaves of this tree have a rich history in early grooming; they were distilled with white rum in the 19th century to create \"Bay Rum,\" the world's first massive commercial aftershave and cologne trend.\nIt belongs to the myrtle family, and if you crush a single leaf between your fingers, it releases a potent, complex aroma of cloves, cinnamon, and citrus.",
+        "photo": "images/trees/pimenta-racemosa.jpg",
+        "photos": [
+          "images/trees/pimenta-racemosa.jpg"
+        ]
       }
     },
     {
@@ -944,12 +1164,16 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 50,
+        "num": 51,
         "common": "Guiana chestnut",
         "scientific": "Pachira aquatica",
         "section": "Banyan Lawn",
         "peak": null,
-        "photo": "images/trees/tree-50.jpg"
+        "description": "Hailing from the freshwater swamps and flooded riverbanks of Central and South America, this tree is globally famous in modern culture as the braided \"Money Tree\" used in Feng Shui to attract wealth.\nIn its native habitat, its massive pods burst open to drop edible seeds that taste exactly like chestnuts when roasted. The plant is incredibly adaptable, easily transitioning from growing deep inside an open swamp to living happily in a tiny potting dish on an office desk.",
+        "photo": "images/trees/pachira-aquatica.jpg",
+        "photos": [
+          "images/trees/pachira-aquatica.jpg"
+        ]
       }
     },
     {
@@ -963,12 +1187,16 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 51,
+        "num": 52,
         "common": "Sea grape",
         "scientific": "Coccoloba uvifera",
         "section": "Banyan Lawn",
         "peak": null,
-        "photo": "images/trees/tree-51.jpg"
+        "description": "Native to the sandy beaches and dunes of tropical America and the Caribbean, this rugged tree plays a vital ecological role by stabilizing coastlines against wind and wave erosion.\nHistorically, early Spanish colonizers used its large, stiff, dinner-plate-sized leaves as emergency stationery, scratching messages onto them with pins. In late summer, it produces hanging clusters of purple, grape-like fruits that are used to make traditional Caribbean beach jellies and wines.",
+        "photo": "images/trees/coccoloba-uvifera.jpg",
+        "photos": [
+          "images/trees/coccoloba-uvifera.jpg"
+        ]
       }
     },
     {
@@ -982,12 +1210,16 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 52,
+        "num": 53,
         "common": "Banyan",
         "scientific": "Ficus benjamina",
         "section": "Banyan Lawn",
         "peak": null,
-        "photo": "images/trees/tree-52.jpg"
+        "description": "Native to an expansive range from India to Northern Australia, this tree is deeply rooted in history, with its cousin banyans serving as sacred symbols of eternal life in Hinduism. Our Ficus is the largest example in the state of Florida!",
+        "photo": "images/trees/ficus-benjamina.jpg",
+        "photos": [
+          "images/trees/ficus-benjamina.jpg"
+        ]
       }
     },
     {
@@ -1001,12 +1233,16 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 53,
+        "num": 54,
         "common": "Brazilian Fire",
         "scientific": "Schizolobium parahyba",
         "section": "Banyan Lawn",
         "peak": null,
-        "photo": "images/trees/tree-53.jpg"
+        "description": "This tree is supersonic! It is one of the fastest growing trees in the world, capable of growing nearly 10 feet per year. In just 5 years it may reach over 90' tall.\nNative to the tropical rainforests of Central and South America, its name pays homage to the Paraiba River in Southeast Brazil. In Miami Beach the arching fern-like leaves drop to reveal an explosive bright yellow canopy of flowers March - May .",
+        "photo": "images/trees/schizolobium-parahyba.jpg",
+        "photos": [
+          "images/trees/schizolobium-parahyba.jpg"
+        ]
       }
     },
     {
@@ -1020,12 +1256,16 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 54,
+        "num": 55,
         "common": "Fishtail palm",
         "scientific": "Caryota rumphiana",
         "section": "Banyan Lawn",
         "peak": null,
-        "photo": "images/trees/tree-54.jpg"
+        "description": "Native to the hot rainforest canopies of New Guinea and the Solomon Islands, this palm gets its unique name from its highly unusual fronds, which are the only palm leaves in the world to be bipinnately compound, making the jagged leaflets look exactly like the tail fin of a fish.\nHistorically, indigenous tribes used the tough, fibrous wood from the outer trunk to craft heavy hunting spears and extracted a starchy sago from the inner trunk during food shortages.",
+        "photo": "images/trees/caryota-rumphiana.jpg",
+        "photos": [
+          "images/trees/caryota-rumphiana.jpg"
+        ]
       }
     },
     {
@@ -1044,7 +1284,11 @@ const WALK_DATA = {
         "scientific": "Salvia lyrata",
         "section": null,
         "peak": "February–May",
-        "photo": "images/trees/fragrance-01.jpg"
+        "description": null,
+        "photo": "images/trees/salvia-lyrata.jpg",
+        "photos": [
+          "images/trees/salvia-lyrata.jpg"
+        ]
       }
     },
     {
@@ -1063,7 +1307,11 @@ const WALK_DATA = {
         "scientific": "Gardenia taitensis",
         "section": null,
         "peak": "May–August",
-        "photo": "images/trees/fragrance-02.jpg"
+        "description": null,
+        "photo": "images/trees/gardenia-taitensis.jpg",
+        "photos": [
+          "images/trees/gardenia-taitensis.jpg"
+        ]
       }
     },
     {
@@ -1082,7 +1330,11 @@ const WALK_DATA = {
         "scientific": null,
         "section": null,
         "peak": "Spring–summer",
-        "photo": "images/trees/fragrance-03.jpg"
+        "description": null,
+        "photo": "images/trees/monstera-deliciosa.jpg",
+        "photos": [
+          "images/trees/monstera-deliciosa.jpg"
+        ]
       }
     },
     {
@@ -1101,7 +1353,11 @@ const WALK_DATA = {
         "scientific": "Cananga oderata",
         "section": null,
         "peak": "Year-round; peak spring–fall",
-        "photo": "images/trees/fragrance-04.jpg"
+        "description": null,
+        "photo": "images/trees/cananga-oderata.jpg",
+        "photos": [
+          "images/trees/cananga-oderata.jpg"
+        ]
       }
     },
     {
@@ -1120,7 +1376,11 @@ const WALK_DATA = {
         "scientific": "Trachelospermum jasminoides",
         "section": null,
         "peak": "March–June",
-        "photo": "images/trees/fragrance-05.jpg"
+        "description": null,
+        "photo": "images/trees/trachelospermum-jasminoides.jpg",
+        "photos": [
+          "images/trees/trachelospermum-jasminoides.jpg"
+        ]
       }
     },
     {
@@ -1139,7 +1399,11 @@ const WALK_DATA = {
         "scientific": "Nymphaea sp",
         "section": null,
         "peak": "Year-round; peak May–October",
-        "photo": "images/trees/fragrance-06.jpg"
+        "description": null,
+        "photo": "images/trees/nymphaea-sp.jpg",
+        "photos": [
+          "images/trees/nymphaea-sp.jpg"
+        ]
       }
     },
     {
@@ -1158,7 +1422,11 @@ const WALK_DATA = {
         "scientific": null,
         "section": null,
         "peak": "May–November",
-        "photo": "images/trees/fragrance-07.jpg"
+        "description": null,
+        "photo": "images/trees/singapore-frangipani.jpg",
+        "photos": [
+          "images/trees/singapore-frangipani.jpg"
+        ]
       }
     },
     {
@@ -1177,7 +1445,11 @@ const WALK_DATA = {
         "scientific": "Vanilla planiflolia",
         "section": null,
         "peak": "March–May",
-        "photo": "images/trees/fragrance-08.jpg"
+        "description": null,
+        "photo": "images/trees/vanilla-planiflolia.jpg",
+        "photos": [
+          "images/trees/vanilla-planiflolia.jpg"
+        ]
       }
     },
     {
@@ -1196,7 +1468,11 @@ const WALK_DATA = {
         "scientific": "Oncidium 'Sharry Baby'",
         "section": null,
         "peak": "August–November",
-        "photo": "images/trees/fragrance-09.jpg"
+        "description": null,
+        "photo": "images/trees/oncidium-sharry-baby.jpg",
+        "photos": [
+          "images/trees/oncidium-sharry-baby.jpg"
+        ]
       }
     },
     {
@@ -1215,7 +1491,11 @@ const WALK_DATA = {
         "scientific": "Corymbia citriodora",
         "section": null,
         "peak": "Year-round leaf fragrance",
-        "photo": "images/trees/fragrance-10.jpg"
+        "description": null,
+        "photo": "images/trees/corymbia-citriodora.jpg",
+        "photos": [
+          "images/trees/corymbia-citriodora.jpg"
+        ]
       }
     },
     {
@@ -1234,7 +1514,11 @@ const WALK_DATA = {
         "scientific": "Pimenta racemosa",
         "section": null,
         "peak": "Year-round leaf fragrance; flowers April–August",
-        "photo": "images/trees/fragrance-11.jpg"
+        "description": null,
+        "photo": "images/trees/pimenta-racemosa.jpg",
+        "photos": [
+          "images/trees/pimenta-racemosa.jpg"
+        ]
       }
     },
     {
@@ -1253,7 +1537,11 @@ const WALK_DATA = {
         "scientific": "Dryopteris ludoviciana",
         "section": null,
         "peak": "Year-round leaf fragrance",
-        "photo": "images/trees/fragrance-12.jpg"
+        "description": null,
+        "photo": "images/trees/dryopteris-ludoviciana.jpg",
+        "photos": [
+          "images/trees/dryopteris-ludoviciana.jpg"
+        ]
       }
     },
     {
@@ -1261,17 +1549,21 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.13522,
-          25.79516
+          -80.13545,
+          25.7952
         ]
       },
       "properties": {
         "walk": "highlights",
         "num": 1,
-        "common": "Silk floss",
-        "scientific": "Ceiba speciosa",
-        "section": "Entry Plaza",
-        "photo": "images/trees/tree-01.jpg"
+        "common": "Japanese Garden Bridge",
+        "scientific": null,
+        "section": "Japanese Garden",
+        "description": "The Japanese Garden features a striking, red lacquered bridge that serves as a central focal point. It crosses over two connecting ponds bedded with river rock, bridging cold-climate design principles with tropical plant selections.",
+        "photo": "images/trees/japanese-garden-bridge.jpg",
+        "photos": [
+          "images/trees/japanese-garden-bridge.jpg"
+        ]
       }
     },
     {
@@ -1279,413 +1571,21 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.1353,
-          25.79526
+          -80.13544,
+          25.79542
         ]
       },
       "properties": {
         "walk": "highlights",
         "num": 2,
-        "common": "Bridal veil",
-        "scientific": "Caesalpinia granadillo",
-        "section": "Bridal Veil Plaza",
-        "photo": "images/trees/tree-04.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13542,
-          25.79532
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 3,
-        "common": "Yew pine",
-        "scientific": "Podocarpus macrophyllus",
-        "section": "Japanese Garden",
-        "photo": "images/trees/tree-08.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13542,
-          25.79515
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 4,
-        "common": "Red powder puff",
-        "scientific": "Calliandra haematocephala",
-        "section": "Japanese Garden",
-        "photo": "images/trees/tree-10.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13557,
-          25.79516
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 5,
-        "common": "Slash pine",
-        "scientific": "Pinus elliottii var densa",
-        "section": "Native Garden",
-        "photo": "images/trees/tree-14.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13567,
-          25.79518
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 6,
-        "common": "Cabbage palm",
-        "scientific": "Sabal palmetto",
-        "section": "Native Garden",
-        "photo": "images/trees/tree-16.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13562,
-          25.79553
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 7,
-        "common": "Borassus palm",
-        "scientific": "Borassus sp",
+        "common": "Great Lawn",
+        "scientific": null,
         "section": "Great Lawn",
-        "photo": "images/trees/tree-20.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13553,
-          25.7955
+        "description": "This open, grassy area crosses from one end of the Garden to the opposite, making our small garden feel larger than it is. Designed by celebrated landscape architect Raymond Jungles and surrounded by a dense canopy of palms and trees, the Great Lawn acts as a gathering space for our public programs and private events.",
+        "photo": "images/trees/great-lawn.jpg",
+        "photos": [
+          "images/trees/great-lawn.jpg"
         ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 8,
-        "common": "Triangle palm",
-        "scientific": "Dypsis decaryi",
-        "section": "Water Garden",
-        "photo": "images/trees/tree-21.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13561,
-          25.79566
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 9,
-        "common": "Brazilian rain",
-        "scientific": "Chloroeucon tortum",
-        "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-32.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13586,
-          25.79575
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 10,
-        "common": "Brazilian Fire",
-        "scientific": "Schizolobium parahyba",
-        "section": "Banyan Lawn",
-        "photo": "images/trees/tree-53.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13598,
-          25.79586
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 11,
-        "common": "Banyan",
-        "scientific": "Ficus benjamina",
-        "section": "Banyan Lawn",
-        "photo": "images/trees/tree-52.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13567,
-          25.79607
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 12,
-        "common": "Banana plants",
-        "scientific": "Musa sp",
-        "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-47.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13539,
-          25.7962
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 13,
-        "common": "Cacao",
-        "scientific": "Theobroma cacao",
-        "section": "Gnome & Fairy Children'S Garden",
-        "photo": "images/trees/tree-44.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13529,
-          25.79612
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 14,
-        "common": "Copernicia palms",
-        "scientific": "C. alba, baileyana, berteroana, gigas, fallaensis, hospita, prunifolia, rigida, yarey",
-        "section": "Bioswale",
-        "photo": "images/trees/tree-41.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13534,
-          25.796
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 15,
-        "common": "Zombie palm",
-        "scientific": "Zombia antillarum",
-        "section": "Bioswale",
-        "photo": "images/trees/tree-39.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13532,
-          25.79581
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 16,
-        "common": "Ashoka",
-        "scientific": "Saraca indica",
-        "section": "Bioswale",
-        "photo": "images/trees/tree-34.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13521,
-          25.79588
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 17,
-        "common": "Rainbow eucalyptus",
-        "scientific": "Eucalyptus deglupta",
-        "section": "Bioswale",
-        "photo": "images/trees/tree-37.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13527,
-          25.79564
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 18,
-        "common": "Ponytail palm",
-        "scientific": "Beaucarnea recurvata",
-        "section": "Ponytail Pond",
-        "photo": "images/trees/tree-27.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13541,
-          25.79572
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 19,
-        "common": "Joewood",
-        "scientific": "Jacquinia keyensis",
-        "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-33.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13554,
-          25.79573
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 20,
-        "common": "Gumbo limbo",
-        "scientific": "Bursera simaruba",
-        "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-31.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.1355,
-          25.79569
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 21,
-        "common": "Lignum vitae",
-        "scientific": "Guaiacum officinale",
-        "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-30.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13537,
-          25.79568
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 22,
-        "common": "Talipot palm",
-        "scientific": "Corypha umbraculifera",
-        "section": "Gumbo Limbo Courtyard",
-        "photo": "images/trees/tree-29.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13534,
-          25.79568
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 23,
-        "common": "Petticoat palm",
-        "scientific": "Copernicia macroglossa",
-        "section": "Ponytail Pond",
-        "photo": "images/trees/tree-28.jpg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.13529,
-          25.79561
-        ]
-      },
-      "properties": {
-        "walk": "highlights",
-        "num": 24,
-        "common": "Red mangrove",
-        "scientific": "Rhizophora mangle",
-        "section": "Wetland Garden",
-        "photo": "images/trees/tree-26.jpg"
       }
     },
     {
@@ -1699,11 +1599,393 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "highlights",
-        "num": 25,
+        "num": 3,
         "common": "Ylang-ylang",
         "scientific": "Cananga odorata",
         "section": "Bridal Veil Plaza",
-        "photo": "images/trees/tree-06.jpg"
+        "description": "An incredibly aromatic tropical tree whose drooping, greenish-yellow flowers release a rich, sweet perfume. It's essential oils serve as the foundational scent for legendary fragrances like Chanel No. 5.",
+        "photo": "images/trees/cananga-odorata.jpg",
+        "photos": [
+          "images/trees/cananga-odorata.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13523,
+          25.79557
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 4,
+        "common": "Pelagodoxa mesocarpa",
+        "scientific": null,
+        "section": "Bridal Veil Plaza",
+        "description": "A critically endangered palm endemic to Vanuatu, Pelagodoxa is one of the most visually arresting species in cultivation.\nThese ultra-rare, stunning tropical palms are prized for their large, undivided, almost entirely round bright green leaves that feature a striking silver-white underside. Planted in 2026, with a generous donation after a tropical storm in early June, we call ours Romeo & Juliet.",
+        "photo": "images/trees/pelagodoxa-mesocarpa.jpg",
+        "photos": [
+          "images/trees/pelagodoxa-mesocarpa.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13533,
+          25.79563
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 5,
+        "common": "Feed the Koi and whiff a Nymphaea waterlily",
+        "scientific": null,
+        "section": "Water Garden",
+        "description": "Fish food is available in the Garden Boutique. You are welcome to enjoy feeding the massive koi, while breathing in the fragrant scent of Nymphaea (waterlilies) blooming on the surface. Our display changes twice a year, in Spring and Fall.",
+        "photo": "images/trees/feed-the-koi-and-whiff-a-nymphaea-waterlily.jpg",
+        "photos": [
+          "images/trees/feed-the-koi-and-whiff-a-nymphaea-waterlily.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13537,
+          25.79568
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 6,
+        "common": "Talipot Palm",
+        "scientific": "Corypha umbraculifera",
+        "section": "Gumbo Limbo Courtyard",
+        "description": "One of the absolute true giants of the garden. Famous for its massive fan leaves, it grows for up to 80 years, produces the largest flowering cluster in the plant kingdom, and then dies. The boots (old leaves) of ours are stuffed with orchids and other epiphytes.",
+        "photo": "images/trees/corypha-umbraculifera.jpg",
+        "photos": [
+          "images/trees/corypha-umbraculifera.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13534,
+          25.79568
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 7,
+        "common": "Petticoat palm",
+        "scientific": "Copernicia macroglossa",
+        "section": "Ponytail Pond",
+        "description": "A highly distinct Cuban palm named for the dense, skirt-like layers of dead fan leaves that naturally drape down its trunk, giving it a unique \"petticoat\" silhouette.",
+        "photo": "images/trees/copernicia-macroglossa.jpg",
+        "photos": [
+          "images/trees/copernicia-macroglossa.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13529,
+          25.79562
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 8,
+        "common": "Peggy Mackay Fountain by Morris Lapidus",
+        "scientific": null,
+        "section": "Ponytail Pond",
+        "description": "This historic landmark fountain was designed by the iconic mid-century modern architect Morris Lapidus.  Known for defining Miami Beach's theatrical \"MiMo\" style, Lapidus's design adds an artistic, historical flair, surrounded primarily by native Thrinax radiata palms and orchids.",
+        "photo": "images/trees/peggy-mackay-fountain-by-morris-lapidus.jpg",
+        "photos": [
+          "images/trees/peggy-mackay-fountain-by-morris-lapidus.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13522,
+          25.79587
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 9,
+        "common": "Giant Cycad",
+        "scientific": "Encephalartos laurentianus",
+        "section": "Bioswale",
+        "description": "This cycad is a living fossil hailing from Central Africa. It features massive, arching fronds that can span up to 20 feet, making it one of the largest cycad species on the planet. Give special respect to the distinctive, thorny horns on each leaf, which provide effective self-defense.",
+        "photo": "images/trees/encephalartos-laurentianus.jpg",
+        "photos": [
+          "images/trees/encephalartos-laurentianus.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13521,
+          25.79588
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 10,
+        "common": "Rainbow eucalyptus",
+        "scientific": "Eucalyptus deglupta",
+        "section": "Bioswale",
+        "description": "This tree is a standout crowd favorite in the Garden. As it sheds its bark throughout the year, it reveals a trunk streaked with brilliant, living layers of neon green, blue, purple, and orange.",
+        "photo": "images/trees/eucalyptus-deglupta.jpg",
+        "photos": [
+          "images/trees/eucalyptus-deglupta.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13529,
+          25.79612
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 11,
+        "common": "Copernicia palms",
+        "scientific": "C. alba, baileyana, berteroana, gigas, fallaensis, hospita, prunifolia, rigida, yarey",
+        "section": "Copernicia Corner",
+        "description": "This incredible genus of palms is native to the savanna regions of South America and the Caribbean, notably Cuba. Historically, species like C. prunifolia have driven global industries by producing Carnauba wax (the hardest natural wax known to man, used in everything from car polishes to dental floss and gummy candies) which is harvested from the leaves.\nThe giant Copernicia fallaensis is famous for its thick, swollen, ghost-white trunk that looks like a majestic architectural column.",
+        "photo": "images/trees/copernicia-palms.jpg",
+        "photos": [
+          "images/trees/copernicia-palms.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1356,
+          25.79615
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 12,
+        "common": "AJNFF Gnome & Fairy Children’s Gardens",
+        "scientific": null,
+        "section": "Gnome & Fairy Children's Garden",
+        "description": "Built with a generous donation from the Al & Jane Nahmad Family Foundation in 2025, our Gnome & Fairy Garden's whimsical, magical design, complete with a white unicorn, spark the imagination of younger visitors. The Garden's feature miniature setups, hidden enchantment pockets, and seasonal interactive workshops.",
+        "photo": "images/trees/ajnff-gnome-fairy-children-s-gardens.jpg",
+        "photos": [
+          "images/trees/ajnff-gnome-fairy-children-s-gardens.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13567,
+          25.79607
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 13,
+        "common": "Banana plants",
+        "scientific": "Musa sp",
+        "section": "Gnome & Fairy Children's Garden",
+        "description": "The garden's edible and vibrant banana plants, complete with giant tropical leaves, dangling purple flower bracts, and heavy bunches of developing fruit is a joy to behold. Not trees, but herbaceous plants supported by leaves, bananas climb from start to fruiting finish in just 9-18 months, making them some of the fastest fruiters on the planet.",
+        "photo": "images/trees/musa-sp.jpg",
+        "photos": [
+          "images/trees/musa-sp.jpg",
+          "images/trees/musa-sp-2.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13562,
+          25.79611
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 14,
+        "common": "Spiny palm",
+        "scientific": "Aiphanes horrida",
+        "section": "Gnome & Fairy Children's Garden",
+        "description": "Native to Northern South America and Trinadad and Tobego, Aiphanes are fierce-looking, heavily armored palms. The trunks and leaves are covered in long, needle-sharp black spines along its trunk and leaves, yielding bright red clusters of fruit.",
+        "photo": "images/trees/aiphanes-horrida.jpg",
+        "photos": [
+          "images/trees/aiphanes-horrida.jpg",
+          "images/trees/aiphanes-horrida-2.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13578,
+          25.79591
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 15,
+        "common": "Banyan Lawn Butterflies",
+        "scientific": null,
+        "section": "Banyan Lawn",
+        "description": "Pause and watch the show! Depending on the season and time of day, you might spot butterflies and skippers, busy native bees and honeybees, hovering flower flies, day-flying moths, and nectar-seeking birds passing through.\nTheir abundance is due to the large quantity of native wildflowers in the area, most notably milkweed, Asclepias tuberosa . Our whole Garden is a butterfly garden! To see the specific butterflies and pollinators you might spot, tap the **“Pollinator Stops”** button on the map and explore them in more detail.",
+        "photo": "images/trees/banyan-lawn-butterflies.jpg",
+        "photos": [
+          "images/trees/banyan-lawn-butterflies.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13598,
+          25.79586
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 16,
+        "common": "Banyan",
+        "scientific": "Ficus benjamina",
+        "section": "Banyan Lawn",
+        "description": "Native to an expansive range from India to Northern Australia, this tree is deeply rooted in history, with its cousin banyans serving as sacred symbols of eternal life in Hinduism. Our Ficus features aerial roots which drop to the ground and have supported it in heavy storms for over 100 years.\nThis tree is the largest example of its kind in the state of Florida. See if you can stretch your arms around it or guess how tall it is. Measurements are featured on the brown metal Florida Champion sign.",
+        "photo": "images/trees/ficus-benjamina.jpg",
+        "photos": [
+          "images/trees/ficus-benjamina.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13561,
+          25.79566
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 17,
+        "common": "Brazilian rain",
+        "scientific": "Chloroeucon tortum",
+        "section": "Banyan Lawn",
+        "description": "Strictly endemic to the highly threatened coastal scrub ecosystems of Rio de Janeiro, Brazil, this tree has been heavily utilized in the modern art of bonsai due to its naturally twisting, contorted trunk and striking white bark. It possesses a fascinating defensive behavior known as nyctinasty, meaning its delicate, compound leaves fold tightly together at night, during heavy cloud cover, or when it experiences physical stress.\nRain Trees are a favorite of the Garden's landscape designer, Raymond Jungles, and his mentor, Roberto Burle Marx, who considered them living sculptures. The distinct, twisting trunks and mottled bark are heavily featured in Marx's mid-20th-century modernist designs",
+        "photo": "images/trees/chloroeucon-tortum.jpg",
+        "photos": [
+          "images/trees/chloroeucon-tortum.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1355,
+          25.79569
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 18,
+        "common": "Lignum vitae",
+        "scientific": "Guaiacum officinale",
+        "section": "Gumbo Limbo Courtyard",
+        "description": "Shared with its cousin (G. sanctum), this species is native to the coastal West Indies and northern South America. Historically, it was heavily traded by early European explorers who believed its green resin was a miracle cure-all. Its heartwood contains so much natural oil (around 30% of its weight) that it acts as its own perpetual lubricant, making it completely immune to rusting or drying out when friction is applied.\nThis Lignum Vitae tree has been named by a donor in memory of his parents. Tree and plant namings support the ongoing care, preservation, and growth of Miami Beach Botanical Garden, helping us maintain our urban oasis, expand our horticultural collections, provide educational programs, and ensure future generations can experience the beauty and benefits of nature. To learn more about available naming opportunities, please ask in our boutique.",
+        "photo": "images/trees/guaiacum-officinale.jpg",
+        "photos": [
+          "images/trees/guaiacum-officinale.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13562,
+          25.79553
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 19,
+        "common": "Borassus palm",
+        "scientific": "Borassus sp",
+        "section": "Great Lawn",
+        "description": "Pause to appreciate the unusual black trunk of this massive palm. Borassus dominates sub-Saharan Africa, growing abundantly along open savannas and riverbanks where local communities have historically relied on it as a vital resource for construction materials and famine food.\nThis massive palm will grow to 80' tall and live for well over a century, producing up to 500 bright orange, edible, coconut-sized fruits every single year. Planted in 2025 as a generous gift from The Green Standard landscaping team, this specimen is dedicated to Bear Theodore Foster.",
+        "photo": "images/trees/borassus-sp.jpg",
+        "photos": [
+          "images/trees/borassus-sp.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13546,
+          25.79583
+        ]
+      },
+      "properties": {
+        "walk": "highlights",
+        "num": 20,
+        "common": "Orchid Collection",
+        "scientific": null,
+        "section": "Multiple Garden Sections",
+        "description": "Throughout the Garden our expansive collection of orchids touch almost every tree and even walls, putting on a spectacular display of flowers that defy gravity.\nOrchids are 'epiphytes' growing on top of other trees or plants. They are not parasites; they use the host tree or palm only for physical support. Their roots are covered in a spongy layer called velamen, which absorbs water and nutrients from the air, rain, and surrounding debris. In the dry season, this collection must be watered by hand every other day. To accomplish this monumental task, we rely on a generous crew of garden Volunteers to assist. If you are interested and willing to help, please consider joining us!",
+        "photo": "images/trees/orchid-collection.jpg",
+        "photos": [
+          "images/trees/orchid-collection.jpg",
+          "images/trees/orchid-collection-2.jpg",
+          "images/trees/orchid-collection-3.jpg"
+        ]
       }
     },
     {

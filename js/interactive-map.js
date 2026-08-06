@@ -13,7 +13,7 @@ const WALKS = {
     label: 'Tree Walk',
     color: '#81BA6E',
     duration: '45 min – 1 hr',
-    description: 'Explore the Garden’s living collection, from sacred bamboo in the Japanese Garden to the Banyan on its namesake lawn. This longer route winds through every garden room, with numbered stops highlighting notable trees and palms along the way.'
+    description: 'Explore the Garden’s living collection, from sacred bamboo in the Japanese Garden to the Banyan on its namesake lawn. This longer route winds through every garden room, highlighting notable trees and palms along the way.'
   },
   fragrance: {
     label: 'Fragrance Walk',
@@ -30,7 +30,7 @@ const WALKS = {
     label: 'Highlights Walk',
     color: '#9B87C4',
     duration: '20–35 min',
-    description: 'A hand-picked route through twenty-five favorites. Short on time? Discover a few highlights from the 600+ onsite.'
+    description: 'A hand-picked route through 20 favorites. These are the things we love to share!'
   }
 };
 
@@ -71,6 +71,9 @@ const PLACEHOLDER_IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent(
 
 const isMobile = window.innerWidth <= 640;
 
+// The map's default focus level (more zoomed in on desktop than mobile).
+const DEFAULT_ZOOM = isMobile ? 16.2 : 16.6;
+
 // Fixed orientation: north points right, so Convention Center Dr
 // sits along the bottom and the garden fills the frame landscape.
 const MAP_BEARING = -90;
@@ -80,15 +83,18 @@ const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/standard',
   center: [-80.1355, 25.7957],
-  zoom: isMobile ? 16.2 : 16.6,
+  zoom: DEFAULT_ZOOM,
   pitch: 0,
   bearing: MAP_BEARING
 });
 map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
 
-// Geolocate: shows the visitor's live position on the map
+// Geolocate: shows the visitor's live position on the map. fitBoundsOptions
+// caps the zoom so locating keeps the map at its default focus level instead of
+// zooming out to Mapbox's default (maxZoom 15).
 map.addControl(new mapboxgl.GeolocateControl({
   positionOptions: { enableHighAccuracy: true },
+  fitBoundsOptions: { maxZoom: DEFAULT_ZOOM },
   trackUserLocation: true,
   showUserHeading: true
 }), 'top-right');
@@ -166,27 +172,75 @@ function renderWelcome() {
       <ol class="wp-steps">
         <li><span class="step-num">1</span>Pick a walk with the buttons above the map.</li>
         <li><span class="step-num">2</span>Follow the numbered pins in order - the highlighted path traces your route.</li>
-        <li><span class="step-num">3</span>Tap any pin to meet the tree or plant at that stop.</li>
+        <li><span class="step-num">3</span>Tap any pin to meet the ${activeWalk === 'highlights' ? 'tree or activity' : 'tree or plant'} at that stop.</li>
         <li><span class="step-num">4</span>Use the locate button to see where you're standing in the Garden.</li>
       </ol>
     </div>`;
+}
+
+// Renders a description string as one or more <p> paragraphs. Line breaks (from
+// the Excel cell) split paragraphs; **double asterisks** become bold. Angle
+// brackets/ampersands are escaped so the text can't break the markup.
+function formatDesc(text) {
+  return String(text).split(/\n+/).map(function (para) {
+    var t = para.trim();
+    if (!t) return '';
+    t = t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    return '<p class="tp-desc">' + t + '</p>';
+  }).join('');
 }
 
 function showInfoPanel(props, total) {
   const w = WALKS[props.walk];
   setPanelWalkClass();
   infoPanel.classList.remove('welcome');
+  const photos = (props.photos && props.photos.length) ? props.photos : [props.photo];
+  const onerr = `this.onerror=null;this.src='${PLACEHOLDER_IMG}'`;
+  const media = photos.length > 1
+    ? `<div class="tp-gallery" data-idx="0">
+         ${photos.map((src, i) => `<img src="${src}" alt="${props.common}" class="tp-slide${i === 0 ? ' active' : ''}" onerror="${onerr}">`).join('')}
+         <div class="tp-dots">
+           ${photos.map((_, i) => `<button type="button" class="tp-dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Photo ${i + 1} of ${photos.length}"></button>`).join('')}
+         </div>
+       </div>`
+    : `<img src="${photos[0]}" alt="${props.common}" onerror="${onerr}">`;
   infoContent.innerHTML = `
-    <img src="${props.photo}" alt="${props.common}"
-         onerror="this.onerror=null;this.src='${PLACEHOLDER_IMG}'">
+    ${media}
     <div class="tp-body">
       <span class="tp-stop walk-${props.walk}">${w.label} · Stop ${props.num} of ${total}</span>
       <h4>${props.common}</h4>
       ${props.scientific ? `<p class="tp-sci">${props.scientific}</p>` : ''}
       ${props.section ? `<p class="tp-section">${props.section}</p>` : ''}
+      ${props.description ? formatDesc(props.description) : ''}
       ${props.peak ? `<div class="tp-peak"><span class="tp-peak-label">At its peak</span><span class="tp-peak-value">${props.peak}</span></div>` : ''}
     </div>`;
+  initGallery();
   infoPanel.hidden = false;
+}
+
+// Wires up the multi-photo slider (dots + swipe) if the panel has one.
+function initGallery() {
+  const gal = infoContent.querySelector('.tp-gallery');
+  if (!gal) return;
+  const slides = gal.querySelectorAll('.tp-slide');
+  const dots = gal.querySelectorAll('.tp-dot');
+  function go(i) {
+    i = (i + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    dots.forEach((d, k) => d.classList.toggle('active', k === i));
+    gal.dataset.idx = i;
+  }
+  dots.forEach(d => d.addEventListener('click', () => go(+d.dataset.i)));
+  // Swipe on touch devices
+  let x0 = null;
+  gal.addEventListener('touchstart', e => { x0 = e.changedTouches[0].clientX; }, { passive: true });
+  gal.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(+gal.dataset.idx + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
 }
 
 function deselectPins() {
@@ -741,6 +795,47 @@ document.addEventListener('keydown', (e) => {
   var seen = {};
   POLLINATOR_SPECIES.forEach(function (s) {
     if (s && s.img && !seen[s.img]) { seen[s.img] = 1; urls.push(s.img); }
+  });
+
+  var i = 0;
+  var BATCH = 4; // how many to fetch at once
+  function loadNext() {
+    if (i >= urls.length) return;
+    var img = new Image();
+    img.onload = img.onerror = loadNext; // chain: start the next as each finishes
+    img.src = urls[i++];
+  }
+  function start() { for (var n = 0; n < BATCH; n++) loadNext(); }
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(start, { timeout: 4000 });
+  } else {
+    window.addEventListener('load', function () { setTimeout(start, 1500); });
+  }
+})();
+
+
+/* ============ Preload tree images (Tree Walk + Highlights Walk) ============
+   The info panel builds its <img> only when a pin is tapped, so photos would
+   otherwise download on click. This warms the browser cache in the background
+   once the page is idle, so tree/highlights stop photos appear instantly.
+   Same approach as the pollinator preload above: waits for idle, loads a few
+   at a time, and bails on Data Saver / very slow links. */
+(function preloadTreeImages() {
+  if (typeof WALK_DATA === 'undefined' || !WALK_DATA.features) return;
+
+  var conn = navigator.connection || {};
+  if (conn.saveData) return;                                  // respect Data Saver
+  if (/(^|-)2g$/.test(conn.effectiveType || '')) return;      // skip on 2g
+
+  var urls = [];
+  var seen = {};
+  WALK_DATA.features.forEach(function (f) {
+    var p = f && f.properties;
+    if (!p) return;
+    if (p.walk !== 'tree' && p.walk !== 'highlights') return; // both walks
+    var list = (p.photos && p.photos.length) ? p.photos : (p.photo ? [p.photo] : []);
+    list.forEach(function (src) { if (src && !seen[src]) { seen[src] = 1; urls.push(src); } });
   });
 
   var i = 0;

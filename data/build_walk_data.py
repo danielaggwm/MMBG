@@ -1,15 +1,22 @@
-"""Regenerates js/walk-data.js from Tree&FragranceWalk.xlsx and Pollinator.xlsx.
+"""Regenerates js/walk-data.js from Tree&FragranceWalk_with_descriptions.xlsx
+and Pollinator.xlsx.
 Run:  python3 build_walk_data.py  (from the data/ folder)
 
-Sheets:
-- 'Arboretum Walk'   (Tree&FragranceWalk.xlsx) -> tree walk (sections as header rows, numbered 1..N)
-- 'Fragrance Walk'   (Tree&FragranceWalk.xlsx) -> fragrance walk
+Sheets (Tree&FragranceWalk_with_descriptions.xlsx):
+- 'Arboretum Walk'   -> tree walk (sections as header rows, numbered 1..N)
+- 'Fragrance Walk'   -> fragrance walk
 - 'Pollinator Tour'  (Pollinator.xlsx)         -> pollinator overlay (num + stoplight color + sector)
 - 'Top Animals'      (MBBG_Top_Pollinators.xlsx) -> per-sector species catalogue (POLLINATOR_SPECIES)
-- "Kathy's Walk"    -> highlights walk (num, name, lng, lat). The Excel
-  sheet keeps its original name; the output walk key is "highlights".
-  Each stop is matched to a Tree Walk pin BY COORDINATES and inherits its
-  garden section and photo, so only the 4 basic columns are needed.
+- 'Highlights Walk'  -> highlights walk (num, name, lng, lat, description).
+  The output walk key is "highlights". Each stop is matched to a Tree Walk pin
+  BY COORDINATES to inherit its garden section. Its Description column is
+  optional: used when filled, otherwise the matching tree's description is
+  inherited.
+
+Photos: every stop links to images/trees/<scientific-name-slug>.jpg, the same
+convention the pollinator catalogue uses. Filenames are stable when trees are
+added/removed/reordered (unlike the old tree-NN.jpg numbering). Stops that share
+a species share one image. See photo_slug() for the exact rule.
 """
 import openpyxl, json, re, os
 
@@ -22,8 +29,46 @@ def parse_name(raw):
     common = re.sub(r'\s*\btrees?\b\s*', ' ', common, flags=re.I).strip()
     return common, sci
 
-# The "Highlights Walk" data still lives on the Excel sheet named "Kathy's Walk";
-# only the internal walk key and public label were renamed to "highlights".
+def slug(s):
+    return re.sub(r'[^a-z0-9]+', '-', (s or '').lower()).strip('-')
+
+def photo_slug(common, sci):
+    # Filenames follow the scientific name (like the pollinator catalogue). For
+    # multi-species stops (a comma in the scientific field) or stops with no
+    # scientific name, fall back to the common name to keep filenames clean.
+    base = sci if (sci and ',' not in sci) else common
+    return slug(base)
+
+TREES_DIR = os.path.join(HERE, '..', 'images', 'trees')
+
+def photo_list(base):
+    # A stop can have several photos: <base>.jpg is the primary, and optional
+    # <base>-2.jpg, <base>-3.jpg ... are extra views. Returns the web paths that
+    # actually exist on disk, in order, so the popup shows a slider only when
+    # there is more than one. Falls back to [<base>.jpg] (which may not exist
+    # yet) so the popup can still show a "photo coming soon" placeholder.
+    found = []
+    if os.path.exists(os.path.join(TREES_DIR, base + '.jpg')):
+        found.append(f'images/trees/{base}.jpg')
+    n = 2
+    while os.path.exists(os.path.join(TREES_DIR, f'{base}-{n}.jpg')):
+        found.append(f'images/trees/{base}-{n}.jpg')
+        n += 1
+    return found or [f'images/trees/{base}.jpg']
+
+
+def clean_text(v):
+    # Normalizes a description cell while PRESERVING paragraph breaks. Line
+    # breaks in the cell (Alt/Ctrl+Option+Enter in Excel) become "\n" here, and
+    # the website renders each line as its own paragraph. Spaces/tabs within a
+    # line are collapsed; blank lines are dropped. Keeps any **bold** markers.
+    if v in (None, ''):
+        return None
+    s = str(v).replace('\r\n', '\n').replace('\r', '\n')
+    lines = [re.sub(r'[ \t]+', ' ', ln).strip() for ln in s.split('\n')]
+    lines = [ln for ln in lines if ln]
+    return '\n'.join(lines) or None
+
 
 # Peak / best time of year for each Fragrance Walk stop (keyed by stop number).
 FRAGRANCE_PEAK = {
@@ -41,41 +86,57 @@ FRAGRANCE_PEAK = {
     12: 'Year-round leaf fragrance',
 }
 
-wb = openpyxl.load_workbook(os.path.join(HERE, 'Tree&FragranceWalk.xlsx'), data_only=True)
+wb = openpyxl.load_workbook(os.path.join(HERE, 'Tree&FragranceWalk_with_descriptions.xlsx'), data_only=True)
 features, tree_by_coord = [], {}
 
 for sheet, walk in [('Arboretum Walk', 'tree'), ('Fragrance Walk', 'fragrance')]:
     ws, section = wb[sheet], None
     for row in ws.iter_rows(min_row=2, values_only=True):
         num, name, lng, lat = row[0], row[1], row[2], row[3]
+        # Column E ("Description") exists on the Arboretum Walk sheet; guard in
+        # case a sheet has fewer columns or the cell is blank.
+        desc = clean_text(row[4] if len(row) > 4 else None)
         if isinstance(num, str) and name is None:
             section = num.title(); continue
         if num is None or lng is None or lat is None:
             continue
         common, sci = parse_name(name)
+        photos = photo_list(photo_slug(common, sci))
         feat = {"type": "Feature",
                 "geometry": {"type": "Point", "coordinates": [round(lng, 6), round(lat, 6)]},
                 "properties": {"walk": walk, "num": num, "common": common, "scientific": sci,
                                "section": section if walk == 'tree' else None,
                                "peak": FRAGRANCE_PEAK.get(num) if walk == 'fragrance' else None,
-                               "photo": f"images/trees/{walk}-{num:02d}.jpg"}}
+                               "description": desc if walk == 'tree' else None,
+                               "photo": photos[0], "photos": photos}}
         features.append(feat)
         if walk == 'tree':
             tree_by_coord[(round(lng, 6), round(lat, 6))] = feat
 
-for row in wb["Kathy's Walk"].iter_rows(min_row=2, values_only=True):
+for row in wb["Highlights Walk"].iter_rows(min_row=2, values_only=True):
     num, name, lng, lat = row[0], row[1], row[2], row[3]
     if num is None or lng is None or lat is None:
         continue
+    # The Highlights Walk sheet has its own Column E ("Description") and optional
+    # Column F ("Section"). Each is used when filled; otherwise it falls back to
+    # the matching Tree pin's value. Landmark stops (bridge, lawn, fountain) have
+    # no matching tree, so the Section column is how they get a chip.
+    own_desc = clean_text(row[4] if len(row) > 4 else None)
+    own_section = row[5] if len(row) > 5 else None
+    own_section = re.sub(r'\s+', ' ', str(own_section).strip()) if own_section not in (None, '') else None
     common, sci = parse_name(name)
     src = tree_by_coord.get((round(lng, 6), round(lat, 6)))
-    if src is None:
-        print(f"WARNING: Highlights stop {num} '{common}' has no matching Tree Walk pin — no section/photo")
+    section = own_section or (src["properties"].get("section") if src else None)
+    if src is None and not own_section:
+        print(f"WARNING: Highlights stop {num} '{common}' has no matching Tree Walk pin and no Section — chip will be blank")
+    description = own_desc or (src["properties"].get("description") if src else None)
+    photos = photo_list(photo_slug(common, sci))
     features.append({"type": "Feature",
         "geometry": {"type": "Point", "coordinates": [round(lng, 6), round(lat, 6)]},
         "properties": {"walk": "highlights", "num": num, "common": common, "scientific": sci,
-                       "section": src["properties"]["section"] if src else None,
-                       "photo": src["properties"]["photo"] if src else f"images/trees/highlights-{num:02d}.jpg"}})
+                       "section": section,
+                       "description": description,
+                       "photo": photos[0], "photos": photos}})
 
 # Pollinator Tour — a separate toggle overlay, not a numbered walk. Each stop
 # carries a stoplight "color" (red/yellow/green) and the MBBG garden sector it
@@ -96,9 +157,7 @@ for row in poll_wb['Pollinator Tour'].iter_rows(min_row=2, values_only=True):
 # so the catalogue naturally surfaces the most frequently seen species first.
 # Image filenames follow a slug of the scientific name, e.g. Danaus plexippus ->
 # images/pollinators/danaus-plexippus.jpg  (placeholders until photos are added).
-def slug(s):
-    return re.sub(r'[^a-z0-9]+', '-', (s or '').lower()).strip('-')
-
+# (slug() is defined near the top of this file.)
 CLASS_MAP = {'insecta': 'insect', 'insect': 'insect', 'birds': 'bird', 'bird': 'bird'}
 
 species = []

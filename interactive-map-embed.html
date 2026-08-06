@@ -14,7 +14,8 @@
     }
   </script>
   <title>Interactive Map — Miami Beach Botanical Garden</title>
-  <meta name="description" content="Explore the Tree Walk and Fragrance Walk at Miami Beach Botanical Garden with our interactive map.">
+  <!-- Fragrance Walk temporarily removed from description; restore mention when reintegrated -->
+  <meta name="description" content="Explore the Tree Walk and Highlights Walk at Miami Beach Botanical Garden with our interactive map.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -416,6 +417,31 @@
       margin-bottom: 24px;
     }
 
+    /* Multi-photo slider (shown only when a stop has more than one photo) */
+    #info-content .tp-gallery { position: relative; margin-bottom: 24px; border-radius: var(--radius); overflow: hidden; }
+    #info-content .tp-gallery img { margin: 0; border-radius: 0; display: none; }
+    #info-content .tp-gallery img.active { display: block; }
+    .tp-dots {
+      position: absolute;
+      left: 0; right: 0; bottom: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      pointer-events: none; /* only the dots themselves are clickable */
+    }
+    .tp-dot {
+      width: 8px; height: 8px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      pointer-events: auto;
+      background: rgba(255,255,255,0.55);
+      box-shadow: 0 0 4px rgba(0,0,0,0.45);
+      transition: var(--transition);
+    }
+    .tp-dot.active { background: #fff; transform: scale(1.25); }
+
     /* Numbered pin markers */
     .tree-pin {
       width: 26px; height: 26px;
@@ -505,9 +531,12 @@
       font-weight: 400;
       color: var(--ink);
       background: rgba(250,249,245,0.96);
-      padding: 6px 12px;
-      border-radius: var(--radius-pill);
+      padding: 7px 14px;
+      border-radius: 16px; /* softer corners read better than a full pill when text wraps */
       box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 200px;
+      line-height: 1.35;
     }
     .hover-tip .mapboxgl-popup-tip { display: none; }
 
@@ -538,7 +567,13 @@
       font-size: 0.95rem;
       font-style: italic;
       color: #777;
-      margin: 0 0 20px;
+      margin: 0 0 10px;
+    }
+    .tp-desc {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: #555;
+      margin: 16px 0 20px;
     }
     .tp-section {
       display: inline-block;
@@ -553,6 +588,9 @@
       padding: 7px 16px;
       margin: 0;
     }
+    /* When there's no scientific name, the chip follows the title directly —
+       add breathing room so it isn't cramped against the heading. */
+    .tp-body h4 + .tp-section { margin-top: 14px; }
     .tp-peak {
       align-self: stretch;
       margin-top: 18px;
@@ -994,7 +1032,9 @@
               <div id="walk-group">
                 <div id="walk-filter" role="group" aria-label="Choose a walk">
                   <button class="walk-btn active" data-walk="tree"><span class="dot"></span>Tree Walk</button>
+                  <!-- FRAGRANCE WALK TEMPORARILY REMOVED — uncomment to reintegrate
                   <button class="walk-btn" data-walk="fragrance"><span class="dot"></span>Fragrance Walk</button>
+                  -->
                   <button class="walk-btn" data-walk="highlights"><span class="dot"></span>Highlights Walk</button>
                 </div>
                 <button id="pollinator-toggle" type="button" aria-pressed="false" title="Show or hide the pollinator stops">
