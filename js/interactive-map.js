@@ -5,7 +5,7 @@
    data/Tree&FragranceWalk.xlsx).
    ============================================================ */
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuaWVsYWdnd20iLCJhIjoiY21ybnFpODQ3MDF5MjJ5cHpyZW9zMmliOCJ9.jOt134jcOmOlPQ_APBm52A';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuaWVsYWdnd20iLCJhIjoiY21zb3Y3Z2E0MDFhbTJ3cTJyb2NkY204ZiJ9.SD3EP4qFA10UN3ubh8m37g';
 
 // ---------- Config ----------
 const WALKS = {
