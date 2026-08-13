@@ -223,6 +223,8 @@ function showInfoPanel(props, total) {
     </div>`;
   initGallery();
   infoPanel.hidden = false;
+  infoPanel.scrollTop = 0;   // start each stop at the top, not the last stop's scroll position
+  infoContent.scrollTop = 0;
 }
 
 // Wires up the multi-photo slider (dots + swipe) if the panel has one.
@@ -540,6 +542,8 @@ function showPollinatorPanel(props) {
       ${spotter}
     </div>`;
   infoPanel.hidden = false;
+  infoPanel.scrollTop = 0;   // reset scroll when switching between pollinator stops
+  infoContent.scrollTop = 0;
 }
 
 function renderPollinatorIntro() {
