@@ -643,36 +643,24 @@ const _hiddenSet = new Set(HIDDEN_POI_NAMES.map(_normName));
 
 function applyLabelOverrides() {
   // Both featuresets support `hide`; querying both covers POIs (with icons)
-  // and plain place labels alike. We try the target with AND without the
-  // `basemap` importId because the correct form depends on whether the Standard
-  // style is imported or loaded directly as the root style — whichever is valid
-  // returns features, the other throws and is skipped.
+  // and plain place labels alike.
   const targets = [
     { featuresetId: 'poi', importId: 'basemap' },
-    { featuresetId: 'poi' },
-    { featuresetId: 'place-labels', importId: 'basemap' },
-    { featuresetId: 'place-labels' }
+    { featuresetId: 'place-labels', importId: 'basemap' }
   ];
   let feats = [];
   for (const target of targets) {
     try {
-      const got = map.queryRenderedFeatures({ target });
-      if (got && got.length) feats = feats.concat(got);
+      feats = feats.concat(map.queryRenderedFeatures({ target }));
     } catch (e) {
-      /* featureset/importId not valid in this style build — skip it */
+      /* featureset not available in this style build — skip it */
     }
   }
 
-  const seenNames = new Set();
-  let hidden = 0;
   for (const f of feats) {
-    const p = f.properties || {};
-    const raw = p.name || p.name_en || p.name_local || '';
-    const nm = _normName(raw);
-    if (nm) seenNames.add(raw);
+    const nm = _normName(f.properties && f.properties.name);
     if (!nm || !_hiddenSet.has(nm)) continue;
     map.setFeatureState(f, { hide: true });
-    hidden++;
     // Capture the POI's real position so a snap-to label sits exactly here.
     if (f.geometry && f.geometry.type === 'Point') {
       for (const lbl of CUSTOM_LABELS) {
@@ -680,14 +668,6 @@ function applyLabelOverrides() {
       }
     }
   }
-  // Debug hook: open the browser console and inspect `window.__labelDebug` to
-  // see how many basemap labels were found/hidden and the names in view. Safe
-  // to leave in; it just records state and doesn't change behavior.
-  window.__labelDebug = {
-    featuresFound: feats.length,
-    hiddenThisPass: hidden,
-    namesInView: [...seenNames].sort()
-  };
   rebuildCustomLabels();
 }
 
@@ -756,6 +736,20 @@ function setupCorrectedLabels() {
   applyLabelOverrides();
   // Re-apply as basemap labels stream in on pan/zoom (idempotent).
   map.on('idle', applyLabelOverrides);
+
+  // Kill the load-time flash: a basemap label only gets its `hide` state the
+  // first time it actually renders, and during the opening camera move `idle`
+  // doesn't fire for a second or two — long enough for a label to flash in
+  // before it's hidden. So for the first few seconds we re-run the hide on
+  // every animation frame (throttled), catching each label the moment it
+  // first paints. After that the `idle` listener above is enough.
+  let _lastPump = 0;
+  const _pumpStart = performance.now();
+  function _pump(now) {
+    if (now - _lastPump >= 60) { _lastPump = now; applyLabelOverrides(); }
+    if (now - _pumpStart < 6000) requestAnimationFrame(_pump);
+  }
+  requestAnimationFrame(_pump);
 }
 
 document.querySelectorAll('.walk-btn').forEach(btn => {
