@@ -102,7 +102,7 @@ const CUSTOM_LABELS = [
     text: 'Banyan Ballroom',
     snapTo: 'Garden Center Conservatory', // sit exactly where this hidden POI was
     lngLat: null,        // or set [lng, lat] to place/override it manually
-    color: '#C2185B',    // text color (a pink close to the basemap's POI labels)
+    color: '#4E8B4A',    // park-label green, to match basemap park names like "…Convention Center Park"
     textSize: 13,        // font size in px
     minzoom: 14,         // don't show the label below this zoom
     maxzoom: 24          // don't show it above this zoom
@@ -736,20 +736,6 @@ function setupCorrectedLabels() {
   applyLabelOverrides();
   // Re-apply as basemap labels stream in on pan/zoom (idempotent).
   map.on('idle', applyLabelOverrides);
-
-  // Kill the load-time flash: a basemap label only gets its `hide` state the
-  // first time it actually renders, and during the opening camera move `idle`
-  // doesn't fire for a second or two — long enough for a label to flash in
-  // before it's hidden. So for the first few seconds we re-run the hide on
-  // every animation frame (throttled), catching each label the moment it
-  // first paints. After that the `idle` listener above is enough.
-  let _lastPump = 0;
-  const _pumpStart = performance.now();
-  function _pump(now) {
-    if (now - _lastPump >= 60) { _lastPump = now; applyLabelOverrides(); }
-    if (now - _pumpStart < 6000) requestAnimationFrame(_pump);
-  }
-  requestAnimationFrame(_pump);
 }
 
 document.querySelectorAll('.walk-btn').forEach(btn => {
