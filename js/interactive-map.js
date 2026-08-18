@@ -78,6 +78,37 @@ const DEFAULT_ZOOM = isMobile ? 16.2 : 16.6;
 // sits along the bottom and the garden fills the frame landscape.
 const MAP_BEARING = -90;
 
+// ---------- Corrected basemap labels ----------
+// The Mapbox Standard basemap ships two POIs that are wrong for this map, so we
+// hide them by name using the Standard style's `hide` feature state (on the
+// `poi` and `place-labels` featuresets), then draw our own corrected label in
+// the same place. Roads, city/neighborhood labels, and every other POI/building
+// are left completely untouched.
+//
+// To adjust later, edit the two lists below:
+//   • HIDDEN_POI_NAMES — basemap labels to remove (match the on-map text).
+//   • CUSTOM_LABELS    — labels we draw ourselves. Each can auto-snap to the
+//                        hidden POI's exact position (snapTo) or be pinned with
+//                        your own [lng, lat] (lngLat). Color, font size, and the
+//                        zoom range it shows at are all here too.
+const HIDDEN_POI_NAMES = [
+  'Garden Center Conservatory',
+  'Miami Beach Botanical Garden'
+];
+
+const CUSTOM_LABELS = [
+  {
+    id: 'banyan-ballroom',
+    text: 'Banyan Ballroom',
+    snapTo: 'Garden Center Conservatory', // sit exactly where this hidden POI was
+    lngLat: null,        // or set [lng, lat] to place/override it manually
+    color: '#C2185B',    // text color (a pink close to the basemap's POI labels)
+    textSize: 13,        // font size in px
+    minzoom: 14,         // don't show the label below this zoom
+    maxzoom: 24          // don't show it above this zoom
+  }
+];
+
 // ---------- Map ----------
 const map = new mapboxgl.Map({
   container: 'map',
@@ -592,6 +623,7 @@ if (!isMobile) {
 
 map.on('load', () => {
   showWalk('tree');
+  setupCorrectedLabels();
 
   // Stop the geolocate button's attention animation once it's clicked
   const geoBtn = document.querySelector('.mapboxgl-ctrl-geolocate');
@@ -599,6 +631,112 @@ map.on('load', () => {
     geoBtn.addEventListener('click', () => geoBtn.classList.add('geo-noticed'), { once: true });
   }
 });
+
+/* ============ Corrected basemap labels (hide + replace) ============
+   Hides the POIs listed in HIDDEN_POI_NAMES using the Standard style's `hide`
+   feature state, and draws the CUSTOM_LABELS in their place. The hide is
+   re-applied whenever the map settles (`idle`) so it survives panning and
+   zooming — a basemap label only gets its `hide` state the first time it
+   scrolls into view, and setting it again is harmless. */
+const _normName = (s) => (s || '').trim().toLowerCase();
+const _hiddenSet = new Set(HIDDEN_POI_NAMES.map(_normName));
+
+function applyLabelOverrides() {
+  // Both featuresets support `hide`; querying both covers POIs (with icons)
+  // and plain place labels alike.
+  const targets = [
+    { featuresetId: 'poi', importId: 'basemap' },
+    { featuresetId: 'place-labels', importId: 'basemap' }
+  ];
+  let feats = [];
+  for (const target of targets) {
+    try {
+      feats = feats.concat(map.queryRenderedFeatures({ target }));
+    } catch (e) {
+      /* featureset not available in this style build — skip it */
+    }
+  }
+
+  for (const f of feats) {
+    const nm = _normName(f.properties && f.properties.name);
+    if (!nm || !_hiddenSet.has(nm)) continue;
+    map.setFeatureState(f, { hide: true });
+    // Capture the POI's real position so a snap-to label sits exactly here.
+    if (f.geometry && f.geometry.type === 'Point') {
+      for (const lbl of CUSTOM_LABELS) {
+        if (!lbl.lngLat && _normName(lbl.snapTo) === nm) lbl._pos = f.geometry.coordinates;
+      }
+    }
+  }
+  rebuildCustomLabels();
+}
+
+function rebuildCustomLabels() {
+  const src = map.getSource('custom-labels');
+  if (!src) return;
+  const features = [];
+  for (const lbl of CUSTOM_LABELS) {
+    const pos = lbl.lngLat || lbl._pos;
+    if (!pos) continue; // nothing to show until we know where it goes
+    features.push({
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: pos },
+      properties: {
+        text: lbl.text,
+        color: lbl.color || '#C2185B',
+        size: lbl.textSize || 13,
+        minzoom: lbl.minzoom ?? 14,
+        maxzoom: lbl.maxzoom ?? 24
+      }
+    });
+  }
+  src.setData({ type: 'FeatureCollection', features });
+}
+
+function setupCorrectedLabels() {
+  if (!map.getSource('custom-labels')) {
+    map.addSource('custom-labels', {
+      type: 'geojson',
+      data: { type: 'FeatureCollection', features: [] }
+    });
+  }
+  if (!map.getLayer('custom-labels')) {
+    // Layer-level zoom envelope from the labels; a per-label filter enforces
+    // each label's own min/max zoom precisely.
+    const minz = Math.min(...CUSTOM_LABELS.map(l => l.minzoom ?? 14));
+    const maxz = Math.max(...CUSTOM_LABELS.map(l => l.maxzoom ?? 24));
+    map.addLayer({
+      id: 'custom-labels',
+      type: 'symbol',
+      source: 'custom-labels',
+      slot: 'top', // draw in the Standard style's label slot, above roads/fills
+      minzoom: minz,
+      maxzoom: maxz,
+      filter: ['all',
+        ['>=', ['zoom'], ['get', 'minzoom']],
+        ['<=', ['zoom'], ['get', 'maxzoom']]
+      ],
+      layout: {
+        'text-field': ['get', 'text'],
+        'text-font': ['DIN Pro Medium', 'Arial Unicode MS Regular'],
+        'text-size': ['get', 'size'],
+        'text-max-width': 7,
+        'text-anchor': 'center',
+        'text-allow-overlap': false,
+        'text-optional': true
+      },
+      paint: {
+        'text-color': ['get', 'color'],
+        'text-halo-color': '#ffffff',
+        'text-halo-width': 1.4,
+        'text-halo-blur': 0.4
+      }
+    });
+  }
+  applyLabelOverrides();
+  // Re-apply as basemap labels stream in on pan/zoom (idempotent).
+  map.on('idle', applyLabelOverrides);
+}
 
 document.querySelectorAll('.walk-btn').forEach(btn => {
   btn.addEventListener('click', () => {
