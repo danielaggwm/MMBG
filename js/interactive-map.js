@@ -643,24 +643,36 @@ const _hiddenSet = new Set(HIDDEN_POI_NAMES.map(_normName));
 
 function applyLabelOverrides() {
   // Both featuresets support `hide`; querying both covers POIs (with icons)
-  // and plain place labels alike.
+  // and plain place labels alike. We try the target with AND without the
+  // `basemap` importId because the correct form depends on whether the Standard
+  // style is imported or loaded directly as the root style — whichever is valid
+  // returns features, the other throws and is skipped.
   const targets = [
     { featuresetId: 'poi', importId: 'basemap' },
-    { featuresetId: 'place-labels', importId: 'basemap' }
+    { featuresetId: 'poi' },
+    { featuresetId: 'place-labels', importId: 'basemap' },
+    { featuresetId: 'place-labels' }
   ];
   let feats = [];
   for (const target of targets) {
     try {
-      feats = feats.concat(map.queryRenderedFeatures({ target }));
+      const got = map.queryRenderedFeatures({ target });
+      if (got && got.length) feats = feats.concat(got);
     } catch (e) {
-      /* featureset not available in this style build — skip it */
+      /* featureset/importId not valid in this style build — skip it */
     }
   }
 
+  const seenNames = new Set();
+  let hidden = 0;
   for (const f of feats) {
-    const nm = _normName(f.properties && f.properties.name);
+    const p = f.properties || {};
+    const raw = p.name || p.name_en || p.name_local || '';
+    const nm = _normName(raw);
+    if (nm) seenNames.add(raw);
     if (!nm || !_hiddenSet.has(nm)) continue;
     map.setFeatureState(f, { hide: true });
+    hidden++;
     // Capture the POI's real position so a snap-to label sits exactly here.
     if (f.geometry && f.geometry.type === 'Point') {
       for (const lbl of CUSTOM_LABELS) {
@@ -668,6 +680,14 @@ function applyLabelOverrides() {
       }
     }
   }
+  // Debug hook: open the browser console and inspect `window.__labelDebug` to
+  // see how many basemap labels were found/hidden and the names in view. Safe
+  // to leave in; it just records state and doesn't change behavior.
+  window.__labelDebug = {
+    featuresFound: feats.length,
+    hiddenThisPass: hidden,
+    namesInView: [...seenNames].sort()
+  };
   rebuildCustomLabels();
 }
 
