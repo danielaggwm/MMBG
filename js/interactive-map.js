@@ -934,6 +934,14 @@ function setFullscreen(on) {
   mapWrap.classList.toggle('map-fullscreen', on);
   document.body.classList.toggle('no-scroll', on);
   fsBtn.textContent = on ? 'Exit ⛶' : 'Expand ⛶';
+  // When this map is embedded in an iframe (the Squarespace page), ask the
+  // parent page to blow the iframe up to fill the whole browser viewport —
+  // otherwise "Expand" is limited to the iframe's own box. A small listener on
+  // the Squarespace side (site Code Injection) handles the message. This is a
+  // no-op when the map is opened directly (not inside an iframe).
+  if (window.self !== window.top) {
+    try { window.parent.postMessage({ type: 'mmbg-map-fullscreen', on: on }, '*'); } catch (e) {}
+  }
   map.resize();
   goToGardenView(0);
 }
@@ -946,6 +954,25 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && mapWrap.classList.contains('map-fullscreen')) {
     setFullscreen(false);
   }
+});
+
+// If embedded, let the parent page (e.g. an Escape press outside the iframe, or
+// the parent's own close control) tell us to exit fullscreen, keeping the
+// iframe overlay and this map's state in sync.
+window.addEventListener('message', (e) => {
+  const d = e.data;
+  if (d && d.type === 'mmbg-map-exit' && mapWrap.classList.contains('map-fullscreen')) {
+    setFullscreen(false);
+  }
+});
+
+// When the parent grows or shrinks the iframe, refit the map to the new size so
+// the garden stays framed while expanded.
+let _fsResizeT = null;
+window.addEventListener('resize', () => {
+  if (!mapWrap.classList.contains('map-fullscreen')) return;
+  clearTimeout(_fsResizeT);
+  _fsResizeT = setTimeout(() => { map.resize(); goToGardenView(0); }, 150);
 });
 
 
