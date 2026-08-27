@@ -775,7 +775,7 @@ const WALK_DATA = {
         "num": 34,
         "common": "Ashoka",
         "scientific": "Saraca indica",
-        "section": "Bioswale",
+        "section": "Rainbow Alley",
         "peak": null,
         "description": "Native to the lush, damp rainforests of the Indian subcontinent, this tree is deeply sacred in both Hinduism and Buddhism, with legends stating that Lord Buddha was born beneath its branches.\nIts Sanskrit name translates to \"without sorrow,\" reflecting its historical use in Ayurvedic medicine to treat emotional grief and female reproductive issues. It produces vibrant orange-red flower clusters along its branches and trunk, creating a remarkable display.",
         "photo": "images/trees/saraca-indica.jpg",
@@ -798,7 +798,7 @@ const WALK_DATA = {
         "num": 35,
         "common": "Singapore frangipani",
         "scientific": "Plumeria obtusa",
-        "section": "Bioswale",
+        "section": "Rainbow Alley",
         "peak": null,
         "description": "Despite its common name, this fragrant tree is native to the West Indies and Central America and was spread around the world by Spanish traders centuries ago.\nIt is widely planted in cemeteries across Southeast Asia, where it is associated with resting souls and the sweet scent of the afterlife. Its leathery, dark-green leaves have rounded tips, distinguishing it from pointed-leaf frangipanis.",
         "photo": "images/trees/plumeria-obtusa.jpg",
@@ -821,7 +821,7 @@ const WALK_DATA = {
         "num": 36,
         "common": "Blue latan palm",
         "scientific": "Latania loddigesii",
-        "section": "Bioswale",
+        "section": "Rainbow Alley",
         "peak": null,
         "description": "Endemic to the windswept coastal cliffs of Mauritius in the Indian Ocean, this palm was heavily affected by early European colonial clearing. It is highly prized for its large, stiff, fan-shaped fronds that are completely covered in a thick, powdery blue-silver wax that protects the plant from salt spray and intense tropical sunlight.",
         "photo": "images/trees/latania-loddigesii.jpg",
@@ -844,7 +844,7 @@ const WALK_DATA = {
         "num": 37,
         "common": "Rainbow eucalyptus",
         "scientific": "Eucalyptus deglupta",
-        "section": "Bioswale",
+        "section": "Rainbow Alley",
         "peak": null,
         "description": "This is the only eucalyptus species native to the northern hemisphere, thriving in the tropical rainforests of New Guinea, Indonesia, and the Philippines.\nAs its bark sheds in vertical strips throughout the year, it reveals a bright neon-green under-layer that ages into shades of blue, purple, orange, and maroon, making the trunk look like an abstract canvas. It is also one of the fastest-growing trees on Earth, capable of shooting up 10 feet in a single year.",
         "photo": "images/trees/eucalyptus-deglupta.jpg",
@@ -867,7 +867,7 @@ const WALK_DATA = {
         "num": 38,
         "common": "Royal palm",
         "scientific": "Roystonea regia",
-        "section": "Bioswale",
+        "section": "Rainbow Alley",
         "peak": null,
         "description": "Native to the Caribbean, South Florida, and Central America, this majestic palm is a powerful religious and cultural symbol, recognized as the national tree of Cuba and heavily featured in Santería rituals.\nThe palm can reach up to 100 feet tall and features a perfectly smooth, concrete-like white trunk topped by a bright-green crownshaft. Fascinatingly, these trees have evolved to discard their massive, heavy fronds cleanly during hurricanes, reducing wind resistance so the main trunk can survive the storm.",
         "photo": "images/trees/roystonea-regia.jpg",
@@ -890,7 +890,7 @@ const WALK_DATA = {
         "num": 39,
         "common": "Zombie palm",
         "scientific": "Zombia antillarum",
-        "section": "Bioswale",
+        "section": "Rainbow Alley",
         "peak": null,
         "description": "Found only on the dry limestone hillsides of Hispaniola, this palm is deeply rooted in local folklore, in which its woven leaves have been rumored to awaken or ward off zombies.\nIts most shocking physical feature is its trunk, which is tightly wrapped in an interlocking grid of long, downward-pointing, needle-sharp black spines that evolved to protect the plant from extinct island megafauna.",
         "photo": "images/trees/zombia-antillarum.jpg",
@@ -913,7 +913,7 @@ const WALK_DATA = {
         "num": 40,
         "common": "Royal poinciana",
         "scientific": "Delonix regia",
-        "section": "Bioswale",
+        "section": "Copernicia Corner",
         "peak": null,
         "description": "Endemic to the dry deciduous forests of Madagascar, this tree is tragically endangered in its wild habitat but globally celebrated as one of the world's most spectacular ornamental trees.\nIt was discovered by French botanists in the 1800s and named after Philippe de Longvilliers de Poincy, the 17th-century governor of Saint Kitts. Its dense, umbrella-like canopy turns into a sea of blazing scarlet flowers in the summer, earning it the title \"The Flame Tree.\"",
         "photo": "images/trees/delonix-regia.jpg",
@@ -1734,7 +1734,7 @@ const WALK_DATA = {
         "num": 9,
         "common": "Giant Cycad",
         "scientific": "Encephalartos laurentianus",
-        "section": "Bioswale",
+        "section": "Rainbow Alley",
         "description": "This cycad is a living fossil hailing from Central Africa. It features massive, arching fronds that can span up to 20 feet, making it one of the largest cycad species on the planet. Notice the distinctive, thorn-like projections on each leaf, which provide an effective form of self-defense.",
         "photo": "images/trees/encephalartos-laurentianus.jpg",
         "photos": [
@@ -1756,7 +1756,7 @@ const WALK_DATA = {
         "num": 10,
         "common": "Rainbow eucalyptus",
         "scientific": "Eucalyptus deglupta",
-        "section": "Bioswale",
+        "section": "Rainbow Alley",
         "description": "This tree is a standout crowd favorite in the Garden. As it sheds its bark throughout the year, it reveals a trunk streaked with brilliant, living layers of neon green, blue, purple, and orange.",
         "photo": "images/trees/eucalyptus-deglupta.jpg",
         "photos": [
@@ -2129,7 +2129,7 @@ const WALK_DATA = {
         "walk": "pollinator",
         "num": 9,
         "color": "green",
-        "sector": "Bioswale"
+        "sector": "Rainbow Alley"
       }
     }
   ]
@@ -2145,7 +2145,7 @@ const POLLINATOR_SPECIES = [
       "Great Lawn",
       "Gnome & Fairy Children's Garden",
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Japanese Garden",
       "Native Garden",
@@ -2162,7 +2162,7 @@ const POLLINATOR_SPECIES = [
       "Great Lawn",
       "Gnome & Fairy Children's Garden",
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Native Garden",
       "Water Garden",
@@ -2178,7 +2178,7 @@ const POLLINATOR_SPECIES = [
       "Great Lawn",
       "Gnome & Fairy Children's Garden",
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Japanese Garden",
       "Native Garden",
@@ -2192,7 +2192,7 @@ const POLLINATOR_SPECIES = [
     "img": "images/pollinators/hemiargus-ceraunus.jpg",
     "sectors": [
       "Gnome & Fairy Children's Garden",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Japanese Garden",
       "Native Garden",
@@ -2209,7 +2209,7 @@ const POLLINATOR_SPECIES = [
       "Great Lawn",
       "Gnome & Fairy Children's Garden",
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Japanese Garden",
       "Native Garden",
@@ -2225,7 +2225,7 @@ const POLLINATOR_SPECIES = [
     "sectors": [
       "Gnome & Fairy Children's Garden",
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Native Garden",
       "Gumbo Limbo Courtyard"
@@ -2238,7 +2238,7 @@ const POLLINATOR_SPECIES = [
     "img": "images/pollinators/nathalis-iole.jpg",
     "sectors": [
       "Gnome & Fairy Children's Garden",
-      "Bioswale",
+      "Rainbow Alley",
       "Japanese Garden",
       "Native Garden",
       "Water Garden",
@@ -2254,7 +2254,7 @@ const POLLINATOR_SPECIES = [
       "Great Lawn",
       "Gnome & Fairy Children's Garden",
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Water Garden",
       "Gumbo Limbo Courtyard"
@@ -2288,7 +2288,7 @@ const POLLINATOR_SPECIES = [
     "img": "images/pollinators/eumaeus-atala.jpg",
     "sectors": [
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Japanese Garden",
       "Native Garden",
       "Gumbo Limbo Courtyard"
@@ -2349,7 +2349,7 @@ const POLLINATOR_SPECIES = [
     "sectors": [
       "Gnome & Fairy Children's Garden",
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Japanese Garden",
       "Native Garden",
@@ -2365,7 +2365,7 @@ const POLLINATOR_SPECIES = [
     "sectors": [
       "Gnome & Fairy Children's Garden",
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Japanese Garden",
       "Native Garden",
@@ -2395,7 +2395,7 @@ const POLLINATOR_SPECIES = [
     "img": "images/pollinators/tyrannus-dominicensis.jpg",
     "sectors": [
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Japanese Garden",
       "Native Garden"
@@ -2410,7 +2410,7 @@ const POLLINATOR_SPECIES = [
       "Great Lawn",
       "Gnome & Fairy Children's Garden",
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Japanese Garden",
       "Native Garden"
@@ -2422,7 +2422,7 @@ const POLLINATOR_SPECIES = [
     "scientific": "Corvus ossifragus",
     "img": "images/pollinators/corvus-ossifragus.jpg",
     "sectors": [
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Japanese Garden",
       "Native Garden",
@@ -2436,7 +2436,7 @@ const POLLINATOR_SPECIES = [
     "img": "images/pollinators/seiurus-aurocapilla.jpg",
     "sectors": [
       "Great Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Japanese Garden",
       "Native Garden",
@@ -2451,7 +2451,7 @@ const POLLINATOR_SPECIES = [
     "sectors": [
       "Gnome & Fairy Children's Garden",
       "Banyan Lawn",
-      "Bioswale",
+      "Rainbow Alley",
       "Japanese Garden",
       "Native Garden"
     ]
@@ -2486,7 +2486,7 @@ const POLLINATOR_SPECIES = [
     "scientific": "Parkesia noveboracensis",
     "img": "images/pollinators/parkesia-noveboracensis.jpg",
     "sectors": [
-      "Bioswale",
+      "Rainbow Alley",
       "Bridal Veil Plaza",
       "Japanese Garden",
       "Native Garden"
@@ -2519,7 +2519,7 @@ const POLLINATOR_SPECIES = [
     "scientific": "Dumetella carolinensis",
     "img": "images/pollinators/dumetella-carolinensis.jpg",
     "sectors": [
-      "Bioswale"
+      "Rainbow Alley"
     ]
   },
   {
