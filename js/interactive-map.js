@@ -93,7 +93,8 @@ const MAP_BEARING = -90;
 //                        zoom range it shows at are all here too.
 const HIDDEN_POI_NAMES = [
   'Garden Center Conservatory',
-  'Miami Beach Botanical Garden'
+  'Miami Beach Botanical Garden',
+  'Holocaust Memorial'
 ];
 
 const CUSTOM_LABELS = [
