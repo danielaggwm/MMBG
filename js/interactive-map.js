@@ -119,6 +119,28 @@ const map = new mapboxgl.Map({
   pitch: 0,
   bearing: MAP_BEARING
 });
+
+// ---------- First-paint flash guard ----------
+// The basemap labels we remove (HIDDEN_POI_NAMES) can only be hidden once
+// they've painted once, so there is a single frame where they'd flash in. To
+// avoid that, keep the map canvas invisible until the corrected labels have
+// been hidden, then fade it in. Purely cosmetic — it does not delay loading.
+let _mapRevealed = false;
+function revealMap() {
+  if (_mapRevealed) return;
+  _mapRevealed = true;
+  try {
+    const cv = map.getCanvas();
+    cv.style.transition = 'opacity 0.18s ease';
+    cv.style.opacity = '1';
+  } catch (e) {}
+}
+try {
+  map.getContainer().style.background = '#e8e4dd'; // warm land tone shown during the brief hold
+  map.getCanvas().style.opacity = '0';
+} catch (e) {}
+setTimeout(revealMap, 1500); // safety net: never leave the map hidden if load stalls
+
 map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
 
 // Geolocate: shows the visitor's live position on the map. fitBoundsOptions
@@ -735,6 +757,9 @@ function setupCorrectedLabels() {
     });
   }
   applyLabelOverrides();
+  // Corrected labels are hidden now — fade the map in after two frames, once
+  // the hide has painted (see the First-paint flash guard near map creation).
+  requestAnimationFrame(() => requestAnimationFrame(revealMap));
   // Re-apply as basemap labels stream in on pan/zoom (idempotent).
   map.on('idle', applyLabelOverrides);
 
