@@ -757,9 +757,20 @@ function setupCorrectedLabels() {
     });
   }
   applyLabelOverrides();
-  // Corrected labels are hidden now — fade the map in after two frames, once
-  // the hide has painted (see the First-paint flash guard near map creation).
-  requestAnimationFrame(() => requestAnimationFrame(revealMap));
+  // Corrected labels are hidden now — fade the map in once the hide has painted.
+  // On mobile the container height is still settling at this point (the browser
+  // address bar collapses after load, changing vh), so re-measure the canvas to
+  // its final size before revealing — the map then fades in already filling the
+  // screen instead of visibly stretching into place. Desktop already re-measured
+  // right after layout (see the !isMobile block above), so it just reveals.
+  if (isMobile) {
+    map.resize();
+    requestAnimationFrame(() => { map.resize(); revealMap(); });
+    // Keep the canvas matched to the container as vh settles over the first second.
+    [150, 400, 800].forEach(t => setTimeout(() => map.resize(), t));
+  } else {
+    requestAnimationFrame(() => requestAnimationFrame(revealMap));
+  }
   // Re-apply as basemap labels stream in on pan/zoom (idempotent).
   map.on('idle', applyLabelOverrides);
 
