@@ -144,15 +144,23 @@ setTimeout(revealMap, 1500); // safety net: never leave the map hidden if load s
 
 map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
 
-// Geolocate: shows the visitor's live position on the map. fitBoundsOptions
-// caps the zoom so locating keeps the map at its default focus level instead of
-// zooming out to Mapbox's default (maxZoom 15).
-map.addControl(new mapboxgl.GeolocateControl({
+// Geolocate: shows the visitor's live position (with heading arrow on phones).
+const geolocate = new mapboxgl.GeolocateControl({
   positionOptions: { enableHighAccuracy: true },
-  fitBoundsOptions: { maxZoom: DEFAULT_ZOOM },
   trackUserLocation: true,
   showUserHeading: true
-}), 'top-right');
+});
+// Keep the visitor's current zoom when locating/following them. Mapbox's
+// default fits the GPS accuracy circle, which zooms in or out on its own.
+// (Overrides an internal method of mapbox-gl v3.17 — recheck if upgrading.)
+geolocate._updateCamera = function (position) {
+  map.easeTo({
+    center: [position.coords.longitude, position.coords.latitude],
+    zoom: map.getZoom(),
+    bearing: map.getBearing()
+  }, { geolocateSource: true }); // tagged so following mode isn't cancelled
+};
+map.addControl(geolocate, 'top-right');
 
 // ---------- State ----------
 let activeWalk = 'tree';
