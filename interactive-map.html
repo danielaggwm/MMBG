@@ -1008,6 +1008,13 @@
         gap: 12px;
       }
     }
+    /* Footnote under the map: walking hint + designer credit on one line */
+    .map-footnote { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
+      gap: 4px 24px; margin-top: 28px; font-size: 0.85rem; color: #888; }
+    .map-footnote p { margin: 0; }
+    .map-credit { font-size: 0.78rem; color: #999; }
+    .map-credit a { color: #4E8B4A; text-decoration: none; font-weight: 500; }
+    .map-credit a:hover, .map-credit a:focus-visible { text-decoration: underline; }
   </style>
   <link rel="icon" type="image/svg+xml" href="logos/Squared-Logo.svg">
 </head>
@@ -1081,9 +1088,11 @@
           </aside>
         </div>
 
-        <p class="text-center" style="margin-top: 28px; font-size: 0.85rem; color: #888;">
-          Pins are numbered in walking order - start at 1 and follow the highlighted path.
-        </p>
+        <div class="map-footnote">
+          <p>Pins are numbered in walking order - start at 1 and follow the highlighted path.</p>
+          <p class="map-credit">Map design &amp; development by
+            <a href="https://danielaggwm.com" target="_blank" rel="noopener">Daniela Gonzalez</a></p>
+        </div>
       </div>
     </section>
 
