@@ -658,6 +658,10 @@ if (!isMobile) {
 }
 
 map.on('load', () => {
+  // Mobile only: frame the garden right away (no fly-in), so the first tiles
+  // that load are the ones the visitor will see and the pins never start
+  // bunched together at a zoomed-out view. Desktop keeps the fly-in.
+  if (isMobile) goToGardenView(0);
   setupCorrectedLabels();
   startIntro();
 
