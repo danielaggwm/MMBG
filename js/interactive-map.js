@@ -134,13 +134,17 @@ function revealMap() {
     const cv = map.getCanvas();
     cv.style.transition = 'opacity 0.18s ease';
     cv.style.opacity = '1';
+    map.getContainer().classList.remove('pins-hidden');
   } catch (e) {}
 }
 try {
   map.getContainer().style.background = '#e8e4dd'; // warm land tone shown during the brief hold
   map.getCanvas().style.opacity = '0';
+  // Pins are HTML overlays, not part of the canvas — hide them too until the
+  // map is revealed, so they never float over a blank background.
+  map.getContainer().classList.add('pins-hidden');
 } catch (e) {}
-setTimeout(revealMap, 1500); // safety net: never leave the map hidden if load stalls
+setTimeout(revealMap, 6000); // safety net: never leave the map hidden if load stalls
 
 map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
 
@@ -654,8 +658,8 @@ if (!isMobile) {
 }
 
 map.on('load', () => {
-  showWalk('tree');
   setupCorrectedLabels();
+  startIntro();
 
   // Stop the geolocate button's attention animation once it's clicked
   const geoBtn = document.querySelector('.mapboxgl-ctrl-geolocate');
@@ -663,6 +667,37 @@ map.on('load', () => {
     geoBtn.addEventListener('click', () => geoBtn.classList.add('geo-noticed'), { once: true });
   }
 });
+
+/* ============ Opening sequence ============
+   The pins, path animation and fly-in only start once (a) the first basemap
+   tiles have been drawn and (b) the map is actually on screen. On the
+   Squarespace page the iframe loads early (eager-load injection) and competes
+   with the rest of the page for bandwidth, so without this the pins would fly
+   in over a blank background, or play before the visitor scrolls to the map. */
+let _introStarted = false;
+function startIntro() {
+  const whenVisible = (cb) => {
+    if (!('IntersectionObserver' in window)) return cb();
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) { io.disconnect(); cb(); }
+    }, { threshold: 0.25 });
+    io.observe(map.getContainer());
+  };
+  const whenTilesReady = (cb) => {
+    let done = false;
+    const go = () => { if (!done) { done = true; cb(); } };
+    if (map.areTilesLoaded && map.areTilesLoaded()) return go();
+    map.once('idle', go);
+    setTimeout(go, 3000); // don't wait forever on a slow connection
+  };
+  whenTilesReady(() => whenVisible(() => {
+    if (_introStarted) return;
+    _introStarted = true;
+    map.resize();          // container size is final by now (mobile vh, iframe)
+    showWalk('tree');      // pins + path animation + fly-in
+    requestAnimationFrame(revealMap);
+  }));
+}
 
 /* ============ Corrected basemap labels (hide + replace) ============
    Hides the POIs listed in HIDDEN_POI_NAMES using the Standard style's `hide`
@@ -772,13 +807,11 @@ function setupCorrectedLabels() {
   // its final size before revealing — the map then fades in already filling the
   // screen instead of visibly stretching into place. Desktop already re-measured
   // right after layout (see the !isMobile block above), so it just reveals.
+  // (The reveal itself happens in startIntro, once tiles are drawn.)
   if (isMobile) {
     map.resize();
-    requestAnimationFrame(() => { map.resize(); revealMap(); });
     // Keep the canvas matched to the container as vh settles over the first second.
     [150, 400, 800].forEach(t => setTimeout(() => map.resize(), t));
-  } else {
-    requestAnimationFrame(() => requestAnimationFrame(revealMap));
   }
   // Re-apply as basemap labels stream in on pan/zoom (idempotent).
   map.on('idle', applyLabelOverrides);
