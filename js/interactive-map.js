@@ -102,7 +102,8 @@ const CUSTOM_LABELS = [
     id: 'banyan-ballroom',
     text: 'Banyan Ballroom',
     snapTo: 'Garden Center Conservatory', // sit exactly where this hidden POI was
-    lngLat: null,        // or set [lng, lat] to place/override it manually
+    lngLat: [-80.13548, 25.79593], // pinned so the label always shows, even when Mapbox
+                                   // doesn't render the Conservatory POI (smaller embeds)
     color: '#4E8B4A',    // park-label green, to match basemap park names like "…Convention Center Park"
     textSize: 13,        // font size in px
     minzoom: 14,         // don't show the label below this zoom
@@ -745,7 +746,7 @@ function setupCorrectedLabels() {
         'text-size': ['get', 'size'],
         'text-max-width': 7,
         'text-anchor': 'center',
-        'text-allow-overlap': false,
+        'text-allow-overlap': true,
         'text-optional': true
       },
       paint: {
