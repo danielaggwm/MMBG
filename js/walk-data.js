@@ -812,36 +812,13 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.13534,
-          25.79592
-        ]
-      },
-      "properties": {
-        "walk": "tree",
-        "num": 36,
-        "common": "Blue latan palm",
-        "scientific": "Latania loddigesii",
-        "section": "Rainbow Alley",
-        "peak": null,
-        "description": "Endemic to the windswept coastal cliffs of Mauritius in the Indian Ocean, this palm was heavily affected by early European colonial clearing. It is highly prized for its large, stiff, fan-shaped fronds that are completely covered in a thick, powdery blue-silver wax that protects the plant from salt spray and intense tropical sunlight.",
-        "photo": "images/trees/latania-loddigesii.jpg",
-        "photos": [
-          "images/trees/latania-loddigesii.jpg"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -80.13521,
           25.79588
         ]
       },
       "properties": {
         "walk": "tree",
-        "num": 37,
+        "num": 36,
         "common": "Rainbow eucalyptus",
         "scientific": "Eucalyptus deglupta",
         "section": "Rainbow Alley",
@@ -850,6 +827,29 @@ const WALK_DATA = {
         "photo": "images/trees/eucalyptus-deglupta.jpg",
         "photos": [
           "images/trees/eucalyptus-deglupta.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13534,
+          25.79592
+        ]
+      },
+      "properties": {
+        "walk": "tree",
+        "num": 37,
+        "common": "Blue latan palm",
+        "scientific": "Latania loddigesii",
+        "section": "Rainbow Alley",
+        "peak": null,
+        "description": "Endemic to the windswept coastal cliffs of Mauritius in the Indian Ocean, this palm was heavily affected by early European colonial clearing. It is highly prized for its large, stiff, fan-shaped fronds that are completely covered in a thick, powdery blue-silver wax that protects the plant from salt spray and intense tropical sunlight.",
+        "photo": "images/trees/latania-loddigesii.jpg",
+        "photos": [
+          "images/trees/latania-loddigesii.jpg"
         ]
       }
     },
@@ -1903,20 +1903,20 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.13561,
-          25.79566
+          -80.13562,
+          25.79553
         ]
       },
       "properties": {
         "walk": "highlights",
         "num": 17,
-        "common": "Brazilian rain",
-        "scientific": "Chloroeucon tortum",
-        "section": "Banyan Lawn",
-        "description": "Strictly endemic to the highly threatened coastal scrub ecosystems of Rio de Janeiro, Brazil, this tree has been heavily utilized in the modern art of bonsai due to its naturally twisting, contorted trunk and striking white bark. It possesses a fascinating defensive behavior known as nyctinasty, meaning its delicate, compound leaves fold tightly together at night, during heavy cloud cover, or when it experiences physical stress.\nBrazilian rain trees are favorites of the Garden’s landscape designer, Raymond Jungles, and his mentor, Roberto Burle Marx, who considered them living sculptures. Their distinctive twisting trunks and mottled bark are prominently featured in Marx’s mid-20th-century modernist designs.",
-        "photo": "images/trees/chloroeucon-tortum.jpg",
+        "common": "Borassus palm",
+        "scientific": "Borassus sp",
+        "section": "Great Lawn",
+        "description": "Pause to appreciate the unusual black trunk of this massive palm. _Borassus_ dominates sub-Saharan Africa, growing abundantly along open savannas and riverbanks where local communities have historically relied on it as a vital resource for construction materials and famine food.\nThis massive palm can grow to 80 feet tall and live for well over a century, producing up to 500 bright-orange, edible, coconut-sized fruits each year. Planted in 2025 as a generous gift from The Green Standard landscaping team, this specimen is dedicated to Bear Theodore Foster.",
+        "photo": "images/trees/borassus-sp.jpg",
         "photos": [
-          "images/trees/chloroeucon-tortum.jpg"
+          "images/trees/borassus-sp.jpg"
         ]
       }
     },
@@ -1925,20 +1925,20 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.13562,
-          25.79553
+          -80.13561,
+          25.79566
         ]
       },
       "properties": {
         "walk": "highlights",
         "num": 18,
-        "common": "Borassus palm",
-        "scientific": "Borassus sp",
-        "section": "Great Lawn",
-        "description": "Pause to appreciate the unusual black trunk of this massive palm. _Borassus_ dominates sub-Saharan Africa, growing abundantly along open savannas and riverbanks where local communities have historically relied on it as a vital resource for construction materials and famine food.\nThis massive palm can grow to 80 feet tall and live for well over a century, producing up to 500 bright-orange, edible, coconut-sized fruits each year. Planted in 2025 as a generous gift from The Green Standard landscaping team, this specimen is dedicated to Bear Theodore Foster.",
-        "photo": "images/trees/borassus-sp.jpg",
+        "common": "Brazilian rain",
+        "scientific": "Chloroeucon tortum",
+        "section": "Banyan Lawn",
+        "description": "Strictly endemic to the highly threatened coastal scrub ecosystems of Rio de Janeiro, Brazil, this tree has been heavily utilized in the modern art of bonsai due to its naturally twisting, contorted trunk and striking white bark. It possesses a fascinating defensive behavior known as nyctinasty, meaning its delicate, compound leaves fold tightly together at night, during heavy cloud cover, or when it experiences physical stress.\nBrazilian rain trees are favorites of the Garden’s landscape designer, Raymond Jungles, and his mentor, Roberto Burle Marx, who considered them living sculptures. Their distinctive twisting trunks and mottled bark are prominently featured in Marx’s mid-20th-century modernist designs.",
+        "photo": "images/trees/chloroeucon-tortum.jpg",
         "photos": [
-          "images/trees/borassus-sp.jpg"
+          "images/trees/chloroeucon-tortum.jpg"
         ]
       }
     },

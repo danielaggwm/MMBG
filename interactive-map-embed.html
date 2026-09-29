@@ -490,7 +490,7 @@
     body.hide-butterfly .butterfly-follower { opacity: 0 !important; }
 
     /* Attention animation on the geolocate button: a soft pulsing halo
-       plus a little periodic tilt. Stops after the first click. */
+       plus a little periodic tilt. Shown whenever tracking is off. */
     @keyframes geo-pulse {
       0%   { box-shadow: 0 0 0 0 rgba(129,186,110,0.55); }
       70%  { box-shadow: 0 0 0 11px rgba(129,186,110,0); }
@@ -504,11 +504,20 @@
     }
     .mapboxgl-ctrl button.mapboxgl-ctrl-geolocate {
       border-radius: 6px;
+    }
+    /* Runs whenever location tracking is OFF; pauses while it's on (locked on,
+       panned away but still tracking, or waiting for a GPS fix) or disabled. */
+    .mapboxgl-ctrl button.mapboxgl-ctrl-geolocate:not(.mapboxgl-ctrl-geolocate-active):not(.mapboxgl-ctrl-geolocate-background):not(.mapboxgl-ctrl-geolocate-waiting):not(:disabled) {
       animation: geo-pulse 2.4s ease-out infinite,
                  geo-tilt 3.6s ease-in-out infinite;
     }
-    .mapboxgl-ctrl button.mapboxgl-ctrl-geolocate.geo-noticed {
-      animation: none;
+
+    /* The visitor's blue location dot and its big accuracy circle sit on top of
+       the pins. Let taps/clicks fall straight through them so a stop can still
+       be opened while standing right next to it. */
+    .mapboxgl-user-location,
+    .mapboxgl-user-location * {
+      pointer-events: none !important;
     }
 
     /* Fullscreen mode */

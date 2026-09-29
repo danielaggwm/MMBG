@@ -665,11 +665,6 @@ map.on('load', () => {
   setupCorrectedLabels();
   startIntro();
 
-  // Stop the geolocate button's attention animation once it's clicked
-  const geoBtn = document.querySelector('.mapboxgl-ctrl-geolocate');
-  if (geoBtn) {
-    geoBtn.addEventListener('click', () => geoBtn.classList.add('geo-noticed'), { once: true });
-  }
 });
 
 /* ============ Opening sequence ============
