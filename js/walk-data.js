@@ -858,36 +858,13 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.13528,
-          25.79591
-        ]
-      },
-      "properties": {
-        "walk": "tree",
-        "num": 38,
-        "common": "Royal palm",
-        "scientific": "Roystonea regia",
-        "section": "Rainbow Alley",
-        "peak": null,
-        "description": "Native to the Caribbean, South Florida, and Central America, this majestic palm is a powerful religious and cultural symbol, recognized as the national tree of Cuba and heavily featured in Santería rituals.\nThe palm can reach up to 100 feet tall and features a perfectly smooth, concrete-like white trunk topped by a bright-green crownshaft. Fascinatingly, these trees have evolved to discard their massive, heavy fronds cleanly during hurricanes, reducing wind resistance so the main trunk can survive the storm.",
-        "photo": "images/trees/roystonea-regia.jpg",
-        "photos": [
-          "images/trees/roystonea-regia.jpg"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -80.13534,
           25.796
         ]
       },
       "properties": {
         "walk": "tree",
-        "num": 39,
+        "num": 38,
         "common": "Zombie palm",
         "scientific": "Zombia antillarum",
         "section": "Rainbow Alley",
@@ -896,6 +873,29 @@ const WALK_DATA = {
         "photo": "images/trees/zombia-antillarum.jpg",
         "photos": [
           "images/trees/zombia-antillarum.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13529,
+          25.79612
+        ]
+      },
+      "properties": {
+        "walk": "tree",
+        "num": 39,
+        "common": "Copernicia palms",
+        "scientific": "C. alba, baileyana, berteroana, gigas, fallaensis, hospita, prunifolia, rigida, yarey",
+        "section": "Copernicia Corner",
+        "peak": null,
+        "description": "This incredible genus of palms is native to the savannas of South America and the Caribbean, particularly Cuba. Historically, species such as _C. prunifolia_ have supported global industries by producing carnauba wax, one of the hardest natural waxes. Harvested from the leaves, it is used in products ranging from car polish and dental floss to gummy candies.\nThe giant _Copernicia fallaensis_ is famous for its thick, swollen, ghost-white trunk, which resembles a majestic architectural column.",
+        "photo": "images/trees/copernicia-palms.jpg",
+        "photos": [
+          "images/trees/copernicia-palms.jpg"
         ]
       }
     },
@@ -927,36 +927,13 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.13529,
-          25.79612
-        ]
-      },
-      "properties": {
-        "walk": "tree",
-        "num": 41,
-        "common": "Copernicia palms",
-        "scientific": "C. alba, baileyana, berteroana, gigas, fallaensis, hospita, prunifolia, rigida, yarey",
-        "section": "Copernicia Corner",
-        "peak": null,
-        "description": "This incredible genus of palms is native to the savannas of South America and the Caribbean, particularly Cuba. Historically, species such as _C. prunifolia_ have supported global industries by producing carnauba wax, one of the hardest natural waxes. Harvested from the leaves, it is used in products ranging from car polish and dental floss to gummy candies.\nThe giant _Copernicia fallaensis_ is famous for its thick, swollen, ghost-white trunk, which resembles a majestic architectural column.",
-        "photo": "images/trees/copernicia-palms.jpg",
-        "photos": [
-          "images/trees/copernicia-palms.jpg"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -80.13535,
           25.79616
         ]
       },
       "properties": {
         "walk": "tree",
-        "num": 42,
+        "num": 41,
         "common": "Pomegranate",
         "scientific": "Punicum granatum",
         "section": "Gnome & Fairy Children's Garden",
@@ -979,7 +956,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 43,
+        "num": 42,
         "common": "Jaboticaba",
         "scientific": "Myrciaria cauliflora",
         "section": "Gnome & Fairy Children's Garden",
@@ -1002,7 +979,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 44,
+        "num": 43,
         "common": "Cacao",
         "scientific": "Theobroma cacao",
         "section": "Gnome & Fairy Children's Garden",
@@ -1025,7 +1002,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 45,
+        "num": 44,
         "common": "Cabbage palms",
         "scientific": "Sabal palmetto",
         "section": "Gnome & Fairy Children's Garden",
@@ -1048,7 +1025,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 46,
+        "num": 45,
         "common": "Bay rum",
         "scientific": "Pimenta racemosa",
         "section": "Gnome & Fairy Children's Garden",
@@ -1071,7 +1048,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 47,
+        "num": 46,
         "common": "Brazilian cherry",
         "scientific": "Eugenia brasiliensis",
         "section": "Gnome & Fairy Children's Garden",
@@ -1094,7 +1071,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 48,
+        "num": 47,
         "common": "Carambola, or star fruit",
         "scientific": "Averrhoa carambola",
         "section": "Gnome & Fairy Children's Garden",
@@ -1117,7 +1094,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 49,
+        "num": 48,
         "common": "Calabash",
         "scientific": "Crescentia cujete",
         "section": "Gnome & Fairy Children's Garden",
@@ -1140,7 +1117,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 50,
+        "num": 49,
         "common": "Banana plants",
         "scientific": "Musa sp",
         "section": "Gnome & Fairy Children's Garden",
@@ -1164,7 +1141,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 51,
+        "num": 50,
         "common": "Guiana chestnut",
         "scientific": "Pachira aquatica",
         "section": "Banyan Lawn",
@@ -1187,7 +1164,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 52,
+        "num": 51,
         "common": "Sea grape",
         "scientific": "Coccoloba uvifera",
         "section": "Banyan Lawn",
@@ -1210,7 +1187,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 53,
+        "num": 52,
         "common": "Banyan",
         "scientific": "Ficus benjamina",
         "section": "Banyan Lawn",
@@ -1233,7 +1210,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 54,
+        "num": 53,
         "common": "Brazilian Fire",
         "scientific": "Schizolobium parahyba",
         "section": "Banyan Lawn",
@@ -1256,7 +1233,7 @@ const WALK_DATA = {
       },
       "properties": {
         "walk": "tree",
-        "num": 55,
+        "num": 54,
         "common": "Fishtail palm",
         "scientific": "Caryota rumphiana",
         "section": "Banyan Lawn",
@@ -1265,6 +1242,29 @@ const WALK_DATA = {
         "photo": "images/trees/caryota-rumphiana.jpg",
         "photos": [
           "images/trees/caryota-rumphiana.jpg"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.13567,
+          25.79562
+        ]
+      },
+      "properties": {
+        "walk": "tree",
+        "num": 55,
+        "common": "Royal palm",
+        "scientific": "Roystonea regia",
+        "section": "Banyan Lawn",
+        "peak": null,
+        "description": "Native to the Caribbean, South Florida, and Central America, this majestic palm is a powerful religious and cultural symbol, recognized as the national tree of Cuba and heavily featured in Santería rituals.\nThe palm can reach up to 100 feet tall and features a perfectly smooth, concrete-like white trunk topped by a bright-green crownshaft. Fascinatingly, these trees have evolved to discard their massive, heavy fronds cleanly during hurricanes, reducing wind resistance so the main trunk can survive the storm.",
+        "photo": "images/trees/roystonea-regia.jpg",
+        "photos": [
+          "images/trees/roystonea-regia.jpg"
         ]
       }
     },
@@ -1703,8 +1703,8 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.13529,
-          25.79562
+          -80.13534,
+          25.7957
         ]
       },
       "properties": {
@@ -1791,8 +1791,8 @@ const WALK_DATA = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.1356,
-          25.79615
+          -80.1354,
+          25.79613
         ]
       },
       "properties": {

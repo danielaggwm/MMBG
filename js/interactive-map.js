@@ -2,7 +2,7 @@
    Miami Beach Botanical Garden — Interactive Walk Map
    Tree Walk + Fragrance Walk with animated highlighted paths.
    Data comes from js/walk-data.js (generated from
-   data/Tree&FragranceWalk.xlsx).
+   data/Tree&FragranceWalk_with_descriptions.xlsx via data/build_walk_data.py).
    ============================================================ */
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuaWVsYWdnd20iLCJhIjoiY21zb3Y3Z2E0MDFhbTJ3cTJyb2NkY204ZiJ9.SD3EP4qFA10UN3ubh8m37g';
