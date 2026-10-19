@@ -70,6 +70,13 @@ def clean_text(v):
     return '\n'.join(lines) or None
 
 
+# Scientific names of stops that get a yellow star on the map (National Champion
+# Tree, announced Jan 25 2027). Matched against the "(Scientific name)" in the
+# stop's Name cell, on both the Tree Walk and the Highlights Walk. To retire or
+# add a star, edit this set and re-run the script. The blurb itself lives at the
+# top of the stop's Description cell in the Excel file.
+CHAMPION_TREES = {'Ficus benjamina'}
+
 # Peak / best time of year for each Fragrance Walk stop (keyed by stop number).
 FRAGRANCE_PEAK = {
     1:  'February–May',
@@ -112,6 +119,8 @@ for sheet, walk in [('Arboretum Walk', 'tree'), ('Fragrance Walk', 'fragrance')]
                                "peak": FRAGRANCE_PEAK.get(num) if walk == 'fragrance' else None,
                                "description": desc if walk == 'tree' else None,
                                "photo": photos[0], "photos": photos}}
+        if sci in CHAMPION_TREES:
+            feat["properties"]["champion"] = True
         features.append(feat)
         if walk == 'tree':
             tree_by_coord[(round(lng, 6), round(lat, 6))] = feat
@@ -134,12 +143,15 @@ for row in wb["Highlights Walk"].iter_rows(min_row=2, values_only=True):
         print(f"WARNING: Highlights stop {num} '{common}' has no matching Tree Walk pin and no Section — chip will be blank")
     description = own_desc or (src["properties"].get("description") if src else None)
     photos = photo_list(photo_slug(common, sci))
-    features.append({"type": "Feature",
+    hfeat = {"type": "Feature",
         "geometry": {"type": "Point", "coordinates": [round(lng, 6), round(lat, 6)]},
         "properties": {"walk": "highlights", "num": num, "common": common, "scientific": sci,
                        "section": section,
                        "description": description,
-                       "photo": photos[0], "photos": photos}})
+                       "photo": photos[0], "photos": photos}}
+    if sci in CHAMPION_TREES:
+        hfeat["properties"]["champion"] = True
+    features.append(hfeat)
 
 # Pollinator Tour — a separate toggle overlay, not a numbered walk. Each stop
 # carries a stoplight "color" (red/yellow/green) and the MBBG garden sector it

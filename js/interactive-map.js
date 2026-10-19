@@ -353,7 +353,7 @@ function addMarkers(walk) {
 
   feats.forEach(f => {
     const el = document.createElement('div');
-    el.className = `tree-pin pin-${walk}`;
+    el.className = `tree-pin pin-${walk}${f.properties.champion ? ' pin-champion' : ''}`;  // champion = yellow star badge
     el.textContent = f.properties.num;
 
     if (canHover) {

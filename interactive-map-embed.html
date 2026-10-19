@@ -470,6 +470,20 @@
     .tree-pin.pin-selected.pin-fragrance { background: #DE6F60; }
     .tree-pin.pin-selected.pin-highlights { background: #7B65A8; }
 
+    /* National Champion Tree: yellow star badge on the pin's top-right corner.
+       Flagged in data/build_walk_data.py (CHAMPION_TREES). The :not() keeps this
+       from overriding the marker's own absolute positioning if the pin is the
+       marker root. */
+    .tree-pin.pin-champion:not(.mapboxgl-marker) { position: relative; }
+    .tree-pin.pin-champion::after {
+      content: '';
+      position: absolute;
+      top: -7px; right: -7px;
+      width: 13px; height: 13px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,1.5 15.1,8.6 22.8,9.3 17,14.4 18.7,22 12,18 5.3,22 7,14.4 1.2,9.3 8.9,8.6' fill='%23FFC933' stroke='%23B88A00' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+      pointer-events: none;
+    }
+
     /* Stoplight pollinator pins (overlay on top of the active walk) */
     .poll-pin {
       width: 25px; height: 56px;

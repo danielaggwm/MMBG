@@ -1192,11 +1192,12 @@ const WALK_DATA = {
         "scientific": "Ficus benjamina",
         "section": "Banyan Lawn",
         "peak": null,
-        "description": "Native to a broad region stretching from India to northern Australia, this tree is deeply rooted in history, with related banyan species serving as sacred symbols of eternal life in Hinduism. Our _Ficus_ is the largest specimen of its kind in Florida!",
+        "description": "**National Champion Tree!**\nOn January 25, 2027, our _Ficus benjamina_ will be named a National Champion Tree for its enormous size. No longer just the biggest in Florida, it is now the biggest in the US!\nNative to a broad region stretching from India to northern Australia, this tree is deeply rooted in history, with related banyan species serving as sacred symbols of eternal life in Hinduism.",
         "photo": "images/trees/ficus-benjamina.jpg",
         "photos": [
           "images/trees/ficus-benjamina.jpg"
-        ]
+        ],
+        "champion": true
       }
     },
     {
@@ -1891,11 +1892,12 @@ const WALK_DATA = {
         "common": "Banyan",
         "scientific": "Ficus benjamina",
         "section": "Banyan Lawn",
-        "description": "Native to a broad region stretching from India to northern Australia, this tree is deeply rooted in history, with related banyan species serving as sacred symbols of eternal life in Hinduism. Our _Ficus_ features aerial roots that descend to the ground and have helped support the tree through heavy storms for more than 100 years.\nThis tree is the largest example of its kind in the state of Florida. See if you can stretch your arms around it or guess how tall it is. Measurements are featured on the brown metal Florida Champion sign.",
+        "description": "**National Champion Tree!**\nOn January 25, 2027, our _Ficus benjamina_ will be named a National Champion Tree for its enormous size. No longer just the biggest in Florida, it is now the biggest in the US!\nNative to a broad region stretching from India to northern Australia, this tree is deeply rooted in history, with related banyan species serving as sacred symbols of eternal life in Hinduism. Our _Ficus_ features aerial roots that descend to the ground and have helped support the tree through heavy storms for more than 100 years.\nThis tree is the largest example of its kind in the state of Florida. See if you can stretch your arms around it or guess how tall it is. Measurements are featured on the brown metal Florida Champion sign.",
         "photo": "images/trees/ficus-benjamina.jpg",
         "photos": [
           "images/trees/ficus-benjamina.jpg"
-        ]
+        ],
+        "champion": true
       }
     },
     {
