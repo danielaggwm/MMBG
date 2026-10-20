@@ -1802,7 +1802,7 @@ const WALK_DATA = {
         "common": "AJNFF Gnome & Fairy Children’s Gardens",
         "scientific": null,
         "section": "Gnome & Fairy Children's Garden",
-        "description": "Built in 2025 with a generous donation from the Al & Jane Nahmad Family Foundation, our Gnome & Fairy Garden features a whimsical design—complete with a white unicorn—that sparks the imagination of younger visitors. The Garden includes miniature scenes, hidden pockets of enchantment, and seasonal interactive workshops. As you wander, see if you can spot our bunny hutch!",
+        "description": "Built in 2025 with a generous donation from the Al & Jane Nahmad Family Foundation, our Gnome & Fairy Garden features a whimsical design—complete with a white unicorn—that sparks the imagination of younger visitors. The Garden includes miniature scenes, hidden pockets of enchantment, and seasonal interactive workshops.",
         "photo": "images/trees/ajnff-gnome-fairy-children-s-gardens.jpg",
         "photos": [
           "images/trees/ajnff-gnome-fairy-children-s-gardens.jpg"
