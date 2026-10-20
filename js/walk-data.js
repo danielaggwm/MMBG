@@ -1212,7 +1212,7 @@ const WALK_DATA = {
       "properties": {
         "walk": "tree",
         "num": 53,
-        "common": "Brazilian Fire",
+        "common": "Brazilian fire",
         "scientific": "Schizolobium parahyba",
         "section": "Banyan Lawn",
         "peak": null,
@@ -1667,7 +1667,7 @@ const WALK_DATA = {
       "properties": {
         "walk": "highlights",
         "num": 6,
-        "common": "Talipot Palm",
+        "common": "Talipot palm",
         "scientific": "Corypha umbraculifera",
         "section": "Gumbo Limbo Courtyard",
         "description": "This is one of the true giants of the Garden. Famous for its massive fan leaves, it can grow for up to 80 years, produce the largest flowering cluster in the plant kingdom, and then die. Its old leaf bases, known as boots, are filled with orchids and other epiphytes.",
